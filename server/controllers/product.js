@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const { default: mongoose } = require("mongoose");
 const Product = require("../models/Product");
 const ErrorResponse = require("../utils/ErrorResponse");
 

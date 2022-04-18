@@ -10,8 +10,6 @@ exports.getCategories = async (req, res, next) => {
   try {
     const category = await filteredProducts();
 
-    console.log(category);
-
     res.status(200).json({
       success: true,
       data: category,
@@ -29,7 +27,7 @@ exports.getCategory = async (req, res, next) => {
   }
 
   try {
-    const category = await filterCategory();
+    const category = await filterCategory(id);
 
     res.status(200).json({ success: true, data: category });
   } catch (error) {
