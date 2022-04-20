@@ -13,6 +13,20 @@ exports.filteredProducts = async () => {
   });
 };
 
+exports.filterModel = async (id) => {
+  const categories = await Category.find();
+  const products = await Product.find();
+
+  return categories.map((ctg) => {
+    ctg.products = products.filter(
+      (pdct) =>
+        ctg._id.toString() === pdct.categoryID.toString() &&
+        id.toString() === pdct.modelID.toString()
+    );
+    return ctg;
+  });
+};
+
 exports.filterCategory = async (id) => {
   const category = await Category.findById(id);
 

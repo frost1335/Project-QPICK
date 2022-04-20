@@ -23,7 +23,7 @@ exports.getCategory = async (req, res, next) => {
   const { id } = req.params;
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
-    return new ErrorResponse("No category with this ID", 404);
+    return new ErrorResponse("No category with this ID", 400);
   }
 
   try {
@@ -42,7 +42,7 @@ exports.createCategory = (req, res, next) => {
   try {
     newCategory.save();
 
-    res.status(200).json({
+    res.status(201).json({
       success: true,
       data: newCategory,
     });
@@ -56,7 +56,7 @@ exports.editCategory = async (req, res, next) => {
   const category = req.body;
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
-    return new ErrorResponse("No category with this ID", 404);
+    return new ErrorResponse("No category with this ID", 400);
   }
 
   try {
@@ -81,7 +81,7 @@ exports.deleteCategory = async (req, res, next) => {
   const { id } = req.params;
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
-    return new ErrorResponse("No category with this ID", 404);
+    return new ErrorResponse("No category with this ID", 400);
   }
 
   try {

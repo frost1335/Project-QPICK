@@ -18,6 +18,11 @@ const productSchema = mongoose.Schema({
     ref: "Category",
     required: [true, "Please enter a category "],
   },
+  modelID: {
+    type: mongoose.Types.ObjectId,
+    ref: "Model",
+    required: [true, "Please enter a model"],
+  },
   rating: Number,
 });
 
