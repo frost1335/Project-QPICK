@@ -1,0 +1,58 @@
+.Navbar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 0;
+
+  .nav_left {
+    display: flex;
+    align-items: center;
+
+    .nav_logo {
+      font-style: normal;
+      font-weight: 700;
+      font-size: 25px;
+      line-height: 30px;
+      color: #101010;
+    }
+
+    .menu_text {
+      font-style: normal;
+      font-weight: 500;
+      font-size: 15px;
+      line-height: 18px;
+      color: #101010;
+      display: flex;
+      align-items: center;
+      margin-left: 75px;
+      cursor: pointer;
+
+      svg {
+        margin-bottom: 2px;
+      }
+
+      .phone {
+        margin-right: 15px;
+        font-size: 22px;
+      }
+
+      .down {
+        margin-left: 5px;
+        font-size: 22px;
+      }
+    }
+  }
+
+  .nav_right {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+
+    svg {
+      color: #838383;
+      font-size: 24px;
+      margin: 0 20px;
+    }
+  }
+}
