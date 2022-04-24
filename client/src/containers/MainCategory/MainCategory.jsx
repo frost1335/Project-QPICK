@@ -1,13 +1,17 @@
-import React from 'react'
+import React from "react";
+import { useSelector } from "react-redux";
 
-import './MainCategory.scss'
+import "./MainCategory.scss";
 
 const MainCategory = () => {
-  return (
-    <div className='container'>
-        <div className="MainCategory"></div>
-    </div>
-  )
-}
+  const accessory = useSelector((state) => state.accessory);
 
-export default MainCategory
+  console.log(accessory);
+  return (
+    <div className="container">
+      <div className="MainCategory"></div>
+    </div>
+  );
+};
+
+export default MainCategory;

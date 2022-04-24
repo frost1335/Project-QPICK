@@ -6,9 +6,11 @@ exports.filteredProducts = async () => {
   const products = await Product.find();
 
   return categories.map((ctg) => {
-    ctg.products = products.filter(
-      (pdct) => ctg._id.toString() === pdct.categoryID.toString()
-    );
+    let i = 0;
+    ctg.products = products.filter((pdct) => {
+      i += 1;
+      return ctg._id.toString() === pdct.categoryID.toString() && i <= 3;
+    });
     return ctg;
   });
 };
