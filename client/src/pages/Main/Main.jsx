@@ -1,12 +1,12 @@
 import React from "react";
-import { Navbar, Footer } from "../../components";
-import Reklama from "../../components/Reklama/Reklama";
+import { Navbar, Footer, CategorySlider, Reklama } from "../../components";
 import { MainCategory } from "../../containers";
 
 const Main = () => {
   return (
     <div>
       <Navbar />
+      <CategorySlider />
       <Reklama />
       <MainCategory />
       Main

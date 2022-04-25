@@ -2,55 +2,79 @@ import React, { useState } from "react";
 import "./Navbar.scss";
 import { Link } from "react-router-dom";
 
-import { BiCartAlt, BiHeart } from "react-icons/bi";
-import { FiChevronDown, FiSmartphone } from "react-icons/fi";
+import { BiHeart, BiUser, BiCart } from "react-icons/bi";
+import { ImStatsBars } from "react-icons/im";
+import { VscThreeBars } from "react-icons/vsc";
 
 const Navbar = () => {
   const [menu, setMenu] = useState(false);
 
   return (
-    <div className="container">
+    <div className="nav_back">
       <div className="Navbar">
-        <div className="nav_left">
-          <p className="nav_logo">QPICK</p>
-          <div className="menu">
-            <div
-              className={`menu_back ${menu ? "open" : "close"}`}
-              onClick={() => setMenu(!menu)}
-            />
-            <p className="menu_text" onClick={() => setMenu(!menu)}>
-              <FiSmartphone className="phone" /> Выбрать модель телефона{" "}
-              <FiChevronDown className="down" />
-            </p>
-            <ul className={`${menu ? "open" : "close"}`}>
-              <li onClick={() => setMenu(!menu)}>
-                <Link to="/">Apple</Link>
-              </li>
-              <li onClick={() => setMenu(!menu)}>
-                <Link to="/">Apple</Link>
-              </li>
-              <li onClick={() => setMenu(!menu)}>
-                <Link to="/">Apple</Link>
-              </li>
-              <li onClick={() => setMenu(!menu)}>
-                <Link to="/">Apple</Link>
-              </li>
-              <li onClick={() => setMenu(!menu)}>
-                <Link to="/">Apple</Link>
-              </li>
-              <li onClick={() => setMenu(!menu)}>
-                <Link to="/">Apple</Link>
-              </li>
-            </ul>
+        <div className="navTop">
+          <div className="container">
+            <div className="nav_top">
+              <div className="top_left">
+                <span className="logo">olcha.uz</span>
+              </div>
+              <div className="top_right">
+                <ul className="menu">
+                  <li>
+                    <Link to="/">Помощь</Link>
+                  </li>
+                  <li>
+                    <p>
+                      <a href="tel:+998712022021">+998 (71) 202 2021</a>
+                    </p>
+                  </li>
+                  <li>
+                    <button>Запросить звонок</button>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
-        <div className="nav_right">
-          <Link to="/">
-            <BiCartAlt />
-          </Link>
-          <Link to="/">
-            <BiHeart />
-          </Link>
+        <div className="navBottom">
+          <div className="container">
+            <div className="nav_bottom">
+              <div className="menu">
+                <button>
+                  Каталог <VscThreeBars />
+                </button>
+              </div>
+              <div className="search">
+                <form action="">
+                  <input type="text" placeholder="Поиск товаров..." />
+                  <button>S</button>
+                </form>
+              </div>
+              <div className="links">
+                <li>
+                  <Link to="/">
+                    <BiUser />
+                    Войти
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/">
+                    <ImStatsBars /> Сравнение
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/">
+                    <BiHeart /> Избранное
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/">
+                    <BiCart /> Корзина
+                  </Link>
+                </li>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
