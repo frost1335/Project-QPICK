@@ -1,5 +1,11 @@
 import React from "react";
-import { Navbar, Footer, CategorySlider, Reklama } from "../../components";
+import {
+  Navbar,
+  Footer,
+  CategorySlider,
+  Reklama,
+  Banner,
+} from "../../components";
 import { MainCategory } from "../../containers";
 
 const Main = () => {
@@ -8,8 +14,8 @@ const Main = () => {
       <Navbar />
       <CategorySlider />
       <Reklama />
+      <Banner />
       <MainCategory />
-      Main
       <Footer />
     </div>
   );

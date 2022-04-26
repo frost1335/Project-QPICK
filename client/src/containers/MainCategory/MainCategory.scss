@@ -1,0 +1,108 @@
+.MainCategory {
+  display: flex;
+  flex-direction: column;
+
+  .main_category {
+    padding: 25px 0;
+
+    h3 {
+      font-size: 24px;
+      color: #101010;
+      font-weight: 400;
+      margin-bottom: 20px;
+    }
+
+    .main_products {
+      display: flex;
+      flex-wrap: wrap;
+
+      .main_box {
+        width: 25%;
+        padding: 16px;
+
+        a {
+          text-decoration: none;
+        }
+
+        .main_card {
+          display: flex;
+          flex-direction: column;
+          border-radius: 15px;
+          box-shadow: 0 0 20px rgba($color: #000000, $alpha: 0.1);
+          padding: 15px 20px 20px;
+          position: relative;
+          transition: all 0.3s;
+
+          &:hover {
+            transform: scale(1.03);
+          }
+
+          .favorite {
+            position: absolute;
+            right: 13px;
+            top: 13px;
+            font-size: 26px;
+            color: #ff1818;
+            padding: 5px;
+          }
+
+          .card_image {
+            width: 100%;
+            height: 300px;
+            margin: auto;
+            margin-bottom: 18px;
+
+            img {
+              width: 100%;
+              height: 100%;
+              color: #101010;
+            }
+          }
+
+          p {
+            color: #101010;
+            font-weight: 400;
+            font-size: 22px;
+            margin-bottom: 20px;
+
+            &:hover {
+              color: rgba($color: #ff8c32, $alpha: 0.6);
+            }
+          }
+
+          span {
+            color: #101010;
+            font-weight: 500;
+            font-size: 22px;
+
+            .price_cup {
+              font-weight: 600;
+            }
+          }
+
+          .buy {
+            display: flex;
+            justify-content: center;
+            flex-grow: 1;
+            margin-top: 25px;
+            margin-bottom: 15px;
+
+            a {
+              color: #101010;
+              background: transparent;
+              border-radius: 30px;
+              border: 1px solid #101010;
+              padding: 10px 40px;
+              transition: all 0.1s;
+
+              &:hover {
+                color: rgba($color: #ff8c32, $alpha: 0.7);
+                border: 1px solid rgba($color: #ff8c32, $alpha: 0.7);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

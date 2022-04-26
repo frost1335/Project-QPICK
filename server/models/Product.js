@@ -18,10 +18,10 @@ const productSchema = mongoose.Schema({
     ref: "Category",
     required: [true, "Please enter a category "],
   },
-  modelID: {
+  shopID: {
     type: mongoose.Types.ObjectId,
-    ref: "Model",
-    required: [true, "Please enter a model"],
+    ref: "Shop",
+    required: [true, "Please enter a shop"],
   },
   rating: Number,
 });

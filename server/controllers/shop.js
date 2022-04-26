@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
-const Model = require("../models/Model");
+const Shop = require("../models/Shop");
 const ErrorResponse = require("../utils/ErrorResponse");
-const { filterModel } = require("../utils/filteredProducts");
+const { filterShop } = require("../utils/filteredProducts");
 
-exports.getAllModels = async (req, res, next) => {
+exports.getAllShops = async (req, res, next) => {
   try {
     const category = await filteredProducts();
 
@@ -13,15 +13,13 @@ exports.getAllModels = async (req, res, next) => {
   }
 };
 
-exports.getModel = async (req, res, next) => {
+exports.getShop = async (req, res, next) => {
   const { id } = req.params;
   if (!mongoose.Types.ObjectId.isValid(id)) {
-    return new ErrorResponse("No model with this ID", 400);
+    return new ErrorResponse("No shop with this ID", 400);
   }
   try {
-    const categorys = await filterModel(id);
-
-    console.log(categorys);
+    const categorys = await filterShop(id);
 
     res.status(200).json({ success: true, data: categorys });
   } catch (error) {
@@ -29,49 +27,49 @@ exports.getModel = async (req, res, next) => {
   }
 };
 
-exports.createModel = (req, res, next) => {
-  const model = req.body;
-  const newModel = new Model(model);
+exports.createShop = (req, res, next) => {
+  const shop = req.body;
+  const newShop = new Shop(shop);
   try {
-    newModel.save();
+    newShop.save();
 
-    res.status(201).json({ success: true, data: newModel });
+    res.status(201).json({ success: true, data: newShop });
   } catch (error) {
     next(error.message);
   }
 };
 
-exports.editModel = async (req, res, next) => {
+exports.editShop = async (req, res, next) => {
   const { id } = req.params;
-  const model = req.body;
+  const shop = req.body;
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
-    return new ErrorResponse("No model with this id", 400);
+    return new ErrorResponse("No shop with this id", 400);
   }
 
   try {
-    const updatedModel = await Model.findByIdAndUpdate(
+    const updatedShop = await Shop.findByIdAndUpdate(
       id,
       {
-        ...model,
+        ...shop,
         id,
       },
       { new: true }
     );
 
-    res.status(200).json({ success: true, data: updatedModel });
+    res.status(200).json({ success: true, data: updatedShop });
   } catch (error) {
     next(error.message);
   }
 };
 
-exports.deleteModel = async (req, res, next) => {
+exports.deleteShop = async (req, res, next) => {
   const { id } = req.params;
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return new ErrorResponse("No model with this ID", 400);
   }
   try {
-    await Model.findByIdAndRemove(id);
+    await Shop.findByIdAndRemove(id);
 
     res
       .status(200)

@@ -6,24 +6,26 @@ exports.filteredProducts = async () => {
   const products = await Product.find();
 
   return categories.map((ctg) => {
-    let i = 0;
     ctg.products = products.filter((pdct) => {
-      i += 1;
-      return ctg._id.toString() === pdct.categoryID.toString() && i <= 3;
+      return ctg._id.toString() === pdct.categoryID.toString();
     });
     return ctg;
   });
 };
 
-exports.filterModel = async (id) => {
+exports.filterShop = async (id) => {
   const categories = await Category.find();
   const products = await Product.find();
+
+  // const asd = categories.populate("categorys.products.modelID");
+
+  console.log(products);
 
   return categories.map((ctg) => {
     ctg.products = products.filter(
       (pdct) =>
         ctg._id.toString() === pdct.categoryID.toString() &&
-        id.toString() === pdct.modelID.toString()
+        id.toString() === pdct.shopID.toString()
     );
     return ctg;
   });
