@@ -1,106 +1,153 @@
 .Navbar {
   width: 100%;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: space-between;
   padding: 15px 0;
 
-  .nav_left {
+  .navTop {
+    border-bottom: 1px solid #00092c;
+  }
+
+  .logo {
+    font-size: 34px;
+    color: #fff;
+    font-weight: 700;
+  }
+
+  .nav_top {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 15px;
+
+    .top_right .menu {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      li {
+        list-style: none;
+        color: #fff;
+        font-size: 16px;
+        margin: 0 10px;
+
+        a {
+          text-decoration: none;
+          color: #fff;
+          font-size: 16px;
+        }
+
+        p {
+          font-weight: 600;
+        }
+
+        button {
+          background: transparent;
+          border: #fff 2px solid;
+          border-radius: 8px;
+          color: #fff;
+          padding: 12px 16px;
+          font-size: 16px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  .nav_bottom {
     display: flex;
     align-items: center;
-
-    .nav_logo {
-      font-style: normal;
-      font-weight: 700;
-      font-size: 25px;
-      line-height: 30px;
-      color: #101010;
-    }
+    justify-content: space-between;
+    padding-top: 12px;
 
     .menu {
-      position: relative;
-
-      .menu_text {
-        font-style: normal;
-        font-weight: 500;
-        font-size: 15px;
-        line-height: 18px;
-        color: #101010;
+      button {
+        background: transparent;
+        border: 2px #fff solid;
+        color: #fff;
+        font-size: 16px;
+        border-radius: 40px;
+        padding: 15px 20px;
         display: flex;
-        align-items: center;
-        margin-left: 75px;
+        align-self: center;
+        cursor: pointer;
 
         svg {
-          margin-bottom: 2px;
-        }
-
-        .phone {
-          margin-right: 15px;
-          font-size: 22px;
-        }
-
-        .down {
-          margin-left: 5px;
-          font-size: 22px;
+          font-size: 18px;
+          margin-left: 8px;
         }
       }
+    }
 
-      .menu_back {
-        display: none;
-        position: fixed;
+    .search {
+      background: #fff;
+      border: 2px solid #fff;
+      border-radius: 40px;
+      display: flex;
+      align-items: center;
+      flex-grow: 0.7;
+
+      form {
+        display: flex;
+        align-items: center;
         width: 100%;
-        height: 100vh;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
       }
 
-      ul {
-        display: none;
-        position: absolute;
-        top: 23px;
-        left: 40%;
-        padding: 20px 50px 20px 35px;
-        background: #eaeaea;
-        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-        border-radius: 0px 0px 30px 30px;
+      input {
+        width: 100%;
+        color: #101010;
+        font-size: 16px;
+        font-weight: 500;
+        border: none;
+        padding: 0 50px 0 15px;
+        outline: none;
+        background: transparent;
+
+        &::placeholder {
+          font-size: 16px;
+          color: #7e7e7e;
+        }
+      }
+
+      button {
+        color: #fff;
+        background-color: #ff5f00;
+        border: none;
+        border-radius: 0;
+        height: 100%;
+        padding: 15px 35px;
+        border-radius: 0 40px 40px 0;
+      }
+    }
+
+    .links {
+      display: flex;
+      align-items: center;
+
+      li {
         list-style: none;
+        margin: 0 25px;
 
-        li {
-          font-style: normal;
-          font-weight: 500;
-          font-size: 17px;
-          line-height: 21px;
-          color: #1c1c27;
-          margin-bottom: 10px;
-          cursor: pointer;
+        a {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          color: #fff;
+          text-decoration: none;
 
-          a {
-            color: #1c1c27;
-            text-decoration: none;
+          svg {
+            font-size: 24px;
+            margin-bottom: 8px;
           }
         }
       }
-
-      ul.open {
-        display: block;
-      }
-      .menu_back.open {
-        display: block;
-      }
     }
   }
+}
 
-  .nav_right {
-    display: flex;
-    align-items: center;
-    margin-right: 10px;
-
-    svg {
-      color: #838383;
-      font-size: 24px;
-      margin: 0 20px;
-    }
-  }
+.nav_back {
+  width: 100%;
+  background: linear-gradient(90deg, #ff8c32 0%, #06113c 100%);
 }
