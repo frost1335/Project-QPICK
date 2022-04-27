@@ -10,14 +10,14 @@ import { MainCategory } from "../../containers";
 
 const Main = () => {
   return (
-    <div>
+    <>
       <Navbar />
       <CategorySlider />
       <Reklama />
       <Banner />
       <MainCategory />
       <Footer />
-    </div>
+    </>
   );
 };
 

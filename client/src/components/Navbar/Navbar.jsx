@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { BiHeart, BiUser, BiCart } from "react-icons/bi";
 import { ImStatsBars } from "react-icons/im";
 import { VscThreeBars } from "react-icons/vsc";
+import Catalog from "../Catalog/Catalog";
 
 const Navbar = () => {
   const [menu, setMenu] = useState(false);
@@ -40,9 +41,14 @@ const Navbar = () => {
           <div className="container">
             <div className="nav_bottom">
               <div className="menu">
-                <button>
+                <button onClick={() => setMenu(!menu)}>
                   Каталог <VscThreeBars />
                 </button>
+                <div
+                  className={`catalog_back ${menu ? "open" : "closed"}`}
+                  onClick={() => setMenu(!menu)}
+                />
+                <Catalog menu={menu} />
               </div>
               <div className="search">
                 <form action="">

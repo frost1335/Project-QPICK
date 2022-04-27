@@ -1,9 +1,18 @@
-import React from 'react'
+import React from "react";
+import { Footer, Navbar, CategorySlider } from "../../components";
+
+import "./Product.scss";
 
 const Product = () => {
+  
   return (
-    <div>Product</div>
-  )
-}
+    <>
+      <Navbar />
+      <CategorySlider />
+      <div className="Product"></div>
+      <Footer />
+    </>
+  );
+};
 
-export default Product
+export default Product;

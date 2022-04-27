@@ -10,7 +10,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "./MainCategory.scss";
 // import required modules
-import { Pagination } from "swiper";
+import { Pagination, Navigation } from "swiper";
 
 const MainCategory = () => {
   const accessory = useSelector((state) => state.accessory);
@@ -27,13 +27,13 @@ const MainCategory = () => {
                     <Swiper
                       slidesPerView={3}
                       spaceBetween={30}
-                      modules={[]}
+                      modules={[Navigation]}
                       navigation={true}
                       className="mySwiper"
                     >
                       {ctg.products.map((pdct, idx) => (
                         <SwiperSlide className="main_box" key={idx}>
-                          <Link to="/">
+                          <Link to={"/api/product/" + pdct._id}>
                             <div className="main_card">
                               <Link to="/bi">
                                 <div className="favorite">

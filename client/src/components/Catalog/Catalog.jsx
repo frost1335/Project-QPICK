@@ -1,11 +1,13 @@
-import React from 'react'
+import React from "react";
 
-import './Catalog.scss'
+import "./Catalog.scss";
 
-const Catalog = () => {
-  return (
-    <div>Catalog</div>
-  )
-}
+const Catalog = (props) => {
+  return props.menu ? (
+    <>
+      <div className="Catalog">Catalog</div>
+    </>
+  ) : null;
+};
 
-export default Catalog
+export default Catalog;

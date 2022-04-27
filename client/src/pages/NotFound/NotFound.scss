@@ -1,0 +1,20 @@
+.notfound_block {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .NotFound {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 0;
+
+    h1 {
+      font-size: 200px;
+    }
+    p {
+      font-size: 20px;
+    }
+  }
+}
