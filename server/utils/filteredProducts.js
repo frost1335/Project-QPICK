@@ -17,10 +17,6 @@ exports.filterShop = async (id) => {
   const categories = await Category.find();
   const products = await Product.find();
 
-  // const asd = categories.populate("categorys.products.modelID");
-
-  console.log(products);
-
   return categories.map((ctg) => {
     ctg.products = products.filter(
       (pdct) =>

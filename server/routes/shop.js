@@ -4,11 +4,12 @@ const {
   getShop,
   editShop,
   deleteShop,
+  getAllShops,
 } = require("../controllers/shop");
 const router = Router();
 
 router.route("/").post(createShop);
-router.route("/all").get();
+router.route("/all").get(getAllShops);
 router.route("/:id").get(getShop);
 router.route("/:id").put(editShop);
 router.route("/:id").delete(deleteShop);

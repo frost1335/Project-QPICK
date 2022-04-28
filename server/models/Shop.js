@@ -5,6 +5,10 @@ const shopSchema = mongoose.Schema({
     type: String,
     required: [true, "Please enter shop name"],
   },
+  img: {
+    type: String,
+    required: [true, "Please enter shop image"],
+  },
   categorys: Array,
 });
 

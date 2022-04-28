@@ -24,7 +24,7 @@ const Banner = () => {
     <div className="container">
       <div className="Banner">
         {banners.map((bnr, idx) => (
-          <Link to={bnr.link}>
+          <Link to={bnr.link} key={idx}>
             <div className="banner_card">
               <img src={bnr.image} alt={"img-" + bnr.image} />
             </div>

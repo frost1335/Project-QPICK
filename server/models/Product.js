@@ -23,6 +23,22 @@ const productSchema = mongoose.Schema({
     ref: "Shop",
     required: [true, "Please enter a shop"],
   },
+  shopInfo: {
+    type: Object,
+    required: [true, "Please enter a shop info !"],
+  },
+  categoryInfo: {
+    type: Object,
+    required: [true, "Please enter a category info !"],
+  },
+  description: {
+    type: String,
+    required: [true, "Please enter product description"],
+  },
+  tags: {
+    type: Array,
+    required: [true, "Please enter product tag names"],
+  },
   rating: Number,
 });
 

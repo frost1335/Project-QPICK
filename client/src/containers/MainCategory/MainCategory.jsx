@@ -3,6 +3,8 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { BiHeart } from "react-icons/bi";
 
+import { Tshirt } from "../../images";
+
 import { SwiperSlide, Swiper } from "swiper/react";
 
 // Import Swiper styles
@@ -10,10 +12,10 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "./MainCategory.scss";
 // import required modules
-import { Pagination, Navigation } from "swiper";
+import { Navigation } from "swiper";
 
 const MainCategory = () => {
-  const accessory = useSelector((state) => state.accessory);
+  const accessory = useSelector((state) => state.products);
 
   return (
     <div className="container">
@@ -33,7 +35,7 @@ const MainCategory = () => {
                     >
                       {ctg.products.map((pdct, idx) => (
                         <SwiperSlide className="main_box" key={idx}>
-                          <Link to={"/api/product/" + pdct._id}>
+                          <Link to={"/view/product/" + pdct._id}>
                             <div className="main_card">
                               <Link to="/bi">
                                 <div className="favorite">
@@ -41,16 +43,26 @@ const MainCategory = () => {
                                 </div>
                               </Link>
                               <div className="card_image">
-                                <img
-                                  src={pdct.img}
-                                  alt={"image" + pdct.title}
-                                />
+                                <img src={Tshirt} alt={"image" + pdct.title} />
                               </div>
                               <p>{pdct.title} </p>
                               <span>
-                                {pdct.price}{" "}
-                                <span className="price_cup">сум</span>
+                                {pdct.price}
+                                <span className="price_cur">сум</span>
                               </span>
+                              <div className="shop">
+                                <Link to={"/api/shop/" + pdct.shopInfo._id}>
+                                  <div className="shop_image">
+                                    <img src={pdct.shopInfo.img} alt={"Shop"} />
+                                  </div>
+                                  <span>{pdct.shopInfo.name}</span>
+                                </Link>
+                                <Link to={"/api/category/" + pdct.categoryID}>
+                                  <span className="categoryLink">
+                                    {ctg.name}
+                                  </span>
+                                </Link>
+                              </div>
                               <div className="buy">
                                 <Link to="/buy">Купить</Link>
                               </div>

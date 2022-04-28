@@ -8,11 +8,11 @@ const { default: mongoose } = require("mongoose");
 
 exports.getCategories = async (req, res, next) => {
   try {
-    const category = await filteredProducts();
+    const categories = await Category.find();
 
     res.status(200).json({
       success: true,
-      data: category,
+      data: categories,
     });
   } catch (error) {
     next(error.message);

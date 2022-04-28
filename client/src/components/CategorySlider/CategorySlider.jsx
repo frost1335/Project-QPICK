@@ -14,35 +14,11 @@ import { Navigation } from "swiper";
 import "./CategorySlider.scss";
 import { Tshirt } from "../../images";
 import { Link } from "react-router-dom";
-
-const category = [
-  {
-    img: FaTshirt,
-    name: "T-shirt",
-  },
-  {
-    img: GiShorts,
-    name: "Shorts",
-  },
-  {
-    img: GiBilledCap,
-    name: "Cap",
-  },
-  {
-    img: FaTshirt,
-    name: "T-shirt",
-  },
-  {
-    img: GiShorts,
-    name: "Shorts",
-  },
-  {
-    img: GiBilledCap,
-    name: "Cap",
-  },
-];
+import { useSelector } from "react-redux";
 
 const CategorySlider = () => {
+  const categories = useSelector((state) => state.categories.data);
+
   return (
     <div className="container">
       <div className="CategorySlider">
@@ -54,16 +30,18 @@ const CategorySlider = () => {
           modules={[Navigation]}
           className="mySwiper"
         >
-          {category.map((ctg, idx) => (
-            <SwiperSlide key={idx}>
-              <Link to="/" className="slide">
-                <div className="slide_img">
-                  <img src={Tshirt} alt="image_category" />
-                </div>
-                <p className="slide_name">{ctg.name}</p>
-              </Link>
-            </SwiperSlide>
-          ))}
+          {categories
+            ? categories.map((ctg, idx) => (
+                <SwiperSlide key={idx}>
+                  <Link to={"/api/category/" + ctg._id} className="slide">
+                    <div className="slide_img">
+                      <img src={Tshirt} alt="image_category" />
+                    </div>
+                    <p className="slide_name">{ctg.name}</p>
+                  </Link>
+                </SwiperSlide>
+              ))
+            : null}
         </Swiper>
       </div>
     </div>

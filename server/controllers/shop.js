@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Shop = require("../models/Shop");
 const ErrorResponse = require("../utils/ErrorResponse");
-const { filterShop } = require("../utils/filteredProducts");
+const { filterShop, filteredProducts } = require("../utils/filteredProducts");
 
 exports.getAllShops = async (req, res, next) => {
   try {

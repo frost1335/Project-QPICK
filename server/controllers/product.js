@@ -1,5 +1,6 @@
 const { default: mongoose } = require("mongoose");
 const Product = require("../models/Product");
+const Shop = require("../models/Shop");
 const ErrorResponse = require("../utils/ErrorResponse");
 
 exports.getProducts = async (req, res, next) => {
@@ -12,11 +13,16 @@ exports.getProducts = async (req, res, next) => {
   }
 };
 
-exports.createProduct = (req, res, next) => {
+exports.createProduct = async (req, res, next) => {
   const product = req.body;
 
-  const newProduct = new Product(product);
+  if (!mongoose.Types.ObjectId.isValid(product.shopID)) {
+    return new ErrorResponse("No shop with this ID", 400);
+  }
+
   try {
+    product.shopInfo = await Shop.findById(product.shopID);
+    const newProduct = new Product(product);
     newProduct.save();
 
     res.status(201).json({ success: true, data: newProduct });
