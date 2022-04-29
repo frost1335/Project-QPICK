@@ -1,5 +1,7 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { Tshirt } from "../../images";
 
 import "./ProductView.scss";
 
@@ -147,6 +149,32 @@ const ProductView = () => {
               <Link className="buy" to="/api/korzina">
                 Купить
               </Link>
+            </div>
+          </div>
+          <div className="body_bottom">
+            <div className="shop_info">
+              <span>Магазин: </span>
+              <Link to="/api/shopID">
+                <img src={Tshirt} alt="asdasd" />
+                <p>Shop name</p>
+              </Link>
+            </div>
+            <div className="category_info">
+              <span>Категория: </span>
+              <Link to="/api/categoryID">
+                <img src={Tshirt} alt="asdasd" />
+                <p>Category name</p>
+              </Link>
+            </div>
+            <div className="tags">
+              <h4>Теги: </h4>
+              <p>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iusto,
+                ullam rerum est maiores modi sunt quod tempora esse eligendi,
+                ipsum dolores perferendis et labore dolor reiciendis quasi
+                expedita. Voluptates necessitatibus repellat dolorem, quia
+                eligendi architecto?
+              </p>
             </div>
           </div>
         </div>
