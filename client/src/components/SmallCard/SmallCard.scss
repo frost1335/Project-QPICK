@@ -1,5 +1,43 @@
 .SmallCard {
   width: 20%;
   border-radius: 15px;
-  border: 1px solid #101010;
+  border: 1px solid #444;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px 25px;
+  margin: 15px;
+  overflow: hidden;
+  position: relative;
+
+  .card_img {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 10px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      transition: all 0.2s;
+    }
+  }
+
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transition: all 0.2s;
+  }
+
+  &:hover::after {
+    background: rgba($color: #000000, $alpha: 0.2);
+  }
+
+  &:hover img {
+    transform: scale(1.15);
+  }
 }

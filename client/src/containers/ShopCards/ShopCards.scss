@@ -1,3 +1,18 @@
-.ShopCards{
-    
+.ShopCards {
+  margin-top: 20px;
+  margin-bottom: 50px;
+
+  h3 {
+    font-size: 30px;
+    font-weight: 600;
+    color: #101010;
+    margin-bottom: 15px;
+  }
+
+  .shop {
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+    flex-wrap: wrap;
+  }
 }

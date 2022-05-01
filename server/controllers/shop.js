@@ -13,6 +13,17 @@ exports.getAllShops = async (req, res, next) => {
   }
 };
 
+exports.fetchAllShop = async (req, res, next) => {
+  try {
+    const shops = await Shop.find()
+
+    res.status(200).json({ success: true, data: shops })
+  }
+  catch (error) {
+    next(error.message)
+  }
+}
+
 exports.getShop = async (req, res, next) => {
   const { id } = req.params;
   if (!mongoose.Types.ObjectId.isValid(id)) {
