@@ -24,14 +24,14 @@ const MainCategory = () => {
                   <h3>{ctg.name}</h3>
                   <div className="main_products">
                     <Swiper
-                      slidesPerView={3}
+                      slidesPerView={4}
                       spaceBetween={30}
                       modules={[Navigation]}
                       navigation={true}
                       className="mySwiper"
                     >
                       {ctg.products.map((pdct, idx) => (
-                        <SwiperSlide className="main_box" key={idx}>
+                        <SwiperSlide key={idx}>
                           <Card product={pdct} category={ctg} />
                         </SwiperSlide>
                       ))}

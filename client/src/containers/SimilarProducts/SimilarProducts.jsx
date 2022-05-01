@@ -14,20 +14,22 @@ const SimilarProducts = () => {
   return (
     <div className="container">
       <div className="SimilarProducts">
-        <h3>Похожие товары</h3>
+        <h3>Похожие товары: </h3>
         <div className="products">
           <Swiper
-            slidesPerView={3}
+            slidesPerView={4}
             spaceBetween={30}
             modules={[Navigation]}
             navigation={true}
             className="mySwiper"
           >
-            {products.data[0].products.map((pdct) => (
-              <SwiperSlide>
-                <Card category={products.data[0]} product={pdct} />
-              </SwiperSlide>
-            ))}
+            {products.data
+              ? products.data[0].products.map((pdct) => (
+                  <SwiperSlide>
+                    <Card category={products.data[0]} product={pdct} />
+                  </SwiperSlide>
+                ))
+              : null}
           </Swiper>
         </div>
       </div>

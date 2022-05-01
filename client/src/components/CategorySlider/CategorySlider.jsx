@@ -1,6 +1,4 @@
 import React from "react";
-import { FaTshirt } from "react-icons/fa";
-import { GiShorts, GiBilledCap } from "react-icons/gi";
 
 // Import Swiper
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -23,10 +21,11 @@ const CategorySlider = () => {
     <div className="container">
       <div className="CategorySlider">
         <Swiper
-          slidesPerView={3}
-          spaceBetween={30}
+          slidesPerView={6}
+          spaceBetween={20}
           slidesPerGroup={1}
           navigation={true}
+          loop={true}
           modules={[Navigation]}
           className="mySwiper"
         >

@@ -6,7 +6,7 @@ import {
   Reklama,
   Banner,
 } from "../../components";
-import { MainCategory } from "../../containers";
+import { MainCategory, ShopCards } from "../../containers";
 
 const Main = () => {
   return (
@@ -16,6 +16,7 @@ const Main = () => {
       <Reklama />
       <Banner />
       <MainCategory />
+      <ShopCards />
       <Footer />
     </>
   );

@@ -1,5 +1,30 @@
 .SimilarProducts {
-  .swiper-slide {
-    width: 400px !important;
+  margin-top: 25px;
+  margin-bottom: 80px;
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 2px solid #00092c;
+    background: rgba(0, 0, 0, 0.1);
+  }
+
+  .swiper-button-next::after,
+  .swiper-button-prev::after {
+    font-weight: 600;
+    font-size: 13px;
+    color: #00092c;
+  }
+
+  h3 {
+    font-size: 30px;
+    font-weight: 600;
+    color: #101010;
+    margin-bottom: 20px;
   }
 }
