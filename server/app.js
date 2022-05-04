@@ -19,6 +19,7 @@ app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use("/api/category/", require("./routes/category"));
 app.use("/api/product/", require("./routes/product"));
 app.use("/api/shop/", require("./routes/shop"));
+app.use("/api/brand/", require("./routes/brand"));
 
 // error handler
 app.use(errorHandler);

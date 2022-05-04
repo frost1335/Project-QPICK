@@ -5,10 +5,11 @@ const {
   editShop,
   deleteShop,
   getAllShops,
+  fetchAllShop,
 } = require("../controllers/shop");
 const router = Router();
 
-router.route('/').get()
+router.route("/").get(fetchAllShop);
 router.route("/").post(createShop);
 router.route("/all").get(getAllShops);
 router.route("/:id").get(getShop);

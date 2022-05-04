@@ -1,17 +1,22 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { SmallCard } from "../../components";
 
 import "./ShopCards.scss";
 
 const ShopCards = () => {
+  const shops = useSelector((state) => state.shops);
+
   return (
     <div className="container">
       <div className="ShopCards">
-        <h3>Бренды</h3>
+        <h3>Магазины</h3>
         <div className="shop">
-          {[0, 1, 2, 3, 4,1,1].map((shop, idx) => (
-            <SmallCard shop={shop} idx={idx} />
-          ))}
+          {shops.data
+            ? shops.data.map((shop, idx) => (
+                <SmallCard card={shop} key={idx} link={"/shop/" + shop._id} />
+              ))
+            : null}
         </div>
       </div>
     </div>

@@ -7,6 +7,7 @@ import {
   Banner,
 } from "../../components";
 import { MainCategory, ShopCards } from "../../containers";
+import BrandCards from "../../containers/BrandCards/BrandCards";
 
 const Main = () => {
   return (
@@ -15,8 +16,9 @@ const Main = () => {
       <CategorySlider />
       <Reklama />
       <Banner />
-      <MainCategory />
       <ShopCards />
+      <MainCategory />
+      <BrandCards />
       <Footer />
     </>
   );
