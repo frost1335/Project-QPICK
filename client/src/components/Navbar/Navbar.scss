@@ -107,6 +107,10 @@
       align-items: center;
       flex-grow: 0.8;
 
+      button {
+        font-size: 20px;
+      }
+
       form {
         display: flex;
         align-items: center;
@@ -135,8 +139,9 @@
         border: none;
         border-radius: 0;
         height: 100%;
-        padding: 15px 35px;
+        padding: 10px 30px;
         border-radius: 0 40px 40px 0;
+        cursor: pointer;
       }
     }
 

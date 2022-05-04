@@ -13,6 +13,7 @@ import "./CategorySlider.scss";
 import { Tshirt } from "../../images";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import Loader from "../Loader/Loader";
 
 const CategorySlider = () => {
   const categories = useSelector((state) => state.categories.data);
@@ -29,18 +30,20 @@ const CategorySlider = () => {
           modules={[Navigation]}
           className="mySwiper"
         >
-          {categories
-            ? categories.map((ctg, idx) => (
-                <SwiperSlide key={idx}>
-                  <Link to={"/api/category/" + ctg._id} className="slide">
-                    <div className="slide_img">
-                      <img src={Tshirt} alt="image_category" />
-                    </div>
-                    <p className="slide_name">{ctg.name}</p>
-                  </Link>
-                </SwiperSlide>
-              ))
-            : null}
+          {categories ? (
+            categories.map((ctg, idx) => (
+              <SwiperSlide key={idx}>
+                <Link to={"/api/category/" + ctg._id} className="slide">
+                  <div className="slide_img">
+                    <img src={Tshirt} alt="image_category" />
+                  </div>
+                  <p className="slide_name">{ctg.name}</p>
+                </Link>
+              </SwiperSlide>
+            ))
+          ) : (
+            <Loader />
+          )}
         </Swiper>
       </div>
     </div>

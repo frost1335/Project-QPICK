@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import { BiHeart, BiUser, BiCart } from "react-icons/bi";
 import { ImStatsBars } from "react-icons/im";
 import { VscThreeBars } from "react-icons/vsc";
+import { MdSearch } from "react-icons/md";
+
 import Catalog from "../Catalog/Catalog";
 
 const Navbar = () => {
@@ -53,7 +55,9 @@ const Navbar = () => {
               <div className="search">
                 <form action="">
                   <input type="text" placeholder="Поиск товаров..." />
-                  <button>S</button>
+                  <button>
+                    <MdSearch />
+                  </button>
                 </form>
               </div>
               <div className="links">

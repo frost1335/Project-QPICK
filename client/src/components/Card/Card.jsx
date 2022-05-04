@@ -6,14 +6,28 @@ import { Tshirt } from "../../images";
 import "./Card.scss";
 
 const Card = (props) => {
+  let store = localStorage.getItem("favorite").split(",");
+  const favoriteHandler = (id) => {
+    if (store.includes(id)) {
+      let newStore = store.filter((fid) => fid !== id);
+      localStorage.setItem("favorite", newStore);
+    } else {
+      let newStore = store.push(id);
+      localStorage.setItem("favorite", newStore);
+    }
+  };
+
   return (
     <Link className="Card_box" to={"/view/product/" + props.product._id}>
       <div className="Card">
-        <Link to="/bi">
-          <div className="favorite">
-            <BiHeart />
-          </div>
-        </Link>
+        <div
+          className={`favorite ${
+            store.includes(props.product._id) ? "clicked" : "none"
+          }`}
+          onClick={favoriteHandler(props.product._id)}
+        >
+          <BiHeart />
+        </div>
         <div className="card_image">
           <img src={Tshirt} alt={"image" + props.product.title} />
         </div>

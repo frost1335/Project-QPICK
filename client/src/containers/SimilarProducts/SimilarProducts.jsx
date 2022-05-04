@@ -7,6 +7,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "./SimilarProducts.scss";
 import Card from "../../components/Card/Card";
+import Loader from "../../components/Loader/Loader";
 
 const SimilarProducts = () => {
   const products = useSelector((state) => state.products);
@@ -23,13 +24,15 @@ const SimilarProducts = () => {
             navigation={true}
             className="mySwiper"
           >
-            {products.data
-              ? products.data[0].products.map((pdct) => (
-                  <SwiperSlide>
-                    <Card category={products.data[0]} product={pdct} />
-                  </SwiperSlide>
-                ))
-              : null}
+            {products.data ? (
+              products.data[0].products.map((pdct) => (
+                <SwiperSlide>
+                  <Card category={products.data[0]} product={pdct} />
+                </SwiperSlide>
+              ))
+            ) : (
+              <Loader />
+            )}
           </Swiper>
         </div>
       </div>

@@ -10,6 +10,7 @@ import "./MainCategory.scss";
 // import required modules
 import { Navigation } from "swiper";
 import Card from "../../components/Card/Card";
+import Loader from "../../components/Loader/Loader";
 
 const MainCategory = () => {
   const products = useSelector((state) => state.products);
@@ -17,30 +18,34 @@ const MainCategory = () => {
   return (
     <div className="container">
       <div className="MainCategory">
-        {products.data
-          ? products.data.map((ctg, index) =>
-              ctg.products.length > 0 ? (
-                <div className="main_category" key={index}>
-                  <h3>{ctg.name}</h3>
-                  <div className="main_products">
-                    <Swiper
-                      slidesPerView={4}
-                      spaceBetween={30}
-                      modules={[Navigation]}
-                      navigation={true}
-                      className="mySwiper"
-                    >
-                      {ctg.products.map((pdct, idx) => (
-                        <SwiperSlide key={idx}>
-                          <Card product={pdct} category={ctg} />
-                        </SwiperSlide>
-                      ))}
-                    </Swiper>
-                  </div>
+        {products.data ? (
+          products.data.map((ctg, index) =>
+            ctg.products.length > 0 ? (
+              <div className="main_category" key={index}>
+                <h3>{ctg.name}</h3>
+                <div className="main_products">
+                  <Swiper
+                    slidesPerView={4}
+                    spaceBetween={30}
+                    modules={[Navigation]}
+                    navigation={true}
+                    className="mySwiper"
+                  >
+                    {ctg.products.map((pdct, idx) => (
+                      <SwiperSlide key={idx}>
+                        <Card product={pdct} category={ctg} />
+                      </SwiperSlide>
+                    ))}
+                  </Swiper>
                 </div>
-              ) : null
+              </div>
+            ) : (
+              <Loader />
             )
-          : null}
+          )
+        ) : (
+          <Loader />
+        )}
       </div>
     </div>
   );
