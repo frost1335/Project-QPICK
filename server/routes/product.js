@@ -6,10 +6,12 @@ const {
   createProduct,
   deleteProduct,
   editProduct,
+  getProductByID,
 } = require("../controllers/product");
 
 router.route("/").get(getProducts);
 router.route("/").post(createProduct);
+router.route("/:id").get(getProductByID);
 router.route("/:id").put(editProduct);
 router.route("/:id").delete(deleteProduct);
 

@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { getAccessory } from "./actions/product";
+import { getAccessory, getProductById } from "./actions/product";
 import { getCategories } from "./actions/category";
 import { getAllShops } from "./actions/shops";
 import { getAllBrands } from "./actions/brand";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useParams } from "react-router-dom";
 
 import Main from "./pages/Main/Main";
 import NotFound from "./pages/NotFound/NotFound";

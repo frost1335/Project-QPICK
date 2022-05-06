@@ -4,5 +4,12 @@ import products from "./products";
 import categories from "./categories";
 import shops from "./shops";
 import brand from "./brand";
+import productID from "./productID";
 
-export default combineReducers({ products, categories, shops, brand });
+export default combineReducers({
+  products,
+  categories,
+  shops,
+  brand,
+  productID,
+});

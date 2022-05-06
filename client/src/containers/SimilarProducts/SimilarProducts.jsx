@@ -11,7 +11,6 @@ import Loader from "../../components/Loader/Loader";
 
 const SimilarProducts = () => {
   const products = useSelector((state) => state.products);
-  console.log(products);
   return (
     <div className="container">
       <div className="SimilarProducts">

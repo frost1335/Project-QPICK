@@ -1,11 +1,24 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useParams } from "react-router-dom";
+import { getProductById } from "../../actions/productID";
 import { Tshirt } from "../../images";
 
 import "./ProductView.scss";
 
 const ProductView = () => {
+  const dispatch = useDispatch();
+  const { id } = useParams();
+
+  useEffect(() => {
+    dispatch(getProductById(id));
+  }, [dispatch, id]);
+
+  const product = useSelector((state) => state.productID);
+  console.log(product.data);
+
+  
+
   return (
     <div className="container">
       <div className="ProductView">

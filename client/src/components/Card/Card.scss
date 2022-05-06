@@ -28,13 +28,12 @@ a {
     font-size: 26px;
     color: #ff1818;
     padding: 5px;
+    z-index: 6;
+    background: transparent;
+    cursor: pointer;
 
     &.clicked {
       background: #ff1818;
-    }
-
-    &.none {
-      background: transparent;
     }
   }
 

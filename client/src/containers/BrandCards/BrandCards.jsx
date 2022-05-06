@@ -9,14 +9,9 @@ const BrandCards = () => {
   const brands = useSelector((state) => state.brand);
 
   const clickHandler = () => {
-    let oldLocal = localStorage.getItem("favorite").split(",");
-
-    console.log(oldLocal.push("asdasd"));
-
-    localStorage.setItem("favorite", oldLocal);
+      
   };
 
-  console.log(localStorage.getItem("favorite").split(","));
 
   return (
     <div className="container">
