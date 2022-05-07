@@ -1,0 +1,39 @@
+.FavoriteView {
+  h2 {
+    font-size: 32px;
+    color: #101010;
+    font-weight: 500;
+    margin: auto;
+    text-align: center;
+    margin-top: 45px;
+    margin-bottom: 20px;
+  }
+
+  .favorite_body {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    margin-bottom: 60px;
+
+    .favorite_category {
+      margin-top: 45px;
+      box-sizing: border-box;
+      padding: 15px;
+
+      h3 {
+        font-size: 26px;
+        color: #101010;
+        font-weight: 500;
+        margin-bottom: 15px;
+        padding-left: 15px;
+      }
+
+      .category_body {
+        display: flex;
+        flex-grow: 1;
+        flex-wrap: wrap;
+      }
+    }
+  }
+}

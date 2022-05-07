@@ -1,14 +1,11 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { getAccessory, getProductById } from "./actions/product";
+import { getAccessory } from "./actions/product";
 import { getCategories } from "./actions/category";
-import { getAllShops } from "./actions/shops";
 import { getAllBrands } from "./actions/brand";
-import { Routes, Route, useParams } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
-import Main from "./pages/Main/Main";
-import NotFound from "./pages/NotFound/NotFound";
-import Product from "./pages/Product/Product";
+import { Main, NotFound, Product, Favorite, Cart } from "./pages";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -16,7 +13,6 @@ const App = () => {
   useEffect(() => {
     dispatch(getAccessory());
     dispatch(getCategories());
-    dispatch(getAllShops());
     dispatch(getAllBrands());
   }, [dispatch]);
 
@@ -25,6 +21,8 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/view/product/:id" element={<Product />} />
+        <Route path="/favorites" element={<Favorite />} />
+        <Route path="/cart" element={<Cart />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

@@ -1,5 +1,5 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import { SwiperSlide, Swiper } from "swiper/react";
 
@@ -9,11 +9,16 @@ import "swiper/css/pagination";
 import "./MainCategory.scss";
 // import required modules
 import { Navigation } from "swiper";
-import Card from "../../components/Card/Card";
-import Loader from "../../components/Loader/Loader";
+import { Card, Loader } from "../../components";
+import { getAllShops } from "../../actions/shops";
 
 const MainCategory = () => {
+  const dispatch = useDispatch();
   const products = useSelector((state) => state.products);
+
+  useEffect(() => {
+    dispatch(getAllShops());
+  }, [dispatch]);
 
   return (
     <div className="container">

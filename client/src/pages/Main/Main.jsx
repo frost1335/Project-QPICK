@@ -6,8 +6,7 @@ import {
   Reklama,
   Banner,
 } from "../../components";
-import { MainCategory, ShopCards } from "../../containers";
-import BrandCards from "../../containers/BrandCards/BrandCards";
+import { BrandCards, MainCategory, ShopCards } from "../../containers";
 
 const Main = () => {
   return (

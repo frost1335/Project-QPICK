@@ -17,7 +17,9 @@ const Footer = () => {
         <div className="container">
           <div className="footer_top">
             <div className="footer_logo">
-              <p className="logo">QPICK</p>
+              <Link className="logo" to="/">
+                style.uz
+              </Link>
             </div>
             <div className="footer_links">
               <ul>

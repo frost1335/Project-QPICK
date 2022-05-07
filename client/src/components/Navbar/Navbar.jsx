@@ -19,7 +19,9 @@ const Navbar = () => {
           <div className="container">
             <div className="nav_top">
               <div className="top_left">
-                <span className="logo">olcha.uz</span>
+                <Link className="logo" to="/">
+                  style.uz
+                </Link>
               </div>
               <div className="top_right">
                 <ul className="menu">
@@ -62,23 +64,12 @@ const Navbar = () => {
               </div>
               <div className="links">
                 <li>
-                  <Link to="/">
-                    <BiUser />
-                    Войти
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/">
-                    <ImStatsBars /> Сравнение
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/">
+                  <Link to="/favorites">
                     <BiHeart /> Избранное
                   </Link>
                 </li>
                 <li>
-                  <Link to="/">
+                  <Link to="/cart">
                     <BiCart /> Корзина
                   </Link>
                 </li>

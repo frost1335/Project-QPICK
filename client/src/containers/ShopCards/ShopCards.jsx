@@ -1,7 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { SmallCard } from "../../components";
-import Loader from "../../components/Loader/Loader";
+import { SmallCard, Loader } from "../../components";
 
 import "./ShopCards.scss";
 

@@ -4,5 +4,20 @@ import Reklama from "./Slider/Slider";
 import CategorySlider from "./CategorySlider/CategorySlider";
 import Banner from "./Banner/Banner";
 import SmallCard from "./SmallCard/SmallCard";
+import Loader from "./Loader/Loader";
+import Slider from "./Slider/Slider";
+import Catalog from "./Catalog/Catalog";
+import Card from "./Card/Card";
 
-export { Navbar, Footer, Reklama, CategorySlider, Banner, SmallCard };
+export {
+  Navbar,
+  Footer,
+  Reklama,
+  CategorySlider,
+  Banner,
+  SmallCard,
+  Loader,
+  Slider,
+  Catalog,
+  Card,
+};

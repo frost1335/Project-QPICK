@@ -1,16 +1,38 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
+// Swiper Slider components
 import { Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
+// Swiper Slider css
 import "swiper/css";
 import "swiper/css/pagination";
 import "./SimilarProducts.scss";
-import Card from "../../components/Card/Card";
-import Loader from "../../components/Loader/Loader";
+
+import { Card, Loader } from "../../components";
+import { useParams } from "react-router-dom";
+import { getSimilarProducts } from "../../actions/similarProducts";
 
 const SimilarProducts = () => {
-  const products = useSelector((state) => state.products);
+  const dispatch = useDispatch();
+  const { id } = useParams();
+  const categorys = useSelector((state) => state.categories);
+  const similarProducts = useSelector((state) => state.similarProducts);
+  const product = useSelector((state) => state.productID);
+
+  useEffect(() => {
+    dispatch(getSimilarProducts(id));
+  }, [dispatch, id]);
+
+  let category;
+
+  if (categorys.data && product.data) {
+    category = categorys.data.filter(
+      (ctg) => ctg._id.toString() === product.data.categoryID.toString()
+    )[0];
+  }
+
   return (
     <div className="container">
       <div className="SimilarProducts">
@@ -23,10 +45,10 @@ const SimilarProducts = () => {
             navigation={true}
             className="mySwiper"
           >
-            {products.data ? (
-              products.data[0].products.map((pdct) => (
-                <SwiperSlide>
-                  <Card category={products.data[0]} product={pdct} />
+            {similarProducts.data ? (
+              similarProducts.data.map((pdct, idx) => (
+                <SwiperSlide key={idx}>
+                  <Card category={category} product={pdct} />
                 </SwiperSlide>
               ))
             ) : (

@@ -79,3 +79,24 @@ exports.deleteProduct = async (req, res, next) => {
     next(error.message);
   }
 };
+
+exports.getSimilarProducts = async (req, res, next) => {
+  const { id } = req.params;
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return new ErrorResponse("No product with this ID", 404);
+  }
+  try {
+    const products = await Product.find();
+    const product = await Product.findById(id);
+
+    const similarProducts = products.filter(
+      (pdct) =>
+        product.categoryID.toString() === pdct.categoryID.toString() &&
+        product._id.toString() !== pdct._id.toString()
+    );
+
+    res.status(200).json({ success: true, data: similarProducts });
+  } catch (error) {
+    next(error.message);
+  }
+};
