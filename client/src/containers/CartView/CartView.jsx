@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import { getCartProducts } from "../../actions/cart";
-import { Loader } from "../../components";
+import { CartCard, Loader } from "../../components";
 
 import "./CartView.scss";
 
@@ -14,33 +14,37 @@ const CartView = () => {
     dispatch(getCartProducts());
   }, [dispatch]);
 
-  console.log(cart);
+  console.log();
 
   return (
-    <div className="container">
-      <div className="CartView">
+    <div className="CartView">
+      <div className="container">
         <h2>Корзина</h2>
         <div className="cart_body">
-          {cart.length ? (
-            cart.map((ctg, idx) => (
-              <div className="cart_category" key={idx}>
-                <h3>{ctg.name}</h3>
-                <div className="category_row">
-                  {ctg.products.map((pdct, index) => (
-                    <div className="cart_card" key={index}>
-                      <img src={pdct.img} alt="product-img" />
-                      <p>{pdct.title}</p>
-                      <h4>{pdct.price}</h4>
-                      <p>{pdct.description}</p>
-                    </div>
-                  ))}
+          <div className="body_left">
+            {cart.length ? (
+              cart.map((ctg, idx) => (
+                <div className="cart_category" key={idx}>
+                  <h3>{ctg.name}</h3>
+                  <div className="category_row">
+                    {ctg.products.map((pdct, index) => (
+                      <CartCard key={index} product={pdct} />
+                    ))}
+                  </div>
                 </div>
-                <hr />
-              </div>
-            ))
-          ) : (
-            <Loader />
-          )}
+              ))
+            ) : (
+              <Loader />
+            )}
+          </div>
+          <div className="body_right">
+            <div className="cart_buy">
+              <span>
+                104830 <b>сум</b>
+              </span>
+              <button>Заказать</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

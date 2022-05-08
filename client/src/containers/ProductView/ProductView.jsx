@@ -29,7 +29,7 @@ const ProductView = () => {
   };
 
   const cartHandler = () => {
-    localStorage.setItem(`${id}-cart`, id);
+    localStorage.setItem(`${id}-cart`, `${id},1`);
     document.querySelector(".cart_tool").classList.add("show");
     setTimeout(() => {
       document.querySelector(".cart_tool").classList.remove("show");

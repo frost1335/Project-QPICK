@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { Routes, Route } from "react-router-dom";
+
 import { getAccessory } from "./actions/product";
 import { getCategories } from "./actions/category";
 import { getAllBrands } from "./actions/brand";
-import { Routes, Route } from "react-router-dom";
 
-import { Main, NotFound, Product, Favorite, Cart } from "./pages";
+import { Main, NotFound, Product, Favorite, Cart, Auth, Admin } from "./pages";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -23,6 +24,8 @@ const App = () => {
         <Route path="/view/product/:id" element={<Product />} />
         <Route path="/favorites" element={<Favorite />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/admin/auth" element={<Auth />} />
+        <Route path="/admin/control" element={<Admin />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

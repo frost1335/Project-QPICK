@@ -8,6 +8,7 @@ import Loader from "./Loader/Loader";
 import Slider from "./Slider/Slider";
 import Catalog from "./Catalog/Catalog";
 import Card from "./Card/Card";
+import CartCard from "./CartCard/CartCard";
 
 export {
   Navbar,
@@ -20,4 +21,5 @@ export {
   Slider,
   Catalog,
   Card,
+  CartCard,
 };
