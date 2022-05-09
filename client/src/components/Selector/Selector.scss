@@ -1,0 +1,32 @@
+.Selector {
+  margin-top: 10px;
+  margin-bottom: 15px;
+
+  label {
+    display: block;
+    font-size: 18px;
+    color: #101010;
+    margin-left: 15px;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+
+  select {
+    padding: 13px 20px;
+    border-radius: 20px;
+    width: 100%;
+    border: none;
+    background: #fff;
+    outline: none;
+    font-family: "Montserrat";
+    font-size: 16px;
+    color: #444;
+
+    option {
+      border: none;
+      outline: none;
+      padding: 8px 15px;
+      background: #fff;
+    }
+  }
+}

@@ -9,6 +9,8 @@ import Slider from "./Slider/Slider";
 import Catalog from "./Catalog/Catalog";
 import Card from "./Card/Card";
 import CartCard from "./CartCard/CartCard";
+import CreateInput from "./CreateInput/CreateInput";
+import Selector from "./Selector/Selector";
 
 export {
   Navbar,
@@ -22,4 +24,6 @@ export {
   Catalog,
   Card,
   CartCard,
+  CreateInput,
+  Selector,
 };

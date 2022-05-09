@@ -1,0 +1,39 @@
+.CreateInput {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  margin-top: 15px;
+  margin-bottom: 15px;
+
+  label {
+    font-size: 18px;
+    color: #101010;
+    margin-left: 15px;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+
+  input {
+    width: 100%;
+    padding: 13px 25px;
+    background: #fff;
+    font-size: 17px;
+    font-weight: 500;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    color: #101010;
+    box-shadow: 0 0 15px rgba($color: #000, $alpha: 0.05);
+
+    &::placeholder {
+      font-size: 17px;
+      color: rgba($color: #000000, $alpha: 0.5);
+    }
+
+    &[type="number"]::-webkit-inner-spin-button,
+    &[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+    }
+  }
+}
