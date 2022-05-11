@@ -7,7 +7,7 @@ import { getCategories } from "./actions/category";
 import { getAllBrands } from "./actions/brand";
 
 import { Main, NotFound, Product, Favorite, Cart, Auth, Admin } from "./pages";
-import Create from "./containers/Admin/Product/Create/Create";
+import { ControlProduct, Form } from "./containers";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -27,7 +27,22 @@ const App = () => {
         <Route path="/cart" element={<Cart />} />
         <Route path="/admin/auth" element={<Auth />} />
         <Route path="/admin/control" element={<Admin />} />
-        <Route path="/admin/control/create" element={<Admin ><Create /></Admin>} />
+        <Route
+          path="/admin/control/product"
+          element={
+            <Admin>
+              <ControlProduct />
+            </Admin>
+          }
+        />
+        <Route
+          path="/admin/control/product/form"
+          element={
+            <Admin>
+              <Form />
+            </Admin>
+          }
+        />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

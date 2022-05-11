@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { CreateInput, Selector } from "../../../../components";
+import { CreateInput, Selector, Textarea } from "../../../../components";
 
-import "./Create.scss";
+import "./Form.scss";
 
-const Create = () => {
+const Form = () => {
   const [productData, setProductData] = useState({
     title: "",
     price: "",
@@ -46,8 +46,19 @@ const Create = () => {
           }
           data={productData}
         />
-        <CreateInput
+        {/* <CreateInput
           type="text"
+          name="description"
+          label={"Description"}
+          forId={Math.random()}
+          value={productData.description}
+          placeholder={"Produc description"}
+          setData={(product, value) =>
+            setProductData({ ...product, description: value })
+          }
+          data={productData}
+        /> */}
+        <Textarea
           name="description"
           label={"Description"}
           forId={Math.random()}
@@ -97,4 +108,4 @@ const Create = () => {
   );
 };
 
-export default Create;
+export default Form;

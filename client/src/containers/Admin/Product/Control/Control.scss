@@ -1,0 +1,84 @@
+.Control {
+  max-width: 680px;
+  margin: auto;
+  padding: 60px 20px 30px;
+
+  .control_menu {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    .menu_category {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      h3 {
+        font-size: 26px;
+        color: #101010;
+        font-weight: 500;
+        margin-bottom: 20px;
+      }
+
+      ul {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 36px;
+
+        li {
+          width: 100%;
+          display: flex;
+          flex-grow: 1;
+          align-items: center;
+          justify-content: space-between;
+          padding: 18px 25px;
+          border-radius: 15px;
+          cursor: pointer;
+
+          &:hover {
+            box-shadow: 0 0 20px rgba($color: #000000, $alpha: 0.1);
+          }
+
+          img {
+            font-size: 13px;
+          }
+
+          p {
+            font-size: 17px;
+            color: #101010;
+            font-weight: 500;
+          }
+
+          .item_buttons {
+            display: flex;
+            align-items: center;
+
+            button {
+              padding: 5px;
+              background: transparent;
+              color: #444;
+              border: none;
+              border-radius: 0;
+              cursor: pointer;
+              font-size: 20px;
+              margin: 0 12px;
+              transition: all 0.1s;
+
+              &:hover:first-child {
+                color: #0aa1dd;
+              }
+
+              &:hover:last-child {
+                color: #f32424;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

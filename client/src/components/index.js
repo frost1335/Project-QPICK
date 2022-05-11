@@ -11,8 +11,10 @@ import Card from "./Card/Card";
 import CartCard from "./CartCard/CartCard";
 import CreateInput from "./CreateInput/CreateInput";
 import Selector from "./Selector/Selector";
+import Textarea from "./Textarea/Textarea";
 
 export {
+  Textarea,
   Navbar,
   Footer,
   Reklama,
