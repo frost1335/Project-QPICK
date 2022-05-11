@@ -7,3 +7,5 @@ export const fetchBrands = () => axios.get("/api/brand");
 export const fetchProductByID = (id) => axios.get(`/api/product/${id}`);
 export const fetchSimilarProducts = (id) =>
   axios.get(`/api/product/similar/${id}`);
+export const createProduct = (newProduct) =>
+  axios.post("/api/product", newProduct);

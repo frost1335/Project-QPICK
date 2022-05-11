@@ -13,4 +13,23 @@
     border-radius: 50px;
     box-shadow: 0 0 20px rgba($color: #000000, $alpha: 0.2);
   }
+
+  .form_button {
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    margin-top: 50px;
+    margin-bottom: 20px;
+
+    .submit_button {
+      background: linear-gradient(270deg, #79dae8 0%, #68a7ad 100%);
+      border: none;
+      padding: 15px 50px;
+      font-size: 18px;
+      color: #fff;
+      box-shadow: 0 0 10px rgba($color: #000000, $alpha: 0.2);
+      border-radius: 35px;
+      cursor: pointer;
+    }
+  }
 }

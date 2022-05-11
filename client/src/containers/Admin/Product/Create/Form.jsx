@@ -1,5 +1,13 @@
-import React, { useState } from "react";
-import { CreateInput, Selector, Textarea } from "../../../../components";
+import React, { useEffect, useState } from "react";
+import {
+  CreateInput,
+  FileUpload,
+  Selector,
+  Textarea,
+} from "../../../../components";
+import { useDispatch, useSelector } from "react-redux";
+import { createProduct, getAccessory } from "../../../../actions/product";
+import { getAllShops } from "../../../../actions/shops";
 
 import "./Form.scss";
 
@@ -10,18 +18,45 @@ const Form = () => {
     img: "",
     categoryID: "",
     shopID: "",
-    shopInfo: "",
-    categoryInfo: "",
     description: "",
     tags: "",
     rating: "",
   });
+  const dispatch = useDispatch();
 
-  console.log(productData);
+  const products = useSelector((state) => state.products);
+  const shops = useSelector((state) => state.shops);
+
+  useEffect(() => {
+    dispatch(getAccessory());
+    dispatch(getAllShops());
+  }, [dispatch]);
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+
+    console.log("submit");
+
+    dispatch(createProduct(productData));
+    clear();
+  };
+
+  const clear = () => {
+    setProductData({
+      title: "",
+      price: "",
+      img: "",
+      categoryID: "",
+      shopID: "",
+      description: "",
+      tags: "",
+      rating: "",
+    });
+  };
 
   return (
     <div className="Create">
-      <form className="create_form">
+      <form className="create_form" onSubmit={submitHandler}>
         <CreateInput
           type="text"
           name="title"
@@ -46,18 +81,6 @@ const Form = () => {
           }
           data={productData}
         />
-        {/* <CreateInput
-          type="text"
-          name="description"
-          label={"Description"}
-          forId={Math.random()}
-          value={productData.description}
-          placeholder={"Produc description"}
-          setData={(product, value) =>
-            setProductData({ ...product, description: value })
-          }
-          data={productData}
-        /> */}
         <Textarea
           name="description"
           label={"Description"}
@@ -77,7 +100,7 @@ const Form = () => {
           value={productData.tags}
           placeholder={"namuna:nike,adidas,futbolka,yozgi"}
           setData={(product, value) =>
-            setProductData({ ...product, tags: value })
+            setProductData({ ...product, tags: value.split(",") })
           }
           data={productData}
         />
@@ -101,8 +124,30 @@ const Form = () => {
           setData={(product, value) =>
             setProductData({ ...product, shopID: value })
           }
+          array={shops.data ? shops.data : null}
           data={productData}
         />
+        <Selector
+          forId={Math.random()}
+          label="Category"
+          setData={(product, value) =>
+            setProductData({ ...product, categoryID: value })
+          }
+          array={products.data ? products.data : null}
+          data={productData}
+        />
+        <FileUpload
+          multiple={false}
+          label="Image upload"
+          forId={Math.random()}
+          setData={(product, value) =>
+            setProductData({ ...product, img: value })
+          }
+          data={productData}
+        />
+        <div className="form_button">
+          <button className="submit_button">Submit</button>
+        </div>
       </form>
     </div>
   );

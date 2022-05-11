@@ -1,21 +1,20 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllShops } from "../../../../actions/shops";
 import { Loader } from "../../../../components";
 
 import { MdOutlineDelete, MdOutlineEdit } from "react-icons/md";
 
 import "./Control.scss";
+import { getAccessory } from "../../../../actions/product";
 
 const Control = () => {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products);
 
   useEffect(() => {
-    dispatch(getAllShops());
+    dispatch(getAccessory());
   }, [dispatch]);
 
-  console.log(products);
   return (
     <div className="Control">
       <div className="control_menu">

@@ -1,6 +1,7 @@
 const { default: mongoose } = require("mongoose");
 const Product = require("../models/Product");
 const Shop = require("../models/Shop");
+const Category = require("../models/Category");
 const ErrorResponse = require("../utils/ErrorResponse");
 
 exports.getProducts = async (req, res, next) => {
@@ -33,6 +34,7 @@ exports.createProduct = async (req, res, next) => {
 
   try {
     product.shopInfo = await Shop.findById(product.shopID);
+    product.categoryInfo = await Category.findById(product.categoryID);
     const newProduct = new Product(product);
     newProduct.save();
 

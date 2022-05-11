@@ -12,8 +12,10 @@ import CartCard from "./CartCard/CartCard";
 import CreateInput from "./CreateInput/CreateInput";
 import Selector from "./Selector/Selector";
 import Textarea from "./Textarea/Textarea";
+import FileUpload from "./FileBase64/FileUpload";
 
 export {
+  FileUpload,
   Textarea,
   Navbar,
   Footer,
