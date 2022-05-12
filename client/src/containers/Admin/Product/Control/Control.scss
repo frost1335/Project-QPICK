@@ -9,6 +9,19 @@
     flex-direction: column;
     align-items: flex-start;
 
+    a {
+      font-size: 16px;
+      padding: 8px 20px;
+      border: 1px solid #0aa1dd;
+      color: #0aa1dd;
+      border-radius: 30px;
+      display: flex;
+      align-items: center;
+      margin-left: 20px;
+      margin-bottom: 15px;
+      float: right;
+    }
+
     .menu_category {
       width: 100%;
       display: flex;
@@ -16,10 +29,15 @@
       align-items: flex-start;
 
       h3 {
+        width: 100%;
+        padding: 0 20px;
         font-size: 26px;
         color: #101010;
         font-weight: 500;
         margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
       }
 
       ul {
@@ -64,7 +82,7 @@
             display: flex;
             align-items: center;
 
-            button {
+            a {
               padding: 5px;
               background: transparent;
               color: #444;
@@ -81,6 +99,62 @@
 
               &:hover:last-child {
                 color: #f32424;
+              }
+            }
+          }
+
+          .deleteBack {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            cursor: auto;
+          }
+
+          .deleteModal {
+            max-width: 300px;
+            position: fixed;
+            top: 45%;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 28px 38px;
+            background: #fff;
+            border: none;
+            border-radius: 40px;
+            text-align: center;
+            cursor: auto;
+
+            .modalButtons {
+              margin-top: 15px;
+              font-size: 16px;
+              color: #101010;
+            }
+          }
+
+          .modalButtons {
+            display: flex;
+            align-items: center;
+
+            button {
+              padding: 7px 20px;
+              border: none;
+              border-radius: 35px;
+              font-size: 17px;
+              cursor: pointer;
+              margin: 0 12px;
+              margin-top: 15px;
+              font-size: 16px;
+              color: #fff;
+
+              &:first-child {
+                background: gray;
+              }
+              &:last-child {
+                background: #f32424;
               }
             }
           }

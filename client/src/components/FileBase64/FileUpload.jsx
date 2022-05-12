@@ -9,6 +9,7 @@ const FileUpload = (props) => {
     <div className="FileBase64">
       <label htmlFor={props.forId}>{props.label}</label>
       <FileBase64
+        value={props.value}
         multiple={props.multiple}
         onDone={({ base64 }) => props.setData({ ...props.data }, base64)}
       />

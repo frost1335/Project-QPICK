@@ -9,6 +9,7 @@ const Textarea = (props) => {
       <textarea
         name={props.name}
         id={props.forId}
+        value={props.value}
         rows={props.rows || "10"}
         placeholder={props.placeholder}
         onChange={(e) => props.setData({ ...props.data }, e.target.value)}

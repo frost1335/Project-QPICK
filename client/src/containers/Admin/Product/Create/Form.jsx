@@ -139,6 +139,7 @@ const Form = () => {
         <FileUpload
           multiple={false}
           label="Image upload"
+          value={productData.img}
           forId={Math.random()}
           setData={(product, value) =>
             setProductData({ ...product, img: value })

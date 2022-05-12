@@ -2,11 +2,15 @@ import React from "react";
 
 import "./Selector.scss";
 
-const Selector = ({ setData, data, label, forId, array }) => {
+const Selector = ({ setData, data, label, forId, array, value }) => {
   return (
     <div className="Selector">
       <label htmlFor={forId}>{label}</label>
-      <select onChange={(e) => setData({ ...data }, e.target.value)} id={forId}>
+      <select
+        onChange={(e) => setData({ ...data }, e.target.value)}
+        value={value}
+        id={forId}
+      >
         <option>Choose shop</option>
         {array
           ? array.map((elem, idx) => (

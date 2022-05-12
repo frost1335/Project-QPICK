@@ -24,7 +24,7 @@ const Admin = (props) => {
           <li className="menu_item">
             <Link to={"/admin/control/category"}>Category</Link>
           </li>
-          <li className="menu_item">
+          <li className="menu_item">  
             <Link to={"/admin/control/shop"}>Shop</Link>
           </li>
           <li className="menu_item">
