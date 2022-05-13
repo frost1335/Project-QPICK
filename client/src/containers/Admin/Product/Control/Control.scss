@@ -20,6 +20,11 @@
       margin-left: 20px;
       margin-bottom: 45px;
       float: right;
+
+      svg {
+        margin-left: 8px;
+        font-size: 20px;
+      }
     }
 
     .menu_category {
@@ -128,16 +133,17 @@
             max-width: 300px;
             position: fixed;
             top: 45%;
-            left: 62%;
+            left: 63%;
             transform: translateX(-50%);
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 28px 38px;
+            padding: 28px 55px;
             background: #fff;
             border: none;
             border-radius: 40px;
             text-align: center;
+            line-height: 25px;
             cursor: auto;
 
             .modalButtons {
@@ -157,7 +163,7 @@
               border-radius: 35px;
               font-size: 17px;
               cursor: pointer;
-              margin: 0 12px;
+              margin: 0 20px;
               margin-top: 15px;
               font-size: 16px;
               color: #fff;

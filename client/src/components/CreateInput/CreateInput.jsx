@@ -10,8 +10,6 @@ const CreateInput = (props) => {
         placeholder={props.placeholder}
         id={props.forId}
         type={props.type}
-        pattern={props.pattern}
-        maxLength={props.maxLength}
         value={props.value}
         name={props.name}
         onChange={(e) => props.setData({ ...props.data }, e.target.value)}

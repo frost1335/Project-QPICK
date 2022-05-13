@@ -5,8 +5,10 @@ import FavoriteView from "./FavoriteView/FavoriteView";
 import SimilarProducts from "./SimilarProducts/SimilarProducts";
 import BrandCards from "./BrandCards/BrandCards";
 import CartView from "./CartView/CartView";
-import Form from "./Admin/Product/Create/Form";
-import ControlProduct from "./Admin/Product/Control/Control";
+import ProductForm from "./Admin/Product/Form/Form";
+import ProductControl from "./Admin/Product/Control/Control";
+import CategoryForm from "./Admin/Category/Form/Form";
+import CategoryControl from "./Admin/Category/Control/Control";
 
 export {
   MainCategory,
@@ -16,6 +18,8 @@ export {
   SimilarProducts,
   BrandCards,
   CartView,
-  Form,
-  ControlProduct,
+  ProductForm,
+  ProductControl,
+  CategoryForm,
+  CategoryControl,
 };

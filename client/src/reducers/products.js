@@ -2,6 +2,7 @@ import {
   CREATE_PRODUCT,
   DELETE_PRODUCT,
   FETCH_ALL_PRODUCTS,
+  UPDATE_PRODUCT,
 } from "../constants/actionTypes";
 
 export default (products = [], action) => {
@@ -26,6 +27,15 @@ export default (products = [], action) => {
       };
       console.log(newProducts, action.payload);
       return newProducts;
+    case UPDATE_PRODUCT:
+      return products.data.map((ctg) => {
+        if (ctg._id === action.payload.categoryID) {
+          ctg.products.map((pdct) =>
+            pdct._id === action.payload._id ? action.payload : pdct
+          );
+        }
+        return ctg;
+      });
     default:
       return products;
   }

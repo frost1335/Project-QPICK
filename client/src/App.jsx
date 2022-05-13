@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Routes, Route } from "react-router-dom";
 
@@ -7,10 +7,14 @@ import { getCategories } from "./actions/category";
 import { getAllBrands } from "./actions/brand";
 
 import { Main, NotFound, Product, Favorite, Cart, Auth, Admin } from "./pages";
-import { ControlProduct, Form } from "./containers";
+import {
+  CategoryControl,
+  CategoryForm,
+  ProductControl,
+  ProductForm,
+} from "./containers";
 
 const App = () => {
-  const [currentID, setCurrentID] = useState("");
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -29,29 +33,54 @@ const App = () => {
         <Route path="/admin/auth" element={<Auth />} />
         <Route path="/admin/control" element={<Admin />} />
         <Route
-          path="/admin/control/product"
+          path="/admin/product/control"
           element={
             <Admin>
-              <ControlProduct setCurrentID={setCurrentID} />
+              <ProductControl />
             </Admin>
           }
         />
         <Route
-          path="/admin/control/product/create"
+          path="/admin/product/create"
           element={
             <Admin>
-              <Form />
+              <ProductForm />
             </Admin>
           }
         />
         <Route
-          path="/admin/control/product/edit"
+          path="/admin/product/edit/:id"
           element={
             <Admin>
-              <Form setCurrentID={setCurrentID} currentID={currentID} />
+              <ProductForm />
             </Admin>
           }
         />
+        <Route
+          path="/admin/category/control"
+          element={
+            <Admin>
+              <CategoryControl />
+            </Admin>
+          }
+        />
+        <Route
+          path="/admin/category/create"
+          element={
+            <Admin>
+              <CategoryForm />
+            </Admin>
+          }
+        />
+        <Route
+          path="/admin/category/edit/:id"
+          element={
+            <Admin>
+              <CategoryForm />
+            </Admin>
+          }
+        />
+        <Route path="/admin/" />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

@@ -39,7 +39,10 @@ const productSchema = mongoose.Schema({
     type: Array,
     required: [true, "Please enter product tag names"],
   },
-  rating: Number,
+  rating: {
+    type: Number,
+    required: [true, "Please enter product rating"],
+  },
 });
 
 const Product = mongoose.model("Product", productSchema);

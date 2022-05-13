@@ -9,7 +9,7 @@ import "./Control.scss";
 import { deleteProduct, getAccessory } from "../../../../actions/product";
 import { Link } from "react-router-dom";
 
-const Control = ({ setCurrentID }) => {
+const Control = () => {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products);
 
@@ -41,7 +41,7 @@ const Control = ({ setCurrentID }) => {
       <div className="control_menu">
         {products.data ? (
           <>
-            <Link to="/admin/control/product/create">
+            <Link to="/admin/product/create">
               Add <AiOutlinePlus />
             </Link>
             {products.data.map((ctg, idx) =>
@@ -57,10 +57,7 @@ const Control = ({ setCurrentID }) => {
                           </div>
                           <p>{pdct.title}</p>
                           <div className="item_buttons">
-                            <Link
-                              to="/admin/control/product/edit"
-                              onClick={setCurrentID(pdct._id)}
-                            >
+                            <Link to={`/admin/product/edit/${pdct._id}`}>
                               <MdOutlineEdit />
                             </Link>
                             <button onClick={() => onModalHandler(pdct._id)}>
@@ -74,7 +71,7 @@ const Control = ({ setCurrentID }) => {
                             onClick={() => onCloseHandler()}
                           ></div>
                           <div className="deleteModal">
-                            Вы точно хотите удалить "{pdct.title}" элемент ?
+                            Удалить "{pdct.title}" ?
                             <div className="modalButtons">
                               <button onClick={() => onDeleteHandler(pdct._id)}>
                                 Да

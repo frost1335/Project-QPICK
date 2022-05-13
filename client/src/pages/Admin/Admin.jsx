@@ -19,19 +19,19 @@ const Admin = (props) => {
       <div className="admin_menu">
         <ul className="menu">
           <li className="menu_item">
-            <Link to={"/admin/control/product"}>Product</Link>
+            <Link to={"/admin/product/control"}>Product</Link>
           </li>
           <li className="menu_item">
-            <Link to={"/admin/control/category"}>Category</Link>
-          </li>
-          <li className="menu_item">  
-            <Link to={"/admin/control/shop"}>Shop</Link>
+            <Link to={"/admin/category/control"}>Category</Link>
           </li>
           <li className="menu_item">
-            <Link to={"/admin/control/brand"}>Brand</Link>
+            <Link to={"/admin/shop/control"}>Shop</Link>
           </li>
           <li className="menu_item">
-            <Link to={"/admin/control/admin"}>Admin</Link>
+            <Link to={"/admin/brand/control"}>Brand</Link>
+          </li>
+          <li className="menu_item">
+            <Link to={"/admin/admin/control"}>Admin</Link>
           </li>
           <li className="menu_item">
             <Link to={"/admin/control/"}>asd</Link>

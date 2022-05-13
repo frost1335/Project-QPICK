@@ -6,13 +6,19 @@ import {
   Textarea,
 } from "../../../../components";
 import { useDispatch, useSelector } from "react-redux";
-import { createProduct, getAccessory } from "../../../../actions/product";
+import {
+  createProduct,
+  editProduct,
+  getAccessory,
+} from "../../../../actions/product";
 import { getAllShops } from "../../../../actions/shops";
-
-import "./Form.scss";
 import { getProductById } from "../../../../actions/productID";
 
-const Form = ({ currentID, setCurrentID }) => {
+import "./Form.scss";
+import { useParams } from "react-router-dom";
+
+const Form = () => {
+  const { id } = useParams();
   const [productData, setProductData] = useState({
     title: "",
     price: "",
@@ -24,26 +30,28 @@ const Form = ({ currentID, setCurrentID }) => {
     rating: "",
   });
   const dispatch = useDispatch();
-  const product = useSelector((state) => (currentID ? state.productID : null));
+  const product = useSelector((state) => (id ? state.productID : null));
 
-  console.log(product);
-  const products = useSelector((state) => state.products);
+  const categories = useSelector((state) => state.categories);
   const shops = useSelector((state) => state.shops);
 
   useEffect(() => {
-    if (currentID) {
-      dispatch(getProductById(currentID));
-    }
+    console.log(product);
+    if (id) dispatch(getProductById(id));
+    if (product) setProductData(product);
     dispatch(getAccessory());
     dispatch(getAllShops());
-  }, [dispatch, currentID]);
+  }, [dispatch, id, product, setProductData]);
 
   const submitHandler = (e) => {
     e.preventDefault();
 
-    console.log("submit");
+    if (id) {
+      dispatch(editProduct(id, productData));
+    } else {
+      dispatch(createProduct(productData));
+    }
 
-    dispatch(createProduct(productData));
     clear();
   };
 
@@ -63,6 +71,7 @@ const Form = ({ currentID, setCurrentID }) => {
   return (
     <div className="Create">
       <form className="create_form" onSubmit={submitHandler}>
+        <h3>{id ? "Edit Product" : "CreateProduct"}</h3>
         <CreateInput
           type="text"
           name="title"
@@ -114,8 +123,6 @@ const Form = ({ currentID, setCurrentID }) => {
           type="number"
           name="rating"
           label={"Rating"}
-          pattern="/^-?\d+\.?\d*$/"
-          maxLength="1"
           forId={Math.random()}
           value={productData.rating}
           placeholder={"namuna:1 yoki 2 yoki 3.6"}
@@ -132,6 +139,7 @@ const Form = ({ currentID, setCurrentID }) => {
           }
           array={shops.data ? shops.data : null}
           data={productData}
+          value={productData.shopID}
         />
         <Selector
           forId={Math.random()}
@@ -139,8 +147,9 @@ const Form = ({ currentID, setCurrentID }) => {
           setData={(product, value) =>
             setProductData({ ...product, categoryID: value })
           }
-          array={products.data ? products.data : null}
+          array={categories.data ? categories.data : null}
           data={productData}
+          value={productData.categoryID}
         />
         <FileUpload
           multiple={false}
