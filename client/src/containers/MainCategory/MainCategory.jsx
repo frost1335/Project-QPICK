@@ -20,6 +20,7 @@ const MainCategory = () => {
     dispatch(getAllShops());
   }, [dispatch]);
 
+  console.log(products);
   return (
     <div className="container">
       <div className="MainCategory">
@@ -44,9 +45,7 @@ const MainCategory = () => {
                   </Swiper>
                 </div>
               </div>
-            ) : (
-              <Loader />
-            )
+            ) : null
           )
         ) : (
           <Loader />

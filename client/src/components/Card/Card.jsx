@@ -52,7 +52,7 @@ const Card = (props) => {
           <BiHeart />
         </div>
         <div className="card_image">
-          <img src={Tshirt} alt={"image" + props.product.title} />
+          <img src={props.product.img} alt={"image" + props.product.title} />
         </div>
         <Link to={"/view/product/" + props.product._id}>
           <p>{props.product.title} </p>

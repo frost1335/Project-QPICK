@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Routes, Route } from "react-router-dom";
 
@@ -10,6 +10,7 @@ import { Main, NotFound, Product, Favorite, Cart, Auth, Admin } from "./pages";
 import { ControlProduct, Form } from "./containers";
 
 const App = () => {
+  const [currentID, setCurrentID] = useState("");
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -31,15 +32,23 @@ const App = () => {
           path="/admin/control/product"
           element={
             <Admin>
-              <ControlProduct />
+              <ControlProduct setCurrentID={setCurrentID} />
             </Admin>
           }
         />
         <Route
-          path="/admin/control/product/form"
+          path="/admin/control/product/create"
           element={
             <Admin>
               <Form />
+            </Admin>
+          }
+        />
+        <Route
+          path="/admin/control/product/edit"
+          element={
+            <Admin>
+              <Form setCurrentID={setCurrentID} currentID={currentID} />
             </Admin>
           }
         />

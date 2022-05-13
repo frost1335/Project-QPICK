@@ -9,3 +9,4 @@ export const fetchSimilarProducts = (id) =>
   axios.get(`/api/product/similar/${id}`);
 export const createProduct = (newProduct) =>
   axios.post("/api/product", newProduct);
+export const deleteProduct = (id) => axios.delete(`/api/product/${id}`);

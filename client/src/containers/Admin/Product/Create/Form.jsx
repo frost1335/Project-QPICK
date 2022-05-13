@@ -10,8 +10,9 @@ import { createProduct, getAccessory } from "../../../../actions/product";
 import { getAllShops } from "../../../../actions/shops";
 
 import "./Form.scss";
+import { getProductById } from "../../../../actions/productID";
 
-const Form = () => {
+const Form = ({ currentID, setCurrentID }) => {
   const [productData, setProductData] = useState({
     title: "",
     price: "",
@@ -23,14 +24,19 @@ const Form = () => {
     rating: "",
   });
   const dispatch = useDispatch();
+  const product = useSelector((state) => (currentID ? state.productID : null));
 
+  console.log(product);
   const products = useSelector((state) => state.products);
   const shops = useSelector((state) => state.shops);
 
   useEffect(() => {
+    if (currentID) {
+      dispatch(getProductById(currentID));
+    }
     dispatch(getAccessory());
     dispatch(getAllShops());
-  }, [dispatch]);
+  }, [dispatch, currentID]);
 
   const submitHandler = (e) => {
     e.preventDefault();
