@@ -6,15 +6,16 @@ import { MdOutlineDelete, MdOutlineEdit } from "react-icons/md";
 import { AiOutlinePlus } from "react-icons/ai";
 
 import "./Control.scss";
-import { deleteProduct, getAccessory } from "../../../../actions/product";
+import { deleteProduct, getProducts } from "../../../../actions";
 import { Link } from "react-router-dom";
 
 const Control = () => {
+  window.scroll({ top: 0 });
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products);
 
   useEffect(() => {
-    dispatch(getAccessory());
+    dispatch(getProducts());
   }, [dispatch]);
 
   const onModalHandler = (id) => {
@@ -39,12 +40,12 @@ const Control = () => {
   return (
     <div className="Control">
       <div className="control_menu">
-        {products.data ? (
+        {products.length ? (
           <>
             <Link to="/admin/product/create">
               Add <AiOutlinePlus />
             </Link>
-            {products.data.map((ctg, idx) =>
+            {products.map((ctg, idx) =>
               ctg.products.length > 0 ? (
                 <div className="menu_category" key={idx}>
                   <h3>{ctg.name}</h3>

@@ -8,10 +8,7 @@ export default (categories = [], action) => {
     case FETCH_ALL_CATEGORIES:
       return action.payload;
     case DELETE_CATEGORY:
-      return (categories = {
-        ...categories,
-        data: categories.data.filter((ctg) => ctg._id !== action.payload),
-      });
+      return categories.filter((c) => c._id !== action.payload);
     default:
       return categories;
   }

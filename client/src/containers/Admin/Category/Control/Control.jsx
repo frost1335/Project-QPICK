@@ -7,17 +7,14 @@ import { AiOutlinePlus } from "react-icons/ai";
 
 import "./Control.scss";
 import { Link } from "react-router-dom";
-import { deleteCategory, getCategories } from "../../../../actions/category";
+import { deleteCategory } from "../../../../actions/";
 
 const Control = () => {
+  window.scroll({ top: 0 });
   const dispatch = useDispatch();
   const categories = useSelector((state) => state.categories);
 
   console.log(categories);
-
-  useEffect(() => {
-    dispatch(getCategories());
-  }, [dispatch]);
 
   const onModalHandler = (id) => {
     document.getElementById(`modal-${id}`).style.display = "block";
@@ -41,14 +38,14 @@ const Control = () => {
   return (
     <div className="Control">
       <div className="control_menu">
-        {categories.data ? (
+        {categories.length ? (
           <>
             <Link to="/admin/category/create">
               Add <AiOutlinePlus />
             </Link>
             <h3>Categories</h3>
             <ul>
-              {categories.data.map((ctg, index) => (
+              {categories.map((ctg, index) => (
                 <li key={index}>
                   <div className="li-item">
                     <div className="item_img">

@@ -16,7 +16,7 @@ import { useSelector } from "react-redux";
 import Loader from "../Loader/Loader";
 
 const CategorySlider = () => {
-  const categories = useSelector((state) => state.categories.data);
+  const categories = useSelector((state) => state.categories);
 
   return (
     <div className="container">
@@ -30,7 +30,7 @@ const CategorySlider = () => {
           modules={[Navigation]}
           className="mySwiper"
         >
-          {categories ? (
+          {categories.length ? (
             categories.map((ctg, idx) => (
               <SwiperSlide key={idx}>
                 <Link to={"/api/category/" + ctg._id} className="slide">

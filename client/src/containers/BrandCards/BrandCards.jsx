@@ -8,18 +8,13 @@ import "./BrandCards.scss";
 const BrandCards = () => {
   const brands = useSelector((state) => state.brand);
 
-  const clickHandler = () => {
-      
-  };
-
-
   return (
     <div className="container">
       <div className="BrandCards">
-        <h3 onClick={clickHandler}>Бренды</h3>
+        <h3>Бренды</h3>
         <div className="brand">
-          {brands.data ? (
-            brands.data.map((bnd, idx) => (
+          {brands.length ? (
+            brands.map((bnd, idx) => (
               <SmallCard card={bnd} key={idx} link={"/brand/" + bnd._id} />
             ))
           ) : (

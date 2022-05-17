@@ -1,6 +1,16 @@
 .Selector {
-  margin-top: 10px;
-  margin-bottom: 15px;
+  margin-bottom: 35px;
+  margin-top: 15px;
+
+  span {
+    color: #f01f30;
+    font-size: 12px;
+    font-weight: bold;
+  }
+
+  &.invalid label {
+    color: #f01f30;
+  }
 
   label {
     display: block;

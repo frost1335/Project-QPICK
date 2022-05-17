@@ -8,7 +8,7 @@ export const getCategories = () => async (dispatch) => {
   try {
     const { data } = await api.fetchCategories();
 
-    dispatch({ type: FETCH_ALL_CATEGORIES, payload: data });
+    dispatch({ type: FETCH_ALL_CATEGORIES, payload: data.data });
   } catch (error) {
     console.log(error.message);
   }

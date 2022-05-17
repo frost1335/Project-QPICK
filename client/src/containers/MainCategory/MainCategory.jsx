@@ -10,22 +10,15 @@ import "./MainCategory.scss";
 // import required modules
 import { Navigation } from "swiper";
 import { Card, Loader } from "../../components";
-import { getAllShops } from "../../actions/shops";
 
 const MainCategory = () => {
-  const dispatch = useDispatch();
   const products = useSelector((state) => state.products);
 
-  useEffect(() => {
-    dispatch(getAllShops());
-  }, [dispatch]);
-
-  console.log(products);
   return (
     <div className="container">
       <div className="MainCategory">
-        {products.data ? (
-          products.data.map((ctg, index) =>
+        {products.length ? (
+          products.map((ctg, index) =>
             ctg.products.length > 0 ? (
               <div className="main_category" key={index}>
                 <h3>{ctg.name}</h3>

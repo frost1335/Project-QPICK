@@ -1,22 +1,22 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import { getProductById } from "../../actions/productID";
-import { getSimilarProducts } from "../../actions/similarProducts";
+import { getSimilarProducts } from "../../actions";
 import { Loader } from "../../components";
 
 import "./ProductView.scss";
 
 const ProductView = () => {
   window.scroll({ top: 0 });
-  const dispatch = useDispatch();
   const { id } = useParams();
-  const product = useSelector((state) => state.productID);
+  const dispatch = useDispatch();
+  const product = useSelector((state) =>
+    state.product.find((p) => p._id === id)
+  );
   const categorys = useSelector((state) => state.categories);
   const shops = useSelector((state) => state.shops);
 
   useEffect(() => {
-    dispatch(getProductById(id));
     dispatch(getSimilarProducts(id));
   }, [dispatch, id]);
 
@@ -39,21 +39,21 @@ const ProductView = () => {
   let category;
   let shop;
 
-  if (shops.data && product.data) {
-    shop = shops.data.filter(
-      (shop) => shop._id.toString() === product.data.shopID.toString()
+  if (shops.length && product) {
+    shop = shops.filter(
+      (shop) => shop._id.toString() === product.shopID.toString()
     )[0];
   }
 
-  if (categorys.data && product.data) {
-    category = categorys.data.filter(
-      (ctg) => ctg._id.toString() === product.data.categoryID.toString()
+  if (categorys.length && product) {
+    category = categorys.filter(
+      (ctg) => ctg._id.toString() === product.categoryID.toString()
     )[0];
   }
 
   return (
     <div className="container">
-      {product.data && shop && category ? (
+      {product && shop && category ? (
         <div className="ProductView">
           <div className="view_nav">
             <Link to="/api/" className="first_link">
@@ -76,7 +76,7 @@ const ProductView = () => {
             </ul>
           </div>
           <div className="view_header">
-            <h2>{product.data.title}</h2>
+            <h2>{product.title}</h2>
             <h4>
               <span className="rating">
                 <span className="rating_star">
@@ -171,15 +171,15 @@ const ProductView = () => {
           <div className="view_body">
             <div className="body_left">
               <div className="left_img">
-                <img src={product.data.img} alt="img-product" />
+                <img src={product.img} alt="img-product" />
               </div>
             </div>
             <div className="body_right">
               <h2>
-                {product.data.price} <span>сум</span>
+                {product.price} <span>сум</span>
               </h2>
               <h4>Коротко о товаре:</h4>
-              <p>{product.data.description}</p>
+              <p>{product.description}</p>
               <div className="buy_button">
                 <button className="korzina" onClick={cartHandler}>
                   В корзину
@@ -210,7 +210,7 @@ const ProductView = () => {
               <div className="tags">
                 <h4>Теги: </h4>
                 <p>
-                  {product.data.tags.map((tag, idx) => (
+                  {product.tags.map((tag, idx) => (
                     <span key={idx}> {tag}, </span>
                   ))}
                 </p>

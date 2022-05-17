@@ -5,7 +5,7 @@ export const getAllShops = () => async (dispatch) => {
   try {
     const { data } = await api.fetchShops();
 
-    dispatch({ type: FETCH_ALL_SHOPS, payload: data });
+    dispatch({ type: FETCH_ALL_SHOPS, payload: data.data });
   } catch (error) {
     console.log(error.message);
   }

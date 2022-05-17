@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { CreateInput, FileUpload } from "../../../../components";
 
 import "./Form.scss";
 
 const Form = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [categoryData, setCategoryData] = useState({
     name: "",
@@ -14,7 +15,7 @@ const Form = () => {
   });
 
   const category = useSelector((state) =>
-    id ? state.categories.data.find((c) => c._id === id) : null
+    id ? state.categories.find((c) => c._id === id) : null
   );
 
   useEffect(() => {
@@ -30,6 +31,7 @@ const Form = () => {
       dispatch();
     }
 
+    navigate("/admin/category/control");
     clear();
   };
 

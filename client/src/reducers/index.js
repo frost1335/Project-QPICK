@@ -4,7 +4,7 @@ import products from "./products";
 import categories from "./categories";
 import shops from "./shops";
 import brand from "./brand";
-import productID from "./productID";
+import product from "./product";
 import similarProducts from "./similarProducts";
 import favorites from "./favorites";
 import cart from "./cart";
@@ -14,7 +14,7 @@ export default combineReducers({
   categories,
   shops,
   brand,
-  productID,
+  product,
   similarProducts,
   favorites,
   cart,

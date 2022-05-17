@@ -16,8 +16,8 @@ const Catalog = (props) => {
         <h3 className="catalog_header">Каталог</h3>
         <div className="catalog_body">
           <ul className="menu">
-            {shops.data ? (
-              shops.data.map((shop, idx) => (
+            {shops.length ? (
+              shops.map((shop, idx) => (
                 <Link
                   to={"/shop/view/" + shop._id}
                   className="menu_item"
@@ -34,8 +34,8 @@ const Catalog = (props) => {
             )}
           </ul>
           <ul className="menu">
-            {categories.data ? (
-              categories.data.map((ctg, idx) => (
+            {categories.length ? (
+              categories.map((ctg, idx) => (
                 <Link
                   to={"/category/view/" + ctg._id}
                   className="menu_item"

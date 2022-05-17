@@ -12,8 +12,8 @@ const ShopCards = () => {
       <div className="ShopCards">
         <h3>Магазины</h3>
         <div className="shop">
-          {shops.data ? (
-            shops.data.map((shop, idx) => (
+          {shops.length ? (
+            shops.map((shop, idx) => (
               <SmallCard card={shop} key={idx} link={"/shop/" + shop._id} />
             ))
           ) : (

@@ -12,14 +12,16 @@ import "./SimilarProducts.scss";
 
 import { Card, Loader } from "../../components";
 import { useParams } from "react-router-dom";
-import { getSimilarProducts } from "../../actions/similarProducts";
+import { getSimilarProducts } from "../../actions";
 
 const SimilarProducts = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const categorys = useSelector((state) => state.categories);
   const similarProducts = useSelector((state) => state.similarProducts);
-  const product = useSelector((state) => state.productID);
+  const product = useSelector((state) =>
+    state.product.find((p) => p._id === id)
+  );
 
   useEffect(() => {
     dispatch(getSimilarProducts(id));
@@ -27,9 +29,9 @@ const SimilarProducts = () => {
 
   let category;
 
-  if (categorys.data && product.data) {
-    category = categorys.data.filter(
-      (ctg) => ctg._id.toString() === product.data.categoryID.toString()
+  if (categorys.length && product) {
+    category = categorys.filter(
+      (ctg) => ctg._id.toString() === product.categoryID.toString()
     )[0];
   }
 
@@ -45,8 +47,8 @@ const SimilarProducts = () => {
             navigation={true}
             className="mySwiper"
           >
-            {similarProducts.data ? (
-              similarProducts.data.map((pdct, idx) => (
+            {similarProducts.length ? (
+              similarProducts.map((pdct, idx) => (
                 <SwiperSlide key={idx}>
                   <Card category={category} product={pdct} />
                 </SwiperSlide>

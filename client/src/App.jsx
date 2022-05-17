@@ -2,9 +2,15 @@ import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Routes, Route } from "react-router-dom";
 
-import { getAccessory } from "./actions/product";
-import { getCategories } from "./actions/category";
-import { getAllBrands } from "./actions/brand";
+import {
+  getProducts,
+  getCategories,
+  getAllBrands,
+  getAllShops,
+  getAllProducts,
+  getFavoriteProducts,
+  getCartProducts,
+} from "./actions";
 
 import { Main, NotFound, Product, Favorite, Cart, Auth, Admin } from "./pages";
 import {
@@ -18,9 +24,13 @@ const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getAccessory());
     dispatch(getCategories());
     dispatch(getAllBrands());
+    dispatch(getAllShops());
+    dispatch(getAllProducts());
+    dispatch(getProducts());
+    dispatch(getFavoriteProducts());
+    dispatch(getCartProducts());
   }, [dispatch]);
 
   return (

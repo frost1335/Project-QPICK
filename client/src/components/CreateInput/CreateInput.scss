@@ -6,6 +6,16 @@
   margin-top: 15px;
   margin-bottom: 35px;
 
+  span {
+    color: #f01f30;
+    font-size: 12px;
+    font-weight: bold;
+  }
+
+  &.invalid label {
+    color: #f01f30;
+  }
+
   label {
     font-size: 18px;
     color: #101010;
