@@ -9,6 +9,8 @@ import ProductForm from "./Admin/Product/Form/Form";
 import ProductControl from "./Admin/Product/Control/Control";
 import CategoryForm from "./Admin/Category/Form/Form";
 import CategoryControl from "./Admin/Category/Control/Control";
+import ShopForm from "./Admin/Shop/Form/Form";
+import ShopControl from "./Admin/Shop/Control/Control";
 
 export {
   MainCategory,
@@ -22,4 +24,6 @@ export {
   ProductControl,
   CategoryForm,
   CategoryControl,
+  ShopForm,
+  ShopControl,
 };

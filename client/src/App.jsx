@@ -18,6 +18,8 @@ import {
   CategoryForm,
   ProductControl,
   ProductForm,
+  ShopControl,
+  ShopForm,
 } from "./containers";
 
 const App = () => {
@@ -87,6 +89,30 @@ const App = () => {
           element={
             <Admin>
               <CategoryForm />
+            </Admin>
+          }
+        />
+        <Route
+          path="/admin/shop/control"
+          element={
+            <Admin>
+              <ShopControl />
+            </Admin>
+          }
+        />
+        <Route
+          path="/admin/shop/create"
+          element={
+            <Admin>
+              <ShopForm />
+            </Admin>
+          }
+        />
+        <Route
+          path="/admin/shop/edit/:id"
+          element={
+            <Admin>
+              <ShopForm />
             </Admin>
           }
         />

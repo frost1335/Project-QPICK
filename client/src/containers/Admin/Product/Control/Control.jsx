@@ -14,10 +14,6 @@ const Control = () => {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products);
 
-  useEffect(() => {
-    dispatch(getProducts());
-  }, [dispatch]);
-
   const onModalHandler = (id) => {
     document.getElementById(`modal-${id}`).style.display = "block";
   };

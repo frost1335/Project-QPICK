@@ -19,15 +19,13 @@ const Form = () => {
     id ? state.product.find((p) => p._id === id) : null
   );
 
-  console.log(product);
-
   const [productData, setProductData] = useState({
     isFormValid: false,
     formControls: {
       title: createControl(
         {
           type: "text",
-          label: "Email",
+          label: "Title",
           errorMessage: "Введите корректный email",
         },
         { required: true }
@@ -185,7 +183,6 @@ const Form = () => {
     control.valid = validate(control.value, control.validation);
 
     formControls[controlName] = control;
-    console.log(formControls);
 
     setProductData({ formControls, isFormValid: validateForm(formControls) });
   };
@@ -217,14 +214,75 @@ const Form = () => {
 
   const clear = () => {
     setProductData({
-      title: "",
-      price: "",
-      img: "",
-      categoryID: "",
-      shopID: "",
-      description: "",
-      tags: "",
-      rating: "",
+      isFormValid: false,
+      formControls: {
+        title: createControl(
+          {
+            type: "text",
+            label: "Email",
+            errorMessage: "Введите корректный email",
+          },
+          { required: true }
+        ),
+        price: createControl(
+          {
+            type: "number",
+            label: "Price",
+            errorMessage: "Введите корректный price",
+          },
+          { required: true, minLength: 4 }
+        ),
+        rating: createControl(
+          {
+            type: "number",
+            label: "Rating",
+            errorMessage: "Введите корректный rating",
+          },
+          { required: true, minLength: 1, maxLength: 1 }
+        ),
+        tags: createControl(
+          {
+            type: "text",
+            label: "Tags",
+            errorMessage: "Введите корректный tags",
+          },
+          { required: true, minLength: 3 }
+        ),
+        description: createControl(
+          {
+            type: "area",
+            label: "Description",
+            errorMessage: "Введите корректный description",
+          },
+          { required: true, minLength: 10 }
+        ),
+        categoryID: createControl(
+          {
+            type: "select",
+            label: "Category",
+            array: "category",
+            errorMessage: "Введите корректный category",
+          },
+          { required: true }
+        ),
+        shopID: createControl(
+          {
+            type: "select",
+            label: "Shop",
+            array: "shop",
+            errorMessage: "Введите корректный shop",
+          },
+          { required: true }
+        ),
+        img: createControl(
+          {
+            type: "file",
+            label: "Image",
+            errorMessage: "Введите корректный image",
+          },
+          { required: true }
+        ),
+      },
     });
   };
 
