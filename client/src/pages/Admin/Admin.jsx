@@ -1,9 +1,46 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 import "./Admin.scss";
 
 const Admin = (props) => {
+  const navigate = useNavigate();
+  const [adminData, setAdminData] = useState("");
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    if (!localStorage.getItem("authData")) {
+      navigate("/admin/auth");
+    }
+
+    const fetchPrivateData = async () => {
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: localStorage.getItem("authData"),
+        },
+      };
+
+      try {
+        const { data } = await axios.get("/api/admin/control", config);
+
+        setAdminData(data.data);
+      } catch (error) {
+        localStorage.removeItem("authData");
+        setError("You are not authorized, please login");
+        navigate("/admin/auth");
+      }
+    };
+
+    fetchPrivateData();
+  }, [navigate]);
+
+  const logoutHandler = () => {
+    localStorage.removeItem("authData");
+    navigate("/admin/auth");
+  };
+
   return (
     <div className="Admin">
       <div className="admin_navbar">
@@ -12,9 +49,15 @@ const Admin = (props) => {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/logout">Logout</Link>
+            <button to="/logout" onClick={logoutHandler}>
+              Logout
+            </button>
           </li>
         </ul>
+        <div className="admin_corner">
+          <span>{adminData.name}</span>
+          <p>{adminData.email}</p>
+        </div>
       </div>
       <div className="admin_menu">
         <ul className="menu">
@@ -32,9 +75,6 @@ const Admin = (props) => {
           </li>
           <li className="menu_item">
             <Link to={"/admin/admin/control"}>Admin</Link>
-          </li>
-          <li className="menu_item">
-            <Link to={"/admin/control/"}>asd</Link>
           </li>
         </ul>
       </div>

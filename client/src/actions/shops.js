@@ -5,7 +5,6 @@ import {
   FETCH_ALL_SHOPS,
 } from "../constants/actionTypes";
 import * as api from "../api";
-import async from "hbs/lib/async";
 
 export const getAllShops = () => async (dispatch) => {
   try {

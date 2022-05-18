@@ -1,4 +1,4 @@
-import { getAllBrands } from "./brand";
+import { getAllBrands, createBrand, deleteBrand, editBrand } from "./brand";
 import { getCartProducts } from "./cart";
 import {
   getCategories,
@@ -16,6 +16,10 @@ import {
   deleteProduct,
   editProduct,
 } from "./product";
+
+import { deleteAdmin, createAdmin, editAdmin, getAdmins } from "./admin";
+
+import { authLogin } from "./auth";
 
 export {
   getAllBrands,
@@ -36,4 +40,12 @@ export {
   createShop,
   deleteShop,
   editShop,
+  createBrand,
+  deleteBrand,
+  editBrand,
+  deleteAdmin,
+  createAdmin,
+  editAdmin,
+  getAdmins,
+  authLogin,
 };

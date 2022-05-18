@@ -126,7 +126,7 @@ const Form = () => {
   return (
     <div className="Form">
       <form className="create_form" onSubmit={submitHandler}>
-        <h3>{id ? "Edit Product" : "CreateProduct"}</h3>
+        <h3>{id ? "Edit Shop" : "Create Shop"}</h3>
         <FormInputs form={shopData} onChangeHandler={onChangeHandler} />
         <div className="form_button">
           <button className="submit_button" disabled={!shopData.isFormValid}>

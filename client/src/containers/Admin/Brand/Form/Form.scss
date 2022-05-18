@@ -1,0 +1,49 @@
+.Form {
+  max-width: 580px;
+  margin: auto;
+  padding: 50px 35px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .create_form {
+    padding: 25px 35px;
+    background: transparent;
+    border-radius: 50px;
+    box-shadow: 0 0 20px rgba($color: #000000, $alpha: 0.2);
+
+    h3 {
+      font-weight: 500;
+      text-align: center;
+      font-size: 24px;
+      color: #101010;
+      margin-bottom: 25px;
+    }
+  }
+
+  .form_button {
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    margin-top: 50px;
+    margin-bottom: 20px;
+
+    .submit_button {
+      background: linear-gradient(270deg, #79dae8 0%, #68a7ad 100%);
+      border: none;
+      padding: 15px 50px;
+      font-size: 18px;
+      color: #fff;
+      box-shadow: 0 0 10px rgba($color: #000000, $alpha: 0.2);
+      border-radius: 35px;
+      cursor: pointer;
+
+      &:disabled {
+        background: #ccc;
+        color: #000;
+        cursor: not-allowed;
+      }
+    }
+  }
+}

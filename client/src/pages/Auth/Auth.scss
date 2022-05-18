@@ -70,6 +70,12 @@
         font-weight: 500;
         cursor: pointer;
         margin-top: 20px;
+
+        &:disabled {
+          background: #ccc;
+          color: #000;
+          cursor: not-allowed;
+        }
       }
     }
   }

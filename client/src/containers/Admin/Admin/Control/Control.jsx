@@ -1,18 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { AiOutlinePlus } from "react-icons/ai";
+import { MdOutlineDelete, MdOutlineEdit } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { deleteAdmin, getAdmins } from "../../../../actions";
 import { Loader } from "../../../../components";
 
-import { MdOutlineDelete, MdOutlineEdit } from "react-icons/md";
-import { AiOutlinePlus } from "react-icons/ai";
-
 import "./Control.scss";
-import { Link } from "react-router-dom";
-import { deleteCategory } from "../../../../actions/";
 
 const Control = () => {
   window.scroll({ top: 0 });
   const dispatch = useDispatch();
-  const categories = useSelector((state) => state.categories);
+  const admins = useSelector((state) => state.admins);
+
+  useEffect(() => {
+    dispatch(getAdmins());
+  }, [dispatch]);
 
   const onModalHandler = (id) => {
     document.getElementById(`modal-${id}`).style.display = "block";
@@ -30,47 +33,45 @@ const Control = () => {
 
   const onDeleteHandler = (id) => {
     document.getElementById(`modal-${id}`).style.display = "none";
-    dispatch(deleteCategory(id));
+    dispatch(deleteAdmin(id));
   };
 
   return (
     <div className="Control">
       <div className="control_menu">
         <>
-          <Link to="/admin/category/create">
+          <Link to="/admin/admin/create">
             Add <AiOutlinePlus />
           </Link>
-          <h3>Categories</h3>
-          {categories.length ? (
+          <h3>Admins</h3>
+          {admins.length ? (
             <ul>
-              {categories.map((ctg, index) => (
+              {admins.map((admin, index) => (
                 <li key={index}>
                   <div className="li-item">
-                    <div className="item_img">
-                      <img src={ctg.img} alt="category-img" />
-                    </div>
-                    <p>{ctg.name}</p>
+                    <h4>{admin.name}</h4>
+                    <p>{admin.email}</p>
                     <div className="item_buttons">
-                      <Link to={`/admin/category/edit/${ctg._id}`}>
+                      <Link to={`/admin/admin/edit/${admin._id}`}>
                         <MdOutlineEdit />
                       </Link>
-                      <button onClick={() => onModalHandler(ctg._id)}>
+                      <button onClick={() => onModalHandler(admin._id)}>
                         <MdOutlineDelete />
                       </button>
                     </div>
                   </div>
-                  <div className={`modal`} id={`modal-${ctg._id}`}>
+                  <div className={`modal`} id={`modal-${admin._id}`}>
                     <div
                       className="deleteBack"
                       onClick={() => onCloseHandler()}
                     ></div>
                     <div className="deleteModal">
-                      Удалить "{ctg.name}" ?
+                      Удалить "{admin.name}" ?
                       <div className="modalButtons">
-                        <button onClick={() => onDeleteHandler(ctg._id)}>
+                        <button onClick={() => onDeleteHandler(admin._id)}>
                           Да
                         </button>
-                        <button onClick={() => onCloseHandler(ctg._id)}>
+                        <button onClick={() => onCloseHandler(admin._id)}>
                           Нет
                         </button>
                       </div>

@@ -34,12 +34,12 @@ const Control = () => {
   return (
     <div className="Control">
       <div className="control_menu">
-        {shops.length ? (
-          <>
-            <Link to="/admin/shop/create">
-              Add <AiOutlinePlus />
-            </Link>
-            <h3>Shops</h3>
+        <>
+          <Link to="/admin/shop/create">
+            Add <AiOutlinePlus />
+          </Link>
+          <h3>Shops</h3>
+          {shops.length ? (
             <ul>
               {shops.map((shop, index) => (
                 <li key={index}>
@@ -77,10 +77,10 @@ const Control = () => {
                 </li>
               ))}
             </ul>
-          </>
-        ) : (
-          <Loader />
-        )}
+          ) : (
+            <Loader />
+          )}
+        </>
       </div>
     </div>
   );

@@ -20,6 +20,8 @@ app.use("/api/category/", require("./routes/category"));
 app.use("/api/product/", require("./routes/product"));
 app.use("/api/shop/", require("./routes/shop"));
 app.use("/api/brand/", require("./routes/brand"));
+app.use("/api/admin/", require("./routes/admin"));
+app.use("/api/auth/", require("./routes/auth"));
 
 // error handler
 app.use(errorHandler);
@@ -31,7 +33,7 @@ const server = app.listen(PORT, () =>
   console.log(`Server has been started on port ${PORT} 👏`)
 );
 
-process.on("unhandledRejection", (err, promise) => {
-  console.log(`Log Error: ${err}`);
-  server.close(() => process.exit(1));
-});
+// process.on("unhandledRejection", (err, promise) => {
+//   console.log(`Log Error: ${err}`);
+//   server.close(() => process.exit(1));
+// });

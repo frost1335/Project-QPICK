@@ -10,10 +10,15 @@ import {
   getAllProducts,
   getFavoriteProducts,
   getCartProducts,
+  getAdmins,
 } from "./actions";
 
 import { Main, NotFound, Product, Favorite, Cart, Auth, Admin } from "./pages";
 import {
+  AdminControl,
+  AdminForm,
+  BrandControl,
+  BrandForm,
   CategoryControl,
   CategoryForm,
   ProductControl,
@@ -38,12 +43,15 @@ const App = () => {
   return (
     <>
       <Routes>
+        {/* User routes */}
         <Route path="/" element={<Main />} />
         <Route path="/view/product/:id" element={<Product />} />
         <Route path="/favorites" element={<Favorite />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/admin/auth" element={<Auth />} />
         <Route path="/admin/control" element={<Admin />} />
+
+        {/* Product creators routes */}
         <Route
           path="/admin/product/control"
           element={
@@ -68,6 +76,8 @@ const App = () => {
             </Admin>
           }
         />
+
+        {/* Category creators routes */}
         <Route
           path="/admin/category/control"
           element={
@@ -92,6 +102,8 @@ const App = () => {
             </Admin>
           }
         />
+
+        {/* Shop creators routes */}
         <Route
           path="/admin/shop/control"
           element={
@@ -116,7 +128,60 @@ const App = () => {
             </Admin>
           }
         />
-        <Route path="/admin/" />
+
+        {/* Brand creators routes */}
+        <Route
+          path="/admin/brand/control"
+          element={
+            <Admin>
+              <BrandControl />
+            </Admin>
+          }
+        />
+        <Route
+          path="/admin/brand/create"
+          element={
+            <Admin>
+              <BrandForm />
+            </Admin>
+          }
+        />
+        <Route
+          path="/admin/brand/edit/:id"
+          element={
+            <Admin>
+              <BrandForm />
+            </Admin>
+          }
+        />
+
+        {/* Admin creators routes */}
+        <Route
+          path="/admin/admin/control"
+          element={
+            <Admin>
+              <AdminControl />
+            </Admin>
+          }
+        />
+        <Route
+          path="/admin/admin/create"
+          element={
+            <Admin>
+              <AdminForm />
+            </Admin>
+          }
+        />
+        <Route
+          path="/admin/admin/edit/:id"
+          element={
+            <Admin>
+              <AdminForm />
+            </Admin>
+          }
+        />
+
+        {/* Not found page route */}
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

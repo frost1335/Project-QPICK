@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { createCategory, editCategory } from "../../../../actions";
+import { createBrand, editBrand } from "../../../../actions";
 import FormInputs from "../../../../components/FormInputs/FormInputs";
 import {
   createControl,
@@ -9,13 +9,11 @@ import {
   validateForm,
 } from "../../../../form/formFramework";
 
-import "./Form.scss";
-
 const Form = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [categoryData, setCategoryData] = useState({
+  const [brandData, setBrandData] = useState({
     isFormValid: false,
     formControls: {
       name: createControl(
@@ -37,13 +35,13 @@ const Form = () => {
     },
   });
 
-  const category = useSelector((state) =>
-    id ? state.categories.find((c) => c._id === id) : null
+  const brand = useSelector((state) =>
+    id ? state.brand.find((c) => c._id === id) : null
   );
 
   useEffect(() => {
-    if (category)
-      setCategoryData({
+    if (brand)
+      setBrandData({
         isFormValid: false,
         formControls: {
           name: createControl(
@@ -53,7 +51,7 @@ const Form = () => {
               errorMessage: "Введите корректный name",
             },
             { required: true },
-            category.name
+            brand.name
           ),
           img: createControl(
             {
@@ -62,14 +60,14 @@ const Form = () => {
               errorMessage: "Введите корректный image",
             },
             { required: true },
-            category.img
+            brand.img
           ),
         },
       });
-  }, [category]);
+  }, [brand]);
 
   const onChangeHandler = (event, controlName) => {
-    const formControls = { ...categoryData.formControls };
+    const formControls = { ...brandData.formControls };
     const control = { ...formControls[controlName] };
 
     control.value = event.target.value;
@@ -78,29 +76,29 @@ const Form = () => {
 
     formControls[controlName] = control;
 
-    setCategoryData({ formControls, isFormValid: validateForm(formControls) });
+    setBrandData({ formControls, isFormValid: validateForm(formControls) });
   };
 
   const submitHandler = (e) => {
     e.preventDefault();
 
     const data = {
-      name: categoryData.formControls.name.value,
-      img: categoryData.formControls.img.value,
+      name: brandData.formControls.name.value,
+      img: brandData.formControls.img.value,
     };
 
     if (id) {
-      dispatch(editCategory(id, data));
+      dispatch(editBrand(id, data));
     } else {
-      dispatch(createCategory(data));
+      dispatch(createBrand(data));
     }
 
-    navigate("/admin/category/control");
+    navigate("/admin/brand/control");
     clear();
   };
 
   const clear = () => {
-    setCategoryData({
+    setBrandData({
       isFormValid: false,
       formControls: {
         name: createControl(
@@ -126,13 +124,10 @@ const Form = () => {
   return (
     <div className="Form">
       <form className="create_form" onSubmit={submitHandler}>
-        <h3>{id ? "Edit Category" : "Create Category"}</h3>
-        <FormInputs form={categoryData} onChangeHandler={onChangeHandler} />
+        <h3>{id ? "Edit Brand" : "Create Brand"}</h3>
+        <FormInputs form={brandData} onChangeHandler={onChangeHandler} />
         <div className="form_button">
-          <button
-            className="submit_button"
-            disabled={!categoryData.isFormValid}
-          >
+          <button className="submit_button" disabled={!brandData.isFormValid}>
             Submit
           </button>
         </div>

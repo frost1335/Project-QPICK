@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Loader } from "../../../../components";
 
@@ -6,7 +6,7 @@ import { MdOutlineDelete, MdOutlineEdit } from "react-icons/md";
 import { AiOutlinePlus } from "react-icons/ai";
 
 import "./Control.scss";
-import { deleteProduct, getProducts } from "../../../../actions";
+import { deleteProduct } from "../../../../actions";
 import { Link } from "react-router-dom";
 
 const Control = () => {
@@ -36,12 +36,12 @@ const Control = () => {
   return (
     <div className="Control">
       <div className="control_menu">
-        {products.length ? (
-          <>
-            <Link to="/admin/product/create">
-              Add <AiOutlinePlus />
-            </Link>
-            {products.map((ctg, idx) =>
+        <>
+          <Link to="/admin/product/create">
+            Add <AiOutlinePlus />
+          </Link>
+          {products.length ? (
+            products.map((ctg, idx) =>
               ctg.products.length > 0 ? (
                 <div className="menu_category" key={idx}>
                   <h3>{ctg.name}</h3>
@@ -84,11 +84,11 @@ const Control = () => {
                   </ul>
                 </div>
               ) : null
-            )}
-          </>
-        ) : (
-          <Loader />
-        )}
+            )
+          ) : (
+            <Loader />
+          )}
+        </>
       </div>
     </div>
   );

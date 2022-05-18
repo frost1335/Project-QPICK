@@ -8,6 +8,8 @@ import product from "./product";
 import similarProducts from "./similarProducts";
 import favorites from "./favorites";
 import cart from "./cart";
+import admins from "./admin";
+import auth from "./auth";
 
 export default combineReducers({
   products,
@@ -18,4 +20,6 @@ export default combineReducers({
   similarProducts,
   favorites,
   cart,
+  admins,
+  auth,
 });
