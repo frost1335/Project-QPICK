@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Routes, Route } from "react-router-dom";
 
@@ -10,7 +10,6 @@ import {
   getAllProducts,
   getFavoriteProducts,
   getCartProducts,
-  getAdmins,
 } from "./actions";
 
 import { Main, NotFound, Product, Favorite, Cart, Auth, Admin } from "./pages";
@@ -29,6 +28,8 @@ import {
 
 const App = () => {
   const dispatch = useDispatch();
+
+  const [adminData, setAdminData] = useState("");
 
   useEffect(() => {
     dispatch(getCategories());
@@ -159,8 +160,8 @@ const App = () => {
         <Route
           path="/admin/admin/control"
           element={
-            <Admin>
-              <AdminControl />
+            <Admin setAdminData={setAdminData} adminData={adminData}>
+              <AdminControl adminData={adminData} />
             </Admin>
           }
         />

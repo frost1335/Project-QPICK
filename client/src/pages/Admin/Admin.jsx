@@ -6,7 +6,7 @@ import "./Admin.scss";
 
 const Admin = (props) => {
   const navigate = useNavigate();
-  const [adminData, setAdminData] = useState("");
+
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -25,7 +25,7 @@ const Admin = (props) => {
       try {
         const { data } = await axios.get("/api/admin/control", config);
 
-        setAdminData(data.data);
+        props.setAdminData(data.data);
       } catch (error) {
         localStorage.removeItem("authData");
         setError("You are not authorized, please login");
@@ -55,8 +55,8 @@ const Admin = (props) => {
           </li>
         </ul>
         <div className="admin_corner">
-          <span>{adminData.name}</span>
-          <p>{adminData.email}</p>
+          <span>{props.adminData.name}</span>
+          <p>{props.adminData.email}</p>
         </div>
       </div>
       <div className="admin_menu">
@@ -73,9 +73,11 @@ const Admin = (props) => {
           <li className="menu_item">
             <Link to={"/admin/brand/control"}>Brand</Link>
           </li>
-          <li className="menu_item">
-            <Link to={"/admin/admin/control"}>Admin</Link>
-          </li>
+          {props.adminData.status === 'owner' ? (
+            <li className="menu_item">
+              <Link to={"/admin/admin/control"}>Admin</Link>
+            </li>
+          ) : null}
         </ul>
       </div>
       <div className="admin_body">{props.children}</div>

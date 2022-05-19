@@ -16,7 +16,10 @@ exports.getAdmins = async (req, res, next) => {
   try {
     const admins = await Admin.find();
 
-    res.status(200).json({ success: true, data: admins });
+    res.status(200).json({
+      success: true,
+      data: admins.filter((a) => a.status !== "owner"),
+    });
   } catch (error) {
     next(error.message);
   }

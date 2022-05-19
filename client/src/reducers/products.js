@@ -27,7 +27,6 @@ export default (products = [], action) => {
       return products.map((ctg) => {
         ctg.products.map((p) => {
           if (p._id === action.payload._id) {
-            console.log(action.payload);
             return action.payload;
           } else {
             return p;

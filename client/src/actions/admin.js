@@ -20,6 +20,8 @@ export const createAdmin = (admin) => async (dispatch) => {
   try {
     const { data } = await api.createAdmin(admin);
 
+    console.log(data);
+
     dispatch({ type: CREATE_ADMIN, payload: data.data });
   } catch (error) {
     console.log(error.message);

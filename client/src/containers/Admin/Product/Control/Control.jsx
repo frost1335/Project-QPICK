@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Loader } from "../../../../components";
 
@@ -6,13 +6,17 @@ import { MdOutlineDelete, MdOutlineEdit } from "react-icons/md";
 import { AiOutlinePlus } from "react-icons/ai";
 
 import "./Control.scss";
-import { deleteProduct } from "../../../../actions";
+import { deleteProduct, getProducts } from "../../../../actions";
 import { Link } from "react-router-dom";
 
 const Control = () => {
   window.scroll({ top: 0 });
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products);
+
+  useEffect(() => {
+    dispatch(getProducts());
+  }, [dispatch])
 
   const onModalHandler = (id) => {
     document.getElementById(`modal-${id}`).style.display = "block";

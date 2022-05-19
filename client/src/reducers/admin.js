@@ -10,6 +10,7 @@ export default (admins = [], action) => {
     case FETCH_ADMINS:
       return action.payload;
     case CREATE_ADMIN:
+      console.log([...admins, action.payload]);
       return [...admins, action.payload];
     case EDIT_ADMIN:
       return admins.map((a) =>
