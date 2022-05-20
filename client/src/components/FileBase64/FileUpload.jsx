@@ -21,7 +21,6 @@ const FileUpload = (props) => {
       <input
         id={htmlFor}
         type={props.type}
-        // value={props.value}
         onChange={props.onChange}
       />
 

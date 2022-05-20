@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Routes, Route } from "react-router-dom";
 
 import {
@@ -28,8 +28,6 @@ import {
 
 const App = () => {
   const dispatch = useDispatch();
-
-  const [adminData, setAdminData] = useState("");
 
   useEffect(() => {
     dispatch(getCategories());
@@ -160,8 +158,8 @@ const App = () => {
         <Route
           path="/admin/admin/control"
           element={
-            <Admin setAdminData={setAdminData} adminData={adminData}>
-              <AdminControl adminData={adminData} />
+            <Admin>
+              <AdminControl />
             </Admin>
           }
         />

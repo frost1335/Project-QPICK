@@ -5,7 +5,10 @@ const brandSchema = mongoose.Schema({
     type: String,
     required: [true, "Please enter brand name"],
   },
-  img: String,
+  img: {
+    type: Array,
+    required: [true, "Please enter Brand img "]
+  },
 });
 
 const Brand = mongoose.model("Brand", brandSchema);

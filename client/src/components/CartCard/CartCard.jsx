@@ -35,7 +35,7 @@ const CartCard = (props) => {
   return (
     <div className="CartCard" id={`CartCard-${props.product._id}`}>
       <div className="card_img">
-        <img src={props.product.img} alt="cart-product-img" />
+        <img src={props.product.img[0].thumbnail.path} alt="cart-product-img" />
       </div>
       <div className="card_info">
         <p className="card_title">{props.product.title}</p>

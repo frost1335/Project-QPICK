@@ -6,6 +6,7 @@ import FormInputs from "../../../../components/FormInputs/FormInputs";
 import {
   createControl,
   validate,
+  validateFile,
   validateForm,
 } from "../../../../form/formFramework";
 
@@ -32,7 +33,7 @@ const Form = () => {
           label: "Image",
           errorMessage: "Введите корректный image",
         },
-        { required: true }
+        { required: true, maxSize: 3200000 }
       ),
     },
   });
@@ -81,18 +82,32 @@ const Form = () => {
     setShopData({ formControls, isFormValid: validateForm(formControls) });
   };
 
+  const onFileChange = (event, controlName) => {
+    const formControls = { ...shopData.formControls };
+    const control = { ...formControls[controlName] };
+
+    control.value = event.target.files[0];
+    control.touched = true;
+    control.valid = validateFile(control.value, control.validation);
+
+    formControls[controlName] = control;
+
+    console.log(formControls);
+    setShopData({ formControls, isFormValid: validateForm(formControls) });
+  };
+
   const submitHandler = (e) => {
     e.preventDefault();
 
-    const data = {
-      name: shopData.formControls.name.value,
-      img: shopData.formControls.img.value,
-    };
+    const formData = new FormData();
+
+    formData.append("name", shopData.formControls.name.value);
+    formData.append("img", shopData.formControls.img.value);
 
     if (id) {
-      dispatch(editShop(id, data));
+      dispatch(editShop(id, formData));
     } else {
-      dispatch(createShop(data));
+      dispatch(createShop(formData));
     }
 
     navigate("/admin/shop/control");
@@ -127,7 +142,11 @@ const Form = () => {
     <div className="Form">
       <form className="create_form" onSubmit={submitHandler}>
         <h3>{id ? "Edit Shop" : "Create Shop"}</h3>
-        <FormInputs form={shopData} onChangeHandler={onChangeHandler} />
+        <FormInputs
+          form={shopData}
+          onFileChange={onFileChange}
+          onChangeHandler={onChangeHandler}
+        />
         <div className="form_button">
           <button className="submit_button" disabled={!shopData.isFormValid}>
             Submit

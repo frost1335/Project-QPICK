@@ -10,6 +10,8 @@ import favorites from "./favorites";
 import cart from "./cart";
 import admins from "./admin";
 import auth from "./auth";
+import banners from "./banners";
+import sliders from "./sliders";
 
 export default combineReducers({
   products,
@@ -22,4 +24,6 @@ export default combineReducers({
   cart,
   admins,
   auth,
+  banners,
+  sliders,
 });

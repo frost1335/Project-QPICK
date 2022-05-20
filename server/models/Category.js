@@ -6,7 +6,7 @@ const categorySchema = mongoose.Schema({
     required: [true, "Please enter category name"],
   },
   img: {
-    type: String,
+    type: Array,
     required: [true, "Please enter category image"],
   },
   products: Array,

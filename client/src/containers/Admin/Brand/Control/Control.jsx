@@ -11,6 +11,8 @@ const Control = () => {
   const dispatch = useDispatch();
   const brand = useSelector((state) => state.brand);
 
+  console.log(brand);
+
   const onModalHandler = (id) => {
     document.getElementById(`modal-${id}`).style.display = "block";
   };
@@ -44,7 +46,7 @@ const Control = () => {
                 <li key={index}>
                   <div className="li-item">
                     <div className="item_img">
-                      <img src={b.img} alt="category-img" />
+                      <img src={b.img[0].thumbnail.path} alt="category-img" />
                     </div>
                     <p>{b.name}</p>
                     <div className="item_buttons">

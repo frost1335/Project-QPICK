@@ -68,7 +68,7 @@ const FormInputs = (props) => {
               label={control.label}
               errorMessage={control.errorMessage}
               shouldValidate={!!control.validation}
-              onChange={(event) => props.onChangeHandler(event, controlName)}
+              onChange={(event) => props.onFileChange(event, controlName)}
             />
           );
         }

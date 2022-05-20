@@ -6,7 +6,7 @@ const productSchema = mongoose.Schema({
     require: [true, "Please enter product title "],
   },
   img: {
-    type: String,
+    type: Array,
     required: [true, "Please enter product image "],
   },
   price: {

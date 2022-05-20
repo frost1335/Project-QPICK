@@ -24,7 +24,7 @@ const Catalog = (props) => {
                   key={idx}
                 >
                   <div className="item_img">
-                    <img src={shop.img} alt={"item-img"} />
+                    <img src={shop.img[0].thumbnail.path} alt={"item-img"} />
                   </div>
                   <p>{shop.name}</p>
                 </Link>
@@ -42,7 +42,7 @@ const Catalog = (props) => {
                   key={idx}
                 >
                   <div className="item_img">
-                    <img src={ctg.img} alt={"item-img"} />
+                    <img src={ctg.img[0].thumbnail.path} alt={"item-img"} />
                   </div>
                   <p>{ctg.name}</p>
                 </Link>

@@ -44,3 +44,17 @@ export const deleteAdmin = (id) => axios.delete(`/api/admin/${id}`);
 
 // auth
 export const authLogin = (authData) => axios.post("/api/auth/login", authData);
+
+// home slider
+export const getSliders = () => axios.get("/api/slider");
+export const createSlider = (slider) => axios.post("/api/slider", slider);
+export const editSlider = (id, updatedSlider) =>
+  axios.put(`/api/slider/${id}`, updatedSlider);
+export const deleteSlider = (id) => axios.delete(`/api/slider/${id}`);
+
+// home banner
+export const getBanners = () => axios.get(`/api/banner/`);
+export const createBanner = (banner) => axios.post(`/api/banner/`, banner);
+export const editBanner = (id, updatedBanner) =>
+  axios.put(`/api/banner/${id}`, updatedBanner);
+export const deleteBannner = (id) => axios.delete(`/api/banner/${id}`);

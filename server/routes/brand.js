@@ -5,12 +5,13 @@ const {
   editBrand,
   deleteBrand,
 } = require("../controllers/brand");
-
 const router = Router();
 
-router.route("/").post(createBrand);
+const { uploadProductImages, resizerImages } = require("../utils/fileUpload");
+
+router.route("/").post(uploadProductImages, resizerImages, createBrand);
 router.route("/").get(fetchAll);
-router.route("/:id").put(editBrand);
+router.route("/:id").put(uploadProductImages, resizerImages, editBrand);
 router.route("/:id").delete(deleteBrand);
 
 module.exports = router;

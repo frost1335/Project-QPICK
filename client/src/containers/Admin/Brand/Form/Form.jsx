@@ -6,6 +6,7 @@ import FormInputs from "../../../../components/FormInputs/FormInputs";
 import {
   createControl,
   validate,
+  validateFile,
   validateForm,
 } from "../../../../form/formFramework";
 
@@ -30,11 +31,10 @@ const Form = () => {
           label: "Image",
           errorMessage: "Введите корректный image",
         },
-        { required: true }
+        { required: true, maxSize: 3200000 }
       ),
     },
   });
-
   const brand = useSelector((state) =>
     id ? state.brand.find((c) => c._id === id) : null
   );
@@ -79,18 +79,32 @@ const Form = () => {
     setBrandData({ formControls, isFormValid: validateForm(formControls) });
   };
 
+  const onFileChange = (event, controlName) => {
+    const formControls = { ...brandData.formControls };
+    const control = { ...formControls[controlName] };
+
+    control.value = event.target.files[0];
+    control.touched = true;
+    control.valid = validateFile(control.value, control.validation);
+
+    formControls[controlName] = control;
+
+    console.log(formControls);
+    setBrandData({ formControls, isFormValid: validateForm(formControls) });
+  };
+
   const submitHandler = (e) => {
     e.preventDefault();
 
-    const data = {
-      name: brandData.formControls.name.value,
-      img: brandData.formControls.img.value,
-    };
+    const formData = new FormData();
+
+    formData.append("name", brandData.formControls.name.value);
+    formData.append("img", brandData.formControls.img.value);
 
     if (id) {
-      dispatch(editBrand(id, data));
+      dispatch(editBrand(id, formData));
     } else {
-      dispatch(createBrand(data));
+      dispatch(createBrand(formData));
     }
 
     navigate("/admin/brand/control");
@@ -125,7 +139,11 @@ const Form = () => {
     <div className="Form">
       <form className="create_form" onSubmit={submitHandler}>
         <h3>{id ? "Edit Brand" : "Create Brand"}</h3>
-        <FormInputs form={brandData} onChangeHandler={onChangeHandler} />
+        <FormInputs
+          form={brandData}
+          onChangeHandler={onChangeHandler}
+          onFileChange={onFileChange}
+        />
         <div className="form_button">
           <button className="submit_button" disabled={!brandData.isFormValid}>
             Submit

@@ -8,15 +8,12 @@ import { Loader } from "../../../../components";
 
 import "./Control.scss";
 
-const Control = (props) => {
+const Control = () => {
   window.scroll({ top: 0 });
   const dispatch = useDispatch();
   const admins = useSelector((state) => state.admins);
 
   useEffect(() => {
-    if (!props.adminData) {
-
-    }
     dispatch(getAdmins());
   }, [dispatch]);
 

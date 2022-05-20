@@ -8,10 +8,11 @@ const {
   deleteCategory,
   getCategory,
 } = require("../controllers/category");
+const { uploadProductImages, resizerImages } = require("../utils/fileUpload");
 
 router.route("/").get(getCategories);
-router.route("/").post(createCategory);
-router.route("/:id").put(editCategory);
+router.route("/").post(uploadProductImages, resizerImages,createCategory);
+router.route("/:id").put(uploadProductImages, resizerImages,editCategory);
 router.route("/:id").delete(deleteCategory);
 router.route("/ctg/:id").get(getCategory);
 

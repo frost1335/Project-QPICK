@@ -1,12 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getCartProducts } from "../../actions";
 import { CartCard, Loader } from "../../components";
 
 import "./CartView.scss";
 
 const CartView = () => {
   const cart = useSelector((state) => state.cart);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getCartProducts());
+  }, [dispatch]);
 
   return (
     <div className="CartView">

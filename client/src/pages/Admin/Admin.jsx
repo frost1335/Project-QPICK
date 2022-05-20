@@ -7,11 +7,13 @@ import "./Admin.scss";
 const Admin = (props) => {
   const navigate = useNavigate();
 
+  const [adminData, setAdminData] = useState({});
+
   const [error, setError] = useState("");
 
   useEffect(() => {
     if (!localStorage.getItem("authData")) {
-      navigate("/admin/auth");
+      return navigate("/admin/auth");
     }
 
     const fetchPrivateData = async () => {
@@ -25,7 +27,7 @@ const Admin = (props) => {
       try {
         const { data } = await axios.get("/api/admin/control", config);
 
-        props.setAdminData(data.data);
+        setAdminData(data.data);
       } catch (error) {
         localStorage.removeItem("authData");
         setError("You are not authorized, please login");
@@ -34,11 +36,11 @@ const Admin = (props) => {
     };
 
     fetchPrivateData();
-  }, [navigate]);
+  }, [navigate, props]);
 
   const logoutHandler = () => {
     localStorage.removeItem("authData");
-    navigate("/admin/auth");
+    navigate("/");
   };
 
   return (
@@ -55,12 +57,18 @@ const Admin = (props) => {
           </li>
         </ul>
         <div className="admin_corner">
-          <span>{props.adminData.name}</span>
-          <p>{props.adminData.email}</p>
+          <span>{adminData.name}</span>
+          <p>{adminData.email}</p>
         </div>
       </div>
       <div className="admin_menu">
         <ul className="menu">
+          <li className="menu_item">
+            <Link to={"/admin/slider/control"}>Home Slider</Link>
+          </li>
+          <li className="menu_item">
+            <Link to={"/admin/banner/control"}>Home Banners</Link>
+          </li>
           <li className="menu_item">
             <Link to={"/admin/product/control"}>Product</Link>
           </li>
@@ -73,7 +81,7 @@ const Admin = (props) => {
           <li className="menu_item">
             <Link to={"/admin/brand/control"}>Brand</Link>
           </li>
-          {props.adminData.status === 'owner' ? (
+          {adminData.status === "owner" ? (
             <li className="menu_item">
               <Link to={"/admin/admin/control"}>Admin</Link>
             </li>

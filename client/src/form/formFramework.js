@@ -40,6 +40,23 @@ export const validate = (value, validation = null) => {
   return isValid;
 };
 
+export const validateFile = (value, validation = null) => {
+  if (!validation) {
+    return true;
+  }
+  let isValid = true;
+
+  if (validation.required) {
+    isValid = !!value && isValid;
+  }
+
+  if (validation.maxSize) {
+    isValid = value.size <= validation.maxSize;
+  }
+
+  return isValid;
+};
+
 export const validateForm = (formControls) => {
   let isFormValid = true;
 

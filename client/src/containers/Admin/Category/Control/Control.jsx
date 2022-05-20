@@ -47,7 +47,7 @@ const Control = () => {
                 <li key={index}>
                   <div className="li-item">
                     <div className="item_img">
-                      <img src={ctg.img} alt="category-img" />
+                      <img src={ctg.img[0].thumbnail.path} alt="category-img" />
                     </div>
                     <p>{ctg.name}</p>
                     <div className="item_buttons">

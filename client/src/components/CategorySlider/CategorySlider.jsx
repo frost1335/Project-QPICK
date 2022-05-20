@@ -10,7 +10,6 @@ import "swiper/css/navigation";
 import { Navigation } from "swiper";
 
 import "./CategorySlider.scss";
-import { Tshirt } from "../../images";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Loader from "../Loader/Loader";
@@ -35,7 +34,7 @@ const CategorySlider = () => {
               <SwiperSlide key={idx}>
                 <Link to={"/api/category/" + ctg._id} className="slide">
                   <div className="slide_img">
-                    <img src={Tshirt} alt="image_category" />
+                    <img src={ctg.img[0].medium.path} alt="image_category" />
                   </div>
                   <p className="slide_name">{ctg.name}</p>
                 </Link>

@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Tshirt } from "../../images";
 
 import { BiHeart } from "react-icons/bi";
 import { IoMdHeart } from "react-icons/io";
@@ -52,7 +51,10 @@ const Card = (props) => {
           <BiHeart />
         </div>
         <div className="card_image">
-          <img src={props.product.img} alt={"image" + props.product.title} />
+          <img
+            src={props.product.img[0].medium.path}
+            alt={"image" + props.product.title}
+          />
         </div>
         <Link to={"/view/product/" + props.product._id}>
           <p>{props.product.title} </p>
@@ -63,7 +65,10 @@ const Card = (props) => {
           <div className="shop">
             <Link to={"/api/shop/" + props.product.shopInfo._id}>
               <div className="shop_image">
-                <img src={props.product.shopInfo.img} alt={"Shop"} />
+                <img
+                  src={props.product.shopInfo.img[0].thumbnail.path}
+                  alt={"Shop"}
+                />
               </div>
               <span>{props.product.shopInfo.name}</span>
             </Link>

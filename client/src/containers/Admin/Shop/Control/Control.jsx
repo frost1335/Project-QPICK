@@ -42,10 +42,12 @@ const Control = () => {
           {shops.length ? (
             <ul>
               {shops.map((shop, index) => (
+                
                 <li key={index}>
                   <div className="li-item">
+                    {console.log(shop.img)}
                     <div className="item_img">
-                      <img src={shop.img} alt="shop-img" />
+                      <img src={shop.img[0].thumbnail.path} alt="shop-img" />
                     </div>
                     <p>{shop.name}</p>
                     <div className="item_buttons">

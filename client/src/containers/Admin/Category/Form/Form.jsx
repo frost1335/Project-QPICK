@@ -6,6 +6,7 @@ import FormInputs from "../../../../components/FormInputs/FormInputs";
 import {
   createControl,
   validate,
+  validateFile,
   validateForm,
 } from "../../../../form/formFramework";
 
@@ -32,7 +33,7 @@ const Form = () => {
           label: "Image",
           errorMessage: "Введите корректный image",
         },
-        { required: true }
+        { required: true, maxSize: 3200000 }
       ),
     },
   });
@@ -81,18 +82,32 @@ const Form = () => {
     setCategoryData({ formControls, isFormValid: validateForm(formControls) });
   };
 
+  const onFileChange = (event, controlName) => {
+    const formControls = { ...categoryData.formControls };
+    const control = { ...formControls[controlName] };
+
+    control.value = event.target.files[0];
+    control.touched = true;
+    control.valid = validateFile(control.value, control.validation);
+
+    formControls[controlName] = control;
+
+    console.log(formControls);
+    setCategoryData({ formControls, isFormValid: validateForm(formControls) });
+  };
+
   const submitHandler = (e) => {
     e.preventDefault();
 
-    const data = {
-      name: categoryData.formControls.name.value,
-      img: categoryData.formControls.img.value,
-    };
+    const formData = new FormData();
+
+    formData.append("name", categoryData.formControls.name.value);
+    formData.append("img", categoryData.formControls.img.value);
 
     if (id) {
-      dispatch(editCategory(id, data));
+      dispatch(editCategory(id, formData));
     } else {
-      dispatch(createCategory(data));
+      dispatch(createCategory(formData));
     }
 
     navigate("/admin/category/control");
@@ -127,7 +142,11 @@ const Form = () => {
     <div className="Form">
       <form className="create_form" onSubmit={submitHandler}>
         <h3>{id ? "Edit Category" : "Create Category"}</h3>
-        <FormInputs form={categoryData} onChangeHandler={onChangeHandler} />
+        <FormInputs
+          form={categoryData}
+          onFileChange={onFileChange}
+          onChangeHandler={onChangeHandler}
+        />
         <div className="form_button">
           <button
             className="submit_button"

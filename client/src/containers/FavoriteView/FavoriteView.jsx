@@ -1,11 +1,17 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getFavoriteProducts } from "../../actions";
 import { Card, Loader } from "../../components";
 
 import "./FavoriteView.scss";
 
 const FavoriteView = () => {
   const favorites = useSelector((state) => state.favorites);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getFavoriteProducts());
+  }, [dispatch]);
 
   return (
     <div className="container">

@@ -3,11 +3,9 @@ import { AUTH_LOGIN } from "../constants/actionTypes";
 
 export const authLogin = (authData) => async (dispatch) => {
   try {
-    const { data } = await api.authLogin(authData);
+    console.log(authData);
 
-    console.log(data);
-
-    dispatch({ type: AUTH_LOGIN, payload: data.data });
+    dispatch({ type: AUTH_LOGIN, payload: authData });
   } catch (error) {
     console.log(error.message);
   }

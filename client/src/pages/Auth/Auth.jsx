@@ -70,11 +70,16 @@ const Auth = () => {
         password: loginData.formControls.passowrd.value,
       });
 
+      console.log(data);
+
       if (data.success) {
         localStorage.setItem("authData", data.data._id);
         navigate("/admin/control");
       }
     } catch (error) {
+      setTimeout(() => {
+        setError("");
+      }, 5000);
       setError(error.message);
       console.log(error.message);
     }
@@ -84,6 +89,7 @@ const Auth = () => {
     <div className="Auth">
       <div className="auth_content">
         <h3>Админский вход</h3>
+        <span>{error ? error : null}</span>
         <form onSubmit={submitHandler}>
           <FormInputs form={loginData} onChangeHandler={onChangeHandler} />
           <div className="form_button">

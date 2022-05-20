@@ -7,6 +7,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import {
   createControl,
   validate,
+  validateFile,
   validateForm,
 } from "../../../../form/formFramework";
 import FormInputs from "../../../../components/FormInputs/FormInputs";
@@ -187,25 +188,38 @@ const Form = () => {
     setProductData({ formControls, isFormValid: validateForm(formControls) });
   };
 
+  const onFileChange = (event, controlName) => {
+    const formControls = { ...productData.formControls };
+    const control = { ...formControls[controlName] };
+
+    control.value = event.target.files[0];
+    control.touched = true;
+    control.valid = validateFile(control.value, control.validation);
+
+    formControls[controlName] = control;
+
+    console.log(formControls);
+    setProductData({ formControls, isFormValid: validateForm(formControls) });
+  };
+
   const submitHandler = (e) => {
     e.preventDefault();
+    const formData = new FormData();
 
-    const data = {
-      title: productData.formControls.title.value,
-      price: productData.formControls.price.value,
-      img: productData.formControls.img.value,
-      categoryID: productData.formControls.categoryID.value,
-      shopID: productData.formControls.shopID.value,
-      description: productData.formControls.description.value,
-      tags: productData.formControls.tags.value.split(","),
-      rating: productData.formControls.rating.value,
-    };
+    formData.append("title", productData.formControls.title.value);
+    formData.append("price", productData.formControls.price.value);
+    formData.append("img", productData.formControls.img.value);
+    formData.append("categoryID", productData.formControls.categoryID.value);
+    formData.append("shopID", productData.formControls.shopID.value);
+    formData.append("description", productData.formControls.description.value);
+    formData.append("tags", productData.formControls.tags.value.split(","));
+    formData.append("rating", productData.formControls.rating.value);
 
     if (id) {
-      dispatch(editProduct(id, data));
-      dispatch(editProducts(id, data));
+      dispatch(editProduct(id, formData));
+      dispatch(editProducts(id, formData));
     } else {
-      dispatch(createProduct(data));
+      dispatch(createProduct(formData));
     }
 
     navigate("/admin/product/control");
@@ -290,7 +304,11 @@ const Form = () => {
     <div className="Create">
       <form className="create_form" onSubmit={submitHandler}>
         <h3>{id ? "Edit Product" : "CreateProduct"}</h3>
-        <FormInputs form={productData} onChangeHandler={onChangeHandler} />
+        <FormInputs
+          form={productData}
+          onFileChange={onFileChange}
+          onChangeHandler={onChangeHandler}
+        />
         <div className="form_button">
           <button className="submit_button" disabled={!productData.isFormValid}>
             Submit

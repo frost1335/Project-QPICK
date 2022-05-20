@@ -171,7 +171,7 @@ const ProductView = () => {
           <div className="view_body">
             <div className="body_left">
               <div className="left_img">
-                <img src={product.img} alt="img-product" />
+                <img src={product.img[0].large.path} alt="img-product" />
               </div>
             </div>
             <div className="body_right">
@@ -196,14 +196,17 @@ const ProductView = () => {
               <div className="shop_info">
                 <span>Магазин: </span>
                 <Link to={"/shop/view/" + shop._id}>
-                  <img src={shop.img} alt={shop.img} />
+                  <img src={shop.img[0].thumbnail.path} alt={"shop-img"} />
                   <p>{shop.name}</p>
                 </Link>
               </div>
               <div className="category_info">
                 <span>Категория: </span>
                 <Link to={"/category/view/" + category._id}>
-                  <img src={category.img} alt={category.img} />
+                  <img
+                    src={category.img[0].thumbnail.path}
+                    alt={"category-img"}
+                  />
                   <p>{category.name}</p>
                 </Link>
               </div>
