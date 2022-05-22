@@ -1,9 +1,17 @@
 const { Router } = require("express");
+const {
+  getBanners,
+  createBanner,
+  editBanner,
+  deleteBanner,
+} = require("../controllers/banner");
 const router = Router();
 
-router.route("/").get();
-router.route("/").post();
-router.route("/:id").put();
-router.route("/:id").delete();
+const { uploadProductImages, resizerImages } = require("../utils/fileUpload");
+
+router.route("/").get(getBanners);
+router.route("/").post(uploadProductImages, resizerImages, createBanner);
+router.route("/:id").put(uploadProductImages, resizerImages, editBanner);
+router.route("/:id").delete(deleteBanner);
 
 module.exports = router;

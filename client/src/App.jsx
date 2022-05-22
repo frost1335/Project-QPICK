@@ -16,6 +16,8 @@ import { Main, NotFound, Product, Favorite, Cart, Auth, Admin } from "./pages";
 import {
   AdminControl,
   AdminForm,
+  BannerControl,
+  BannerForm,
   BrandControl,
   BrandForm,
   CategoryControl,
@@ -24,6 +26,8 @@ import {
   ProductForm,
   ShopControl,
   ShopForm,
+  SliderControl,
+  SliderForm,
 } from "./containers";
 
 const App = () => {
@@ -176,6 +180,58 @@ const App = () => {
           element={
             <Admin>
               <AdminForm />
+            </Admin>
+          }
+        />
+
+        {/* Slider creators routes */}
+        <Route
+          path="/admin/slider/control"
+          element={
+            <Admin>
+              <SliderControl />
+            </Admin>
+          }
+        />
+        <Route
+          path="/admin/slider/create"
+          element={
+            <Admin>
+              <SliderForm />
+            </Admin>
+          }
+        />
+        <Route
+          path="/admin/slider/edit/:id"
+          element={
+            <Admin>
+              <SliderForm />
+            </Admin>
+          }
+        />
+
+        {/* Slider creators routes */}
+        <Route
+          path="/admin/banner/control"
+          element={
+            <Admin>
+              <BannerControl />
+            </Admin>
+          }
+        />
+        <Route
+          path="/admin/banner/create"
+          element={
+            <Admin>
+              <BannerForm />
+            </Admin>
+          }
+        />
+        <Route
+          path="/admin/banner/edit/:id"
+          element={
+            <Admin>
+              <BannerForm />
             </Admin>
           }
         />

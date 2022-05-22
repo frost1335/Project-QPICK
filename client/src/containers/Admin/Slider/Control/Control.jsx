@@ -1,14 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { AiOutlinePlus } from "react-icons/ai";
 import { MdOutlineDelete, MdOutlineEdit } from "react-icons/md";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { deleteSlider, getSliders } from "../../../../actions";
 import { Loader } from "../../../../components";
 
 import "./Control.scss";
 
 const Control = () => {
   const dispatch = useDispatch();
+
+  const sliders = useSelector((state) => state.sliders);
+
+  useEffect(() => {
+    dispatch(getSliders());
+  }, [dispatch]);
 
   const onModalHandler = (id) => {
     document.getElementById(`modal-${id}`).style.display = "block";
@@ -26,48 +33,47 @@ const Control = () => {
 
   const onDeleteHandler = (id) => {
     document.getElementById(`modal-${id}`).style.display = "none";
-    dispatch(deleteShop(id));
+    dispatch(deleteSlider(id));
   };
 
   return (
     <div className="Control">
       <div className="control_menu">
         <>
-          <Link to="/admin/shop/create">
+          <Link to="/admin/slider/create">
             Add <AiOutlinePlus />
           </Link>
-          <h3>Shops</h3>
-          {shops.length ? (
+          <h3>Sliders</h3>
+          {sliders.length ? (
             <ul>
-              {shops.map((shop, index) => (
+              {sliders.map((slider, index) => (
                 <li key={index}>
+                  <span>Slider-{index + 1}</span>
                   <div className="li-item">
-                    {console.log(shop.img)}
                     <div className="item_img">
-                      <img src={shop.img[0].thumbnail.path} alt="shop-img" />
+                      <img src={slider.img[0].original.path} alt="slider-img" />
                     </div>
-                    <p>{shop.name}</p>
                     <div className="item_buttons">
-                      <Link to={`/admin/shop/edit/${shop._id}`}>
+                      <Link to={`/admin/slider/edit/${slider._id}`}>
                         <MdOutlineEdit />
                       </Link>
-                      <button onClick={() => onModalHandler(shop._id)}>
+                      <button onClick={() => onModalHandler(slider._id)}>
                         <MdOutlineDelete />
                       </button>
                     </div>
                   </div>
-                  <div className={`modal`} id={`modal-${shop._id}`}>
+                  <div className={`modal`} id={`modal-${slider._id}`}>
                     <div
                       className="deleteBack"
                       onClick={() => onCloseHandler()}
                     ></div>
                     <div className="deleteModal">
-                      Удалить "{shop.name}" ?
+                      Удалить "картинку" ?
                       <div className="modalButtons">
-                        <button onClick={() => onDeleteHandler(shop._id)}>
+                        <button onClick={() => onDeleteHandler(slider._id)}>
                           Да
                         </button>
-                        <button onClick={() => onCloseHandler(shop._id)}>
+                        <button onClick={() => onCloseHandler(slider._id)}>
                           Нет
                         </button>
                       </div>

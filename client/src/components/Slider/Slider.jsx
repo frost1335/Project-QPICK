@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import { slide } from "../../images";
@@ -9,10 +9,20 @@ import "swiper/css/navigation";
 import "./Slider.scss";
 
 import { Pagination, Navigation, Autoplay } from "swiper";
+import { useDispatch, useSelector } from "react-redux";
+import { getSliders } from "../../actions";
 
 const arr = [slide, slide, slide, slide, slide, slide, slide];
 
 const Slider = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getSliders());
+  }, [dispatch]);
+
+  const sliders = useSelector((state) => state.sliders);
+
   return (
     <div className="container">
       <div className="Slider">
@@ -31,9 +41,9 @@ const Slider = () => {
           modules={[Pagination, Navigation, Autoplay]}
           className="mySwiper"
         >
-          {arr.map((img, idx) => (
+          {sliders.map((slider, idx) => (
             <SwiperSlide className="slide" key={idx}>
-              <img src={img} alt="slide_img" />
+              <img src={slider.img[0].original.path} alt="slide_img" />
             </SwiperSlide>
           ))}
         </Swiper>

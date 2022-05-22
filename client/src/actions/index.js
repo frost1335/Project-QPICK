@@ -21,6 +21,10 @@ import { deleteAdmin, createAdmin, editAdmin, getAdmins } from "./admin";
 
 import { authLogin } from "./auth";
 
+import { editSlider, createSlider, deleteSlider, getSliders } from "./slider";
+
+import { editBanner, createBanner, deleteBannner, getBanners } from "./banner";
+
 export {
   getAllBrands,
   createProduct,
@@ -48,4 +52,12 @@ export {
   editAdmin,
   getAdmins,
   authLogin,
+  editBanner,
+  createBanner,
+  deleteBannner,
+  getBanners,
+  editSlider,
+  createSlider,
+  deleteSlider,
+  getSliders,
 };

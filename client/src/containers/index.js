@@ -15,6 +15,10 @@ import BrandForm from "./Admin/Brand/Form/Form";
 import BrandControl from "./Admin/Brand/Control/Control";
 import AdminForm from "./Admin/Admin/Form/Form";
 import AdminControl from "./Admin/Admin/Control/Control";
+import SliderForm from "./Admin/Slider/Form/Form";
+import SliderControl from "./Admin/Slider/Control/Control";
+import BannerForm from "./Admin/Banner/Form/Form";
+import BannerControl from "./Admin/Banner/Control/Control";
 
 export {
   MainCategory,
@@ -34,4 +38,8 @@ export {
   BrandControl,
   AdminForm,
   AdminControl,
+  SliderForm,
+  SliderControl,
+  BannerForm,
+  BannerControl,
 };

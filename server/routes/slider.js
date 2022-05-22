@@ -1,9 +1,17 @@
 const { Router } = require("express");
+const {
+  getSliders,
+  createSlider,
+  editSlider,
+  deleteSlider,
+} = require("../controllers/slider");
 const router = Router();
 
-router.route("/").get();
-router.route("/").post();
-router.route("/:id").put();
-router.route("/:id").delete();
+const { uploadProductImages, resizerImages } = require("../utils/fileUpload");
+
+router.route("/").get(getSliders);
+router.route("/").post(uploadProductImages, resizerImages, createSlider);
+router.route("/:id").put(uploadProductImages, resizerImages, editSlider);
+router.route("/:id").delete(deleteSlider);
 
 module.exports = router;

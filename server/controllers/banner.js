@@ -1,5 +1,5 @@
 const { default: mongoose } = require("mongoose");
-const Banner = require("../models/Slider");
+const Banner = require("../models/Banner");
 const ErrorResponse = require("../utils/ErrorResponse");
 
 exports.getBanners = async (req, res, next) => {
@@ -28,7 +28,7 @@ exports.editBanner = async (req, res, next) => {
   const { id } = req.params;
   const banner = req.body;
   if (!mongoose.Types.ObjectId.isValid(id)) {
-    return new ErrorResponse("No Slider with this ID", 404);
+    return new ErrorResponse("No Banner with this ID", 404);
   }
   try {
     const updatedBanner = await Banner.findByIdAndUpdate(
@@ -49,7 +49,7 @@ exports.editBanner = async (req, res, next) => {
 exports.deleteBanner = async (req, res, next) => {
   const { id } = req.params;
   if (!mongoose.Types.ObjectId.isValid(id)) {
-    return new ErrorResponse("No Slider with this ID", 404);
+    return new ErrorResponse("No Banner with this ID", 404);
   }
   try {
     await Banner.findByIdAndRemove(id);

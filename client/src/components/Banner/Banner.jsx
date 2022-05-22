@@ -1,32 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { getBanners } from "../../actions";
 
-import { banner } from "../../images";
 import "./Banner.scss";
 
-const banners = [
-  {
-    image: banner,
-    link: "/asdasdsad",
-  },
-  {
-    image: banner,
-    link: "/asdasdsad",
-  },
-  {
-    image: banner,
-    link: "/asdasdsad",
-  },
-];
-
 const Banner = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getBanners());
+  }, [dispatch]);
+
+  const banners = useSelector((state) => state.banners);
+
   return (
     <div className="container">
       <div className="Banner">
         {banners.map((bnr, idx) => (
-          <Link to={bnr.link} key={idx}>
+          <Link to={"#"} key={idx}>
             <div className="banner_card">
-              <img src={bnr.image} alt={"img-" + bnr.image} />
+              <img src={bnr.img[0].original.path} alt={"img-" + bnr.image} />
             </div>
           </Link>
         ))}

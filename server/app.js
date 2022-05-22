@@ -23,6 +23,8 @@ app.use("/api/product/", require("./routes/product"));
 app.use("/api/shop/", require("./routes/shop"));
 app.use("/api/brand/", require("./routes/brand"));
 app.use("/api/admin/", require("./routes/admin"));
+app.use("/api/slider/", require("./routes/slider"));
+app.use("/api/banner/", require("./routes/banner"));
 app.use("/api/auth/", require("./routes/auth"));
 
 // error handler
