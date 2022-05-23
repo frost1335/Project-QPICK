@@ -13,6 +13,7 @@ import CreateInput from "./CreateInput/CreateInput";
 import Selector from "./Selector/Selector";
 import Textarea from "./Textarea/Textarea";
 import FileUpload from "./FileBase64/FileUpload";
+import BuyModal from "./BuyModal/BuyModal";
 
 export {
   FileUpload,
@@ -30,4 +31,5 @@ export {
   CartCard,
   CreateInput,
   Selector,
+  BuyModal,
 };

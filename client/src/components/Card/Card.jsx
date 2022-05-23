@@ -77,7 +77,7 @@ const Card = (props) => {
             </Link>
           </div>
           <div className="buy">
-            <Link to="/buy">Купить</Link>
+            <Link to={`/buy/${props.product._id}`}>Купить</Link>
           </div>
         </Link>
       </div>

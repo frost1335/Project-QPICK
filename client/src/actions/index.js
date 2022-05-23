@@ -25,6 +25,8 @@ import { editSlider, createSlider, deleteSlider, getSliders } from "./slider";
 
 import { editBanner, createBanner, deleteBannner, getBanners } from "./banner";
 
+import { createBuy, deleteBuy, editBuy, getBuys } from "./buy";
+
 export {
   getAllBrands,
   createProduct,
@@ -60,4 +62,8 @@ export {
   createSlider,
   deleteSlider,
   getSliders,
+  createBuy,
+  deleteBuy,
+  editBuy,
+  getBuys,
 };

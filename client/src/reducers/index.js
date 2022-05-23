@@ -12,6 +12,7 @@ import admins from "./admin";
 import auth from "./auth";
 import banners from "./banners";
 import sliders from "./sliders";
+import buys from "./buy";
 
 export default combineReducers({
   products,
@@ -26,4 +27,5 @@ export default combineReducers({
   auth,
   banners,
   sliders,
+  buys,
 });

@@ -25,6 +25,7 @@ app.use("/api/brand/", require("./routes/brand"));
 app.use("/api/admin/", require("./routes/admin"));
 app.use("/api/slider/", require("./routes/slider"));
 app.use("/api/banner/", require("./routes/banner"));
+app.use("/api/buy/", require("./routes/buy"));
 app.use("/api/auth/", require("./routes/auth"));
 
 // error handler

@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  margin-top: 60px;
+  margin-top: 30px;
   margin-bottom: 40px;
 
   a {
@@ -14,9 +14,13 @@
   }
 
   .banner_card {
+    width: 100%;
+    height: 180px;
+
     img {
       border-radius: 10px;
       width: 100%;
+      height: 100%;
     }
   }
 }

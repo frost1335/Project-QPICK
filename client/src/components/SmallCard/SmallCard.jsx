@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import "./SmallCard.scss";
 
 const SmallCard = (props) => {
-  console.log(props.card);
   return (
     <Link to={props.link} className="SmallCard">
       <div className="card_img">

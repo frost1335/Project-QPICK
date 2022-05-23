@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useParams } from "react-router-dom";
 
 import {
   getProducts,
@@ -51,6 +51,7 @@ const App = () => {
         <Route path="/view/product/:id" element={<Product />} />
         <Route path="/favorites" element={<Favorite />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/buy/:id" element={<Main />} />
         <Route path="/admin/auth" element={<Auth />} />
         <Route path="/admin/control" element={<Admin />} />
 
@@ -235,6 +236,8 @@ const App = () => {
             </Admin>
           }
         />
+
+        {/* Slider creators routes */}
 
         {/* Not found page route */}
         <Route path="*" element={<NotFound />} />

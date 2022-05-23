@@ -58,3 +58,10 @@ export const createBanner = (banner) => axios.post(`/api/banner/`, banner);
 export const editBanner = (id, updatedBanner) =>
   axios.put(`/api/banner/${id}`, updatedBanner);
 export const deleteBannner = (id) => axios.delete(`/api/banner/${id}`);
+
+// buys
+export const getBuys = () => axios.get("/api/buy");
+export const createBuy = (buy) => axios.post("/api/buy", buy);
+export const editBuy = (id, updatedBuy) =>
+  axios.put(`/api/buy/${id}`, updatedBuy);
+export const deleteBuy = (id) => axios.delete(`/api/buy/${id}`);

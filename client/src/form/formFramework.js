@@ -4,6 +4,11 @@ function validateEmail(email) {
   return re.test(String(email).toLowerCase());
 }
 
+const validateNumber = (number) => {
+  const re = /^[1-9]\d*(\.\d+)?$/;
+  return re.test(Number(number));
+};
+
 export const createControl = (config, validation, value) => {
   return {
     ...config,
@@ -35,6 +40,10 @@ export const validate = (value, validation = null) => {
 
   if (validation.maxLength) {
     isValid = value.length <= validation.maxLength && isValid;
+  }
+
+  if (validation.number) {
+    isValid = validateNumber(value) && isValid;
   }
 
   return isValid;
