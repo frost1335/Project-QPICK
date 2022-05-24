@@ -1,20 +1,22 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { getSimilarProducts } from "../../actions";
-import { Loader } from "../../components";
+import { BuyModal, Loader } from "../../components";
 
 import "./ProductView.scss";
 
 const ProductView = () => {
   window.scroll({ top: 0 });
   const { id } = useParams();
+  const param = useParams();
   const dispatch = useDispatch();
   const product = useSelector((state) =>
     state.product.find((p) => p._id === id)
   );
   const categorys = useSelector((state) => state.categories);
   const shops = useSelector((state) => state.shops);
+  const [onBuy, setOnBuy] = useState(false);
 
   useEffect(() => {
     dispatch(getSimilarProducts(id));
@@ -53,6 +55,7 @@ const ProductView = () => {
 
   return (
     <div className="container">
+      {param.pdID ? <BuyModal products={product} id={param.pdID} /> : null}
       {product && shop && category ? (
         <div className="ProductView">
           <div className="view_nav">
@@ -189,7 +192,12 @@ const ProductView = () => {
                   В избранное
                   <div className="favorite_tool">Added to favorite</div>
                 </button>
-                <button className="buy">Купить</button>
+                <Link
+                  className="buy"
+                  to={`/view/product/${product._id}/buy/${product._id}`}
+                >
+                  Купить
+                </Link>
               </div>
             </div>
             <div className="body_bottom">

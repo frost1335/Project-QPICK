@@ -16,8 +16,6 @@ exports.createBuy = (req, res, next) => {
   const buy = req.body;
   const newBuy = new Buy(buy);
   try {
-    console.log(newBuy);
-
     newBuy.save();
 
     res.status(201).json({ success: true, data: newBuy });

@@ -77,7 +77,15 @@ const Card = (props) => {
             </Link>
           </div>
           <div className="buy">
-            <Link to={`/buy/${props.product._id}`}>Купить</Link>
+            <Link
+              to={`${
+                window.location.pathname === "/"
+                  ? window.location.pathname
+                  : window.location.pathname + "/"
+              }buy/${props.product._id}`}
+            >
+              Купить
+            </Link>
           </div>
         </Link>
       </div>

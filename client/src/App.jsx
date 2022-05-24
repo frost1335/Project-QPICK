@@ -49,7 +49,9 @@ const App = () => {
         {/* User routes */}
         <Route path="/" element={<Main />} />
         <Route path="/view/product/:id" element={<Product />} />
+        <Route path="/view/product/:id/buy/:pdID" element={<Product />} />
         <Route path="/favorites" element={<Favorite />} />
+        <Route path="/favorites/buy/:id" element={<Favorite />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/buy/:id" element={<Main />} />
         <Route path="/admin/auth" element={<Auth />} />

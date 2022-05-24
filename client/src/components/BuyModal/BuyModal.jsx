@@ -9,6 +9,9 @@ import {
 import FormInputs from "../FormInputs/FormInputs";
 
 import { GrClose } from "react-icons/gr";
+import { BsCheck2 } from "react-icons/bs";
+import { MdOutlineLocalPhone } from "react-icons/md";
+import { FaTelegramPlane } from "react-icons/fa";
 
 import "./BuyModal.scss";
 import { useNavigate } from "react-router-dom";
@@ -69,12 +72,25 @@ const BuyModal = (props) => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
+    let arr = [];
+
+    if (!props.id) {
+      props.products.map((ctg) => ctg.products.map((pdct) => arr.push(pdct)));
+
+      console.log(arr);
+
+      arr.forEach((pdct) => {
+        const card = document.getElementById(`CartCard-${pdct._id}`);
+        card.remove();
+        localStorage.removeItem(`${pdct._id}-cart`);
+      });
+    }
 
     const data = {
       name: buyData.formControls.name.value,
       surename: buyData.formControls.surename.value,
       phone: buyData.formControls.phone.value,
-      products: props.products,
+      products: arr.length ? arr : props.products,
     };
 
     dispatch(createBuy(data));
@@ -82,10 +98,16 @@ const BuyModal = (props) => {
   };
 
   const onCloseModal = () => {
-    navigate("/");
+    if (props.id) {
+      navigate(
+        window.location.pathname.replace(`/buy/${props.id}`, "") === ""
+          ? "/"
+          : window.location.pathname.replace(`/buy/${props.id}`, "")
+      );
+    } else {
+      props.setOnBuy(false);
+    }
   };
-
-  console.log(submitted);
 
   return (
     <div className="BuyModal">
@@ -95,12 +117,25 @@ const BuyModal = (props) => {
         </button>
         {submitted ? (
           <div className="after_form">
-            <div className="society_icons">
-              <div className="icon"></div>
-            </div>
+            <h3>
+              Ваш запрос получен{" "}
+              <span>
+                <BsCheck2 />
+              </span>
+            </h3>
             <p>Мы свяжемся с вами в ближайшее время</p>
             <div className="after_button">
-              <button>Хорошо</button>
+              <button onClick={onCloseModal}>Хорошо</button>
+            </div>
+            <div className="social">
+              <div className="social_link">
+                <FaTelegramPlane />
+                <a href={"https://t.me/R_Dilrozbek"}>Наш телеграм</a>
+              </div>
+              <div className="social_link">
+                <MdOutlineLocalPhone />
+                <a href={"tel:+998931897318"}>Наш оператор</a>
+              </div>
             </div>
           </div>
         ) : (

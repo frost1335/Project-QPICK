@@ -18,8 +18,6 @@ const Main = () => {
     id ? state.product.find((p) => p._id === id) : null
   );
 
-  console.log(product);
-
   return (
     <>
       {/* BuyModal component */}

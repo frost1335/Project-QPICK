@@ -1,22 +1,38 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import { getCartProducts } from "../../actions";
-import { CartCard, Loader } from "../../components";
+import { BuyModal, CartCard, Loader } from "../../components";
 
 import "./CartView.scss";
 
+function countPrice(arr) {
+  let price = [];
+  arr.map((ctg) =>
+    ctg.products.map((pdct) =>
+      price.push({
+        price: pdct.price,
+        count: +localStorage.getItem(`${pdct._id}-cart`).split(",")[1],
+      })
+    )
+  );
+  return price.reduce((a, b) => (a += +b.price * b.count), 0);
+}
+
 const CartView = () => {
   const cart = useSelector((state) => state.cart);
+  const [products, setProducts] = useState();
+  const [onBuy, setOnBuy] = useState(false);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getCartProducts());
-  }, [dispatch]);
+  }, [dispatch, cart, setProducts, products]);
 
   return (
     <div className="CartView">
+      {onBuy ? <BuyModal products={cart} setOnBuy={setOnBuy} id={""} /> : null}
       <div className="container">
         <h2>Корзина</h2>
         <div className="cart_body">
@@ -26,9 +42,9 @@ const CartView = () => {
                 <div className="cart_category" key={idx}>
                   <h3>{ctg.name}</h3>
                   <div className="category_row">
-                    {ctg.products.map((pdct, index) => (
-                      <CartCard key={index} product={pdct} />
-                    ))}
+                    {ctg.products.map((pdct, index) => {
+                      return <CartCard key={index} product={pdct} />;
+                    })}
                   </div>
                 </div>
               ))
@@ -39,9 +55,10 @@ const CartView = () => {
           <div className="body_right">
             <div className="cart_buy">
               <span>
-                104830 <b>сум</b>
+                {cart.length ? `${countPrice(cart)}` : "0"}
+                <b>сум</b>
               </span>
-              <button>Заказать</button>
+              <button onClick={() => setOnBuy(true)}>Заказать</button>
             </div>
           </div>
         </div>
