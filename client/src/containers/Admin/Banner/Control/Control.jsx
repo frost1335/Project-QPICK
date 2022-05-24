@@ -35,7 +35,7 @@ const Control = () => {
     dispatch(deleteBannner(id));
   };
   return (
-    <div className="Control">
+    <div className="Control image">
       <div className="control_menu">
         <>
           {banners.length < 3 ? (

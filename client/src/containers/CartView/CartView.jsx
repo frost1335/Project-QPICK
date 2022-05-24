@@ -9,26 +9,26 @@ import "./CartView.scss";
 function countPrice(arr) {
   let price = [];
   arr.map((ctg) =>
-    ctg.products.map((pdct) =>
-      price.push({
+    ctg.products.map((pdct) => {
+      pdct.count = +localStorage.getItem(`${pdct._id}-cart`).split(",")[1];
+      return price.push({
         price: pdct.price,
         count: +localStorage.getItem(`${pdct._id}-cart`).split(",")[1],
-      })
-    )
+      });
+    })
   );
   return price.reduce((a, b) => (a += +b.price * b.count), 0);
 }
 
 const CartView = () => {
   const cart = useSelector((state) => state.cart);
-  const [products, setProducts] = useState();
   const [onBuy, setOnBuy] = useState(false);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getCartProducts());
-  }, [dispatch, cart, setProducts, products]);
+  }, [dispatch]);
 
   return (
     <div className="CartView">

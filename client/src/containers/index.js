@@ -19,6 +19,8 @@ import SliderForm from "./Admin/Slider/Form/Form";
 import SliderControl from "./Admin/Slider/Control/Control";
 import BannerForm from "./Admin/Banner/Form/Form";
 import BannerControl from "./Admin/Banner/Control/Control";
+import Order from "./Admin/Order/Order";
+import VotesView from "./VotesView/VotesView";
 
 export {
   MainCategory,
@@ -42,4 +44,6 @@ export {
   SliderControl,
   BannerForm,
   BannerControl,
+  Order,
+  VotesView,
 };

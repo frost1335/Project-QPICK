@@ -37,7 +37,7 @@ const Control = () => {
   };
 
   return (
-    <div className="Control">
+    <div className="Control image">
       <div className="control_menu">
         <>
           <Link to="/admin/slider/create">

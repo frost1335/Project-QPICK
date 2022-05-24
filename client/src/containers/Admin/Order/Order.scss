@@ -1,0 +1,134 @@
+.Order {
+  max-width: 680px;
+  margin: auto;
+  padding: 60px 20px 30px;
+
+  h2 {
+    font-size: 28px;
+    color: #101010;
+    margin-bottom: 25px;
+    font-weight: 500;
+  }
+
+  .order_list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    .order_item {
+      width: 100%;
+      padding: 35px 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      border: 1px solid #b2b1b9;
+      margin-bottom: 45px;
+      border-radius: 20px;
+
+      .item_header {
+        width: 100%;
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        margin-bottom: 35px;
+
+        h4,
+        a {
+          font-size: 18px;
+          font-weight: 500;
+          color: #101010;
+          margin-bottom: 8px;
+        }
+
+        a:hover {
+          text-decoration: underline;
+        }
+
+        p {
+          font-size: 16px;
+          color: #101010;
+          font-weight: 400;
+        }
+
+        span {
+          font-size: 17px;
+          font-weight: 400;
+          color: #101010;
+        }
+      }
+
+      .item_products {
+        width: 100%;
+
+        h4 {
+          font-size: 18px;
+          font-weight: 500;
+          color: #101010;
+          margin-bottom: 20px;
+        }
+
+        .products_menu {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+
+          .product_item {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #b2b1b9;
+            padding: 20px 25px;
+
+            &:first-child {
+              border-top: 1px solid #b2b1b9;
+            }
+
+            .price {
+              font-weight: 500;
+            }
+          }
+        }
+      }
+
+      .item_end {
+        margin-top: 35px;
+
+        h4 {
+          font-size: 18px;
+          font-weight: 500;
+          color: #101010;
+
+          span {
+            font-weight: 400;
+
+            .currency {
+              font-weight: 500;
+            }
+          }
+        }
+      }
+
+      .item_button {
+        width: 100%;
+        margin-top: 25px;
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: flex-end;
+
+        button {
+          margin-right: 20px;
+          background: transparent;
+          border: 2px solid #4fbdba;
+          padding: 15px 50px;
+          font-size: 18px;
+          color: #101010;
+          font-weight: 400;
+          box-shadow: 0 0 10px rgb(0 0 0 / 20%);
+          border-radius: 35px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

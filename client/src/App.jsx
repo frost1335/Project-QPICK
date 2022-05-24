@@ -12,7 +12,16 @@ import {
   getCartProducts,
 } from "./actions";
 
-import { Main, NotFound, Product, Favorite, Cart, Auth, Admin } from "./pages";
+import {
+  Main,
+  NotFound,
+  Product,
+  Favorite,
+  Cart,
+  Auth,
+  Admin,
+  Votes,
+} from "./pages";
 import {
   AdminControl,
   AdminForm,
@@ -22,6 +31,7 @@ import {
   BrandForm,
   CategoryControl,
   CategoryForm,
+  Order,
   ProductControl,
   ProductForm,
   ShopControl,
@@ -56,6 +66,15 @@ const App = () => {
         <Route path="/buy/:id" element={<Main />} />
         <Route path="/admin/auth" element={<Auth />} />
         <Route path="/admin/control" element={<Admin />} />
+        <Route path="/votes" element={<Votes />} />
+        <Route
+          path="/admin/order/control"
+          element={
+            <Admin>
+              <Order />
+            </Admin>
+          }
+        />
 
         {/* Product creators routes */}
         <Route

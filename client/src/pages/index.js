@@ -6,5 +6,6 @@ import Cart from "./Cart/Cart";
 import Auth from "./Auth/Auth";
 import Admin from "./Admin/Admin";
 import Buy from "./Buy/Buy";
+import Votes from "./Votes/Votes";
 
-export { Main, Favorite, NotFound, Product, Cart, Auth, Admin, Buy };
+export { Main, Favorite, NotFound, Product, Cart, Auth, Admin, Buy, Votes };

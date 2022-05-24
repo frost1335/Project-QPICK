@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import "./Navbar.scss";
 import { Link } from "react-router-dom";
 
-import { BiHeart, BiUser, BiCart } from "react-icons/bi";
-import { ImStatsBars } from "react-icons/im";
+import { BiHeart, BiCart, BiComment } from "react-icons/bi";
 import { VscThreeBars } from "react-icons/vsc";
 import { MdSearch } from "react-icons/md";
 
@@ -63,6 +62,11 @@ const Navbar = () => {
                 </form>
               </div>
               <div className="links">
+                <li>
+                  <Link to="/votes">
+                    <BiComment /> Отзывы
+                  </Link>
+                </li>
                 <li>
                   <Link to="/favorites">
                     <BiHeart /> Избранное

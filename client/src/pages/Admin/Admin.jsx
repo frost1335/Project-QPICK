@@ -81,6 +81,9 @@ const Admin = (props) => {
           <li className="menu_item">
             <Link to={"/admin/brand/control"}>Brand</Link>
           </li>
+          <li className="menu_item">
+            <Link to={"/admin/order/control"}>Orders</Link>
+          </li>
           {adminData.status === "owner" ? (
             <li className="menu_item">
               <Link to={"/admin/admin/control"}>Admin</Link>
