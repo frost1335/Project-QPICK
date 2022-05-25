@@ -14,6 +14,7 @@ import Selector from "./Selector/Selector";
 import Textarea from "./Textarea/Textarea";
 import FileUpload from "./FileBase64/FileUpload";
 import BuyModal from "./BuyModal/BuyModal";
+import RangeSlider from "./RangeSlider/RangeSlider";
 
 export {
   FileUpload,
@@ -32,4 +33,5 @@ export {
   CreateInput,
   Selector,
   BuyModal,
+  RangeSlider,
 };

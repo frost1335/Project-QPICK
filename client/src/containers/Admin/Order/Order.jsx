@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { editBuy, getBuys } from "../../../actions";
+import moment from "moment";
 
 import "./Order.scss";
 
@@ -28,6 +29,7 @@ const Order = () => {
       <div className="order_list">
         {buys.length
           ? buys
+              .reverse()
               .filter((b) => b.status === "bought")
               .map((buy, index) => (
                 <div className="order_item" key={index}>
@@ -44,7 +46,7 @@ const Order = () => {
                       </a>
                     </div>
                     <div>
-                      <p>data: {buy.data}</p>
+                      <p>Date: {moment(+buy.data).format("MMMM Do YYYY")}</p>
                     </div>
                   </div>
                   <div className="item_products">

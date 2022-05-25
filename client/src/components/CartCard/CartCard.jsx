@@ -8,7 +8,9 @@ import "./CartCard.scss";
 
 const CartCard = (props) => {
   const [count, setCount] = useState(
-    localStorage.getItem(`${props.product._id}-cart`).split(",")[1]
+    localStorage.getItem(`${props.product._id}-cart`)
+      ? localStorage.getItem(`${props.product._id}-cart`).split(",")[1]
+      : null
   );
   const cartHandler = (id, sym) => {
     let product = localStorage.getItem(`${id}-cart`).split(",");
