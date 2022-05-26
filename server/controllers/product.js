@@ -34,6 +34,10 @@ exports.getProducts = async (req, res, next) => {
     (match) => `$${match}`
   );
 
+  console.log(queryStr);
+
+  const categoryID = new mongoose.Types.ObjectId("62879cc324bcd6f66463a0c5");
+
   query = Product.find(JSON.parse(queryStr));
 
   if (req.query.sort) {
@@ -70,6 +74,10 @@ exports.getProducts = async (req, res, next) => {
       .sort({ price: 1 })
       .limit(1)
       .select("-_id price");
+
+    // const pdct = await Product.find().sort({
+    //   categoryID: ,
+    // });
 
     uiValues.maxPrice = maxPrice[0].price;
     uiValues.minPrice = minPrice[0].price;

@@ -61,6 +61,7 @@ const MainCategory = () => {
   const params = location.search ? location.search : null;
 
   const [products, setProducts] = useState([]);
+  const [filterProducts, setFilterProducts] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const [sliderMax, setSliderMax] = useState(450000);
@@ -110,11 +111,29 @@ const MainCategory = () => {
           query = filter;
         }
 
+        console.log(sorting);
+
         if (sorting) {
           if (query.length === 0) {
             query = `?sort=${sorting}`;
           } else {
             query = query + "&sort=" + sorting;
+          }
+        }
+
+        if (productShop) {
+          if (query.length === 0) {
+            query = `?shop=${productShop}`;
+          } else {
+            query = query + "&shop=" + productShop;
+          }
+        }
+
+        if (productCategory) {
+          if (query.length === 0) {
+            query = `?category=${productCategory}`;
+          } else {
+            query = query + "&category=" + productCategory;
           }
         }
 
@@ -125,6 +144,7 @@ const MainCategory = () => {
         });
 
         setProducts(data.data);
+        setFilterProducts(data.data);
         setLoading(false);
         updateUIValues(data.uiValues);
       } catch (error) {
@@ -166,11 +186,24 @@ const MainCategory = () => {
 
   const onSelectHandler = (e, type) => {
     if (type === "shop") {
-      setProductShop(e.target.value);
+      console.log(filterProducts);
+      let product = [...filterProducts];
+
+      let filteredProducts = product.filter((p) => p.shopID === e.target.value);
+
+      setProducts(filteredProducts);
     } else {
-      setProductCategory(e.target.value);
+      let product = [...filterProducts];
+
+      let filteredProducts = product.filter(
+        (p) => p.categoryID.toString() !== e.target.value.toString()
+      );
+
+      setProducts(filteredProducts);
     }
   };
+
+  console.log(products);
 
   const buildRangeFilter = (newValue) => {
     const urlFilter = `?price[gte]=${newValue[0]}&price[lte]=${newValue[1]}`;
@@ -221,8 +254,10 @@ const MainCategory = () => {
                   onBlur={(e) => onSelectHandler(e, "shop")}
                 >
                   {shops.length
-                    ? shops.map((sh) => (
-                        <MenuItem value={sh._id}>{sh.name}</MenuItem>
+                    ? shops.map((sh, i) => (
+                        <MenuItem key={i} value={sh._id}>
+                          {sh.name}
+                        </MenuItem>
                       ))
                     : null}
                 </Select>
@@ -240,8 +275,10 @@ const MainCategory = () => {
                     <em>None</em>
                   </MenuItem>
                   {categories.length
-                    ? categories.map((c) => (
-                        <MenuItem value={c._id}>{c.name}</MenuItem>
+                    ? categories.map((c, i) => (
+                        <MenuItem key={i} value={c._id}>
+                          {c.name}
+                        </MenuItem>
                       ))
                     : null}
                 </Select>
