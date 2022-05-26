@@ -2,42 +2,16 @@
   display: flex;
   flex-direction: column;
 
-  .swiper {
-    width: 100%;
-  }
-
-  .swiper-button-next,
-  .swiper-button-prev {
-    width: 30px;
-    height: 30px;
+  .main_products {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    border: 2px solid #00092c;
-    background: rgba(0, 0, 0, 0.1);
+    flex-wrap: wrap;
   }
 
-  .swiper-button-next::after,
-  .swiper-button-prev::after {
-    font-weight: 600;
-    font-size: 13px;
-    color: #00092c;
-  }
+  .MuiOutlinedInput-root {
+    width: 100%;
 
-  .main_category {
-    padding: 15px 0;
-
-    h3 {
-      font-size: 30px;
-      color: #101010;
-      font-weight: 600;
-      margin-bottom: 20px;
-    }
-
-    .main_products {
-      display: flex;
-      flex-wrap: wrap;
+    .MuiSelect-select {
+      padding: 10.5px 14px;
     }
   }
 }

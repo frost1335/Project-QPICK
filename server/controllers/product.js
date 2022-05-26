@@ -5,10 +5,76 @@ const Category = require("../models/Category");
 const ErrorResponse = require("../utils/ErrorResponse");
 
 exports.getProducts = async (req, res, next) => {
-  try {
-    const products = await Product.find();
+  let query;
 
-    res.status(200).json({ success: true, data: products });
+  let uiValues = {
+    filtering: {},
+    sorting: {},
+    maxPrice: null,
+    minPrice: null,
+  };
+
+  const reqQuery = { ...req.query };
+
+  const removeFields = ["sort"];
+
+  removeFields.forEach((val) => delete reqQuery[val]);
+
+  const filterKeys = Object.keys(reqQuery);
+  const filterValues = Object.values(reqQuery);
+
+  filterKeys.forEach(
+    (val, idx) => (uiValues.filtering[val] = filterValues[idx])
+  );
+
+  let queryStr = JSON.stringify(reqQuery);
+
+  queryStr = queryStr.replace(
+    /\b(gt|gte|lt|lte|in)\b/g,
+    (match) => `$${match}`
+  );
+
+  query = Product.find(JSON.parse(queryStr));
+
+  if (req.query.sort) {
+    const sortByArr = req.query.sort.split(",");
+
+    sortByArr.forEach((val) => {
+      let order;
+
+      if (val[0] === "-") {
+        order = "descending";
+      } else {
+        order = "ascending";
+      }
+
+      uiValues.sorting[val.replace("-", "")] = order;
+    });
+
+    const sortByStr = sortByArr.join();
+
+    query = query.sort(sortByStr);
+  } else {
+    query = query.sort("-price");
+  }
+
+  try {
+    const products = await query;
+
+    const maxPrice = await Product.find()
+      .sort({ price: -1 })
+      .limit(1)
+      .select("-_id price");
+
+    const minPrice = await Product.find()
+      .sort({ price: 1 })
+      .limit(1)
+      .select("-_id price");
+
+    uiValues.maxPrice = maxPrice[0].price;
+    uiValues.minPrice = minPrice[0].price;
+
+    res.status(200).json({ success: true, data: products, uiValues });
   } catch (error) {
     next(error.message);
   }
