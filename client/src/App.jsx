@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Routes, Route, useParams } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { Routes, Route } from "react-router-dom";
 
 import {
   getProducts,
@@ -21,6 +21,8 @@ import {
   Auth,
   Admin,
   Votes,
+  Category,
+  Shop,
 } from "./pages";
 import {
   AdminControl,
@@ -58,6 +60,10 @@ const App = () => {
       <Routes>
         {/* User routes */}
         <Route path="/" element={<Main />} />
+        <Route path="/shop/:id/buy/:pdID" element={<Shop />} />
+        <Route path="/shop/:id" element={<Shop />} />
+        <Route path="/category/:id" element={<Category />} />
+        <Route path="/category/:id/buy/:pdID" element={<Category />} />
         <Route path="/view/product/:id" element={<Product />} />
         <Route path="/view/product/:id/buy/:pdID" element={<Product />} />
         <Route path="/favorites" element={<Favorite />} />

@@ -8,9 +8,11 @@ const {
   editProduct,
   getProductByID,
   getSimilarProducts,
+  getProductBySearch,
 } = require("../controllers/product");
 const { uploadProductImages, resizerImages } = require("../utils/fileUpload");
 
+router.route("/search").get(getProductBySearch);
 router.route("/").get(getProducts);
 router.route("/").post(uploadProductImages, resizerImages, createProduct);
 router.route("/:id").get(getProductByID);

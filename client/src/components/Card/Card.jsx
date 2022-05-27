@@ -5,6 +5,13 @@ import { BiHeart } from "react-icons/bi";
 import { IoMdHeart } from "react-icons/io";
 
 import "./Card.scss";
+import Rating from "@material-ui/lab/Rating";
+
+const formatter = new Intl.NumberFormat("uz-UZ", {
+  style: "currency",
+  currency: "UZS",
+  maximumFractionDigits: 2,
+});
 
 const Card = (props) => {
   useEffect(() => {
@@ -58,12 +65,19 @@ const Card = (props) => {
         </div>
         <Link to={"/view/product/" + props.product._id}>
           <p>{props.product.title} </p>
-          <span>
-            {props.product.price}
-            <span className="price_cur">сум</span>
-          </span>
+          <span className="price">{formatter.format(props.product.price)}</span>
+          <h5>
+            <Rating
+              style={{ marginTop: 10 }}
+              value={props.product.rating}
+              name="product-rating"
+              precision={0.5}
+              readOnly
+              size="medium"
+            />
+          </h5>
           <div className="shop">
-            <Link to={"/api/shop/" + props.product.shopInfo._id}>
+            <Link to={"/shop/" + props.product.shopInfo._id}>
               <div className="shop_image">
                 <img
                   src={props.product.shopInfo.img[0].thumbnail.path}
@@ -72,7 +86,7 @@ const Card = (props) => {
               </div>
               <span>{props.product.shopInfo.name}</span>
             </Link>
-            <Link to={"/api/category/" + props.product.categoryID}>
+            <Link to={"/category/" + props.product.categoryID}>
               <span className="categoryLink">{props.category.name}</span>
             </Link>
           </div>

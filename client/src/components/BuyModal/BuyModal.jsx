@@ -75,14 +75,16 @@ const BuyModal = (props) => {
     let arr = [];
 
     if (!props.id) {
-      props.products.map((ctg) => ctg.products.map((pdct) => arr.push(pdct)));
+      props.products.map((ctg) =>
+        ctg.products.map((pdct) => arr.push(pdct._id))
+      );
 
       console.log(arr);
 
       arr.forEach((pdct) => {
-        const card = document.getElementById(`CartCard-${pdct._id}`);
+        const card = document.getElementById(`CartCard-${pdct}`);
         card.remove();
-        localStorage.removeItem(`${pdct._id}-cart`);
+        localStorage.removeItem(`${pdct}-cart`);
       });
     }
 
@@ -90,7 +92,7 @@ const BuyModal = (props) => {
       name: buyData.formControls.name.value,
       surename: buyData.formControls.surename.value,
       phone: buyData.formControls.phone.value,
-      products: arr.length ? arr : props.products,
+      products: arr.length ? arr : props.products._id,
     };
 
     dispatch(createBuy(data));

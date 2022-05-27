@@ -10,7 +10,7 @@ const productSchema = mongoose.Schema({
     required: [true, "Please enter product image "],
   },
   price: {
-    type: String,
+    type: Number,
     required: [true, "Please enter product price "],
   },
   categoryID: {

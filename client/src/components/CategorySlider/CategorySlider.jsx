@@ -32,7 +32,7 @@ const CategorySlider = () => {
           {categories.length ? (
             categories.map((ctg, idx) => (
               <SwiperSlide key={idx}>
-                <Link to={"/api/category/" + ctg._id} className="slide">
+                <Link to={"/category/" + ctg._id} className="slide">
                   <div className="slide_img">
                     <img src={ctg.img[0].medium.path} alt="image_category" />
                   </div>

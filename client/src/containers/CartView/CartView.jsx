@@ -22,6 +22,12 @@ function countPrice(arr) {
   return price.reduce((a, b) => (a += +b.price * b.count), 0);
 }
 
+const formatter = new Intl.NumberFormat("uz-UZ", {
+  style: "currency",
+  currency: "UZS",
+  maximumFractionDigits: 2,
+});
+
 const CartView = () => {
   const cart = useSelector((state) => state.cart);
   const [onBuy, setOnBuy] = useState(false);
@@ -57,8 +63,7 @@ const CartView = () => {
           <div className="body_right">
             <div className="cart_buy">
               <span>
-                {cart.length ? `${countPrice(cart)}` : "0"}
-                <b>сум</b>
+                {cart.length ? `${formatter.format(countPrice(cart))}` : "0"}
               </span>
               <button onClick={() => setOnBuy(true)}>Заказать</button>
             </div>

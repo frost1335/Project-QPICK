@@ -4,6 +4,35 @@ const Shop = require("../models/Shop");
 const Category = require("../models/Category");
 const ErrorResponse = require("../utils/ErrorResponse");
 
+exports.getProductBySearch = async (req, res, next) => {
+  const { searchQuery, shopID, categoryID } = req.query;
+  try {
+    const title = new RegExp(searchQuery, "i");
+
+    let products;
+
+    if (categoryID) {
+      products = await Product.find({
+        categoryID,
+        $or: [{ title }],
+      });
+    } else if (shopID) {
+      products = await Product.find({
+        shopID,
+        $or: [{ title }],
+      });
+    } else {
+      products = await Product.find({
+        $or: [{ title }],
+      });
+    }
+
+    res.status(200).json({ success: true, data: products });
+  } catch (error) {
+    next(error.message);
+  }
+};
+
 exports.getProducts = async (req, res, next) => {
   let query;
 
@@ -14,7 +43,7 @@ exports.getProducts = async (req, res, next) => {
     minPrice: null,
   };
 
-  const reqQuery = { ...req.query };
+  let reqQuery = { ...req.query };
 
   const removeFields = ["sort"];
 
@@ -34,10 +63,6 @@ exports.getProducts = async (req, res, next) => {
     (match) => `$${match}`
   );
 
-  console.log(queryStr);
-
-  const categoryID = new mongoose.Types.ObjectId("62879cc324bcd6f66463a0c5");
-
   query = Product.find(JSON.parse(queryStr));
 
   if (req.query.sort) {
@@ -55,37 +80,29 @@ exports.getProducts = async (req, res, next) => {
       uiValues.sorting[val.replace("-", "")] = order;
     });
 
-    const sortByStr = sortByArr.join();
+    const sortByStr = sortByArr.join(" ");
 
     query = query.sort(sortByStr);
   } else {
     query = query.sort("-price");
   }
 
-  try {
-    const products = await query;
+  const products = await query;
 
-    const maxPrice = await Product.find()
-      .sort({ price: -1 })
-      .limit(1)
-      .select("-_id price");
+  const maxPrice = await Product.find()
+    .sort({ price: -1 })
+    .limit(1)
+    .select("-_id price");
 
-    const minPrice = await Product.find()
-      .sort({ price: 1 })
-      .limit(1)
-      .select("-_id price");
+  const minPrice = await Product.find()
+    .sort({ price: 1 })
+    .limit(1)
+    .select("-_id price");
 
-    // const pdct = await Product.find().sort({
-    //   categoryID: ,
-    // });
+  uiValues.maxPrice = maxPrice[0].price;
+  uiValues.minPrice = minPrice[0].price;
 
-    uiValues.maxPrice = maxPrice[0].price;
-    uiValues.minPrice = minPrice[0].price;
-
-    res.status(200).json({ success: true, data: products, uiValues });
-  } catch (error) {
-    next(error.message);
-  }
+  res.status(200).json({ success: true, data: products, uiValues });
 };
 
 exports.getProductByID = async (req, res, next) => {

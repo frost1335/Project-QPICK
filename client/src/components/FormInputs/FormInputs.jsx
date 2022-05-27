@@ -1,6 +1,7 @@
 import React from "react";
 import CreateInput from "../CreateInput/CreateInput";
 import FileUpload from "../FileBase64/FileUpload";
+import RatingInput from "../Rating/Rating";
 import Selector from "../Selector/Selector";
 import Textarea from "../Textarea/Textarea";
 
@@ -69,6 +70,25 @@ const FormInputs = (props) => {
               errorMessage={control.errorMessage}
               shouldValidate={!!control.validation}
               onChange={(event) => props.onFileChange(event, controlName)}
+            />
+          );
+        } else if (control.type === "rating") {
+          return (
+            <RatingInput
+              size="large"
+              precision={0.5}
+              o
+              key={controlName + index}
+              type={control.type}
+              value={control.value}
+              valid={control.valid}
+              touched={control.touched}
+              label={control.label}
+              errorMessage={control.errorMessage}
+              shouldValidate={!!control.validation}
+              onChange={(event, newValue) =>
+                props.onChangeHandler(event, controlName)
+              }
             />
           );
         }

@@ -11,9 +11,9 @@ const {
 const { uploadProductImages, resizerImages } = require("../utils/fileUpload");
 
 router.route("/").get(getCategories);
-router.route("/").post(uploadProductImages, resizerImages,createCategory);
-router.route("/:id").put(uploadProductImages, resizerImages,editCategory);
+router.route("/").post(uploadProductImages, resizerImages, createCategory);
+router.route("/:id").get(getCategory);
+router.route("/:id").put(uploadProductImages, resizerImages, editCategory);
 router.route("/:id").delete(deleteCategory);
-router.route("/ctg/:id").get(getCategory);
 
 module.exports = router;

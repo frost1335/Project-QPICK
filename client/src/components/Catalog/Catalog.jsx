@@ -16,13 +16,10 @@ const Catalog = (props) => {
         <h3 className="catalog_header">Каталог</h3>
         <div className="catalog_body">
           <ul className="menu">
+            <h3>Магазины</h3>
             {shops.length ? (
               shops.map((shop, idx) => (
-                <Link
-                  to={"/shop/view/" + shop._id}
-                  className="menu_item"
-                  key={idx}
-                >
+                <Link to={"/shop/" + shop._id} className="menu_item" key={idx}>
                   <div className="item_img">
                     <img src={shop.img[0].thumbnail.path} alt={"item-img"} />
                   </div>
@@ -34,10 +31,11 @@ const Catalog = (props) => {
             )}
           </ul>
           <ul className="menu">
+            <h3>Категории</h3>
             {categories.length ? (
               categories.map((ctg, idx) => (
                 <Link
-                  to={"/category/view/" + ctg._id}
+                  to={"/category/" + ctg._id}
                   className="menu_item"
                   key={idx}
                 >

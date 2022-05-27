@@ -41,11 +41,11 @@ const Form = () => {
       ),
       rating: createControl(
         {
-          type: "number",
+          type: "rating",
           label: "Rating",
           errorMessage: "Введите корректный rating",
         },
-        { required: true, minLength: 1, maxLength: 1 }
+        { required: true, minLength: 1 }
       ),
       tags: createControl(
         {
@@ -117,11 +117,11 @@ const Form = () => {
           ),
           rating: createControl(
             {
-              type: "number",
+              type: "rating",
               label: "Rating",
               errorMessage: "Введите корректный rating",
             },
-            { required: true, minLength: 1, maxLength: 1 },
+            { required: true, minLength: 1 },
             product.rating
           ),
           tags: createControl(

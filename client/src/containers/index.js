@@ -21,6 +21,8 @@ import BannerForm from "./Admin/Banner/Form/Form";
 import BannerControl from "./Admin/Banner/Control/Control";
 import Order from "./Admin/Order/Order";
 import VotesView from "./VotesView/VotesView";
+import ShopView from "./ShopView/ShopView";
+import CategoryView from "./CategoryView/CategoryView";
 
 export {
   MainCategory,
@@ -46,4 +48,6 @@ export {
   BannerControl,
   Order,
   VotesView,
+  ShopView,
+  CategoryView,
 };

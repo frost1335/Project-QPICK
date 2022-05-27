@@ -6,11 +6,9 @@ import {
   FormControlLabel,
   Grid,
   makeStyles,
-  MenuItem,
   Paper,
   Radio,
   RadioGroup,
-  Select,
   Slider,
   TextField,
   Typography,
@@ -58,27 +56,20 @@ const MainCategory = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const product = useSelector((state) => state.product);
+
   const params = location.search ? location.search : null;
 
   const [products, setProducts] = useState([]);
-  const [filterProducts, setFilterProducts] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const [sliderMax, setSliderMax] = useState(450000);
-  const [priceRange, setPriceRange] = useState([35000, 145000]);
+  const [sliderMax, setSliderMax] = useState(100000);
+  const [priceRange, setPriceRange] = useState([5000, 30000]);
   const [priceOrder, setPriceOrder] = useState("descending");
-
-  const [productShop, setProductShop] = useState("");
-  const [productCategory, setProductCategory] = useState("");
-
-  const [shopSorting, setShopSorting] = useState();
-  const [categorySorting, setCategorySorting] = useState();
 
   const [filter, setFilter] = useState("");
   const [sorting, setSorting] = useState("");
-
-  const shops = useSelector((state) => state.shops);
-  const categories = useSelector((state) => state.categories);
+  const [search, setSearch] = useState("");
 
   const updateUIValues = (uiValues) => {
     setSliderMax(uiValues.maxPrice);
@@ -111,29 +102,11 @@ const MainCategory = () => {
           query = filter;
         }
 
-        console.log(sorting);
-
         if (sorting) {
           if (query.length === 0) {
             query = `?sort=${sorting}`;
           } else {
             query = query + "&sort=" + sorting;
-          }
-        }
-
-        if (productShop) {
-          if (query.length === 0) {
-            query = `?shop=${productShop}`;
-          } else {
-            query = query + "&shop=" + productShop;
-          }
-        }
-
-        if (productCategory) {
-          if (query.length === 0) {
-            query = `?category=${productCategory}`;
-          } else {
-            query = query + "&category=" + productCategory;
           }
         }
 
@@ -144,9 +117,8 @@ const MainCategory = () => {
         });
 
         setProducts(data.data);
-        setFilterProducts(data.data);
-        setLoading(false);
         updateUIValues(data.uiValues);
+        setLoading(false);
       } catch (error) {
         if (axios.isCancel(error)) return;
         console.log(error.message);
@@ -157,6 +129,26 @@ const MainCategory = () => {
 
     return () => cancel();
   }, [params, sorting, filter]);
+
+  const searchProduct = async () => {
+    if (search.trim()) {
+      setLoading(true);
+      const { data } = await axios.get(
+        `/api/product/search?searchQuery=${search}`
+      );
+      setProducts(data.data);
+      setLoading(false);
+    } else {
+      setProducts(product);
+      navigate("/");
+    }
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      searchProduct();
+    }
+  };
 
   const handlePriceInputChange = (e, type) => {
     let newRange;
@@ -184,27 +176,6 @@ const MainCategory = () => {
     buildRangeFilter(priceRange);
   };
 
-  const onSelectHandler = (e, type) => {
-    if (type === "shop") {
-      console.log(filterProducts);
-      let product = [...filterProducts];
-
-      let filteredProducts = product.filter((p) => p.shopID === e.target.value);
-
-      setProducts(filteredProducts);
-    } else {
-      let product = [...filterProducts];
-
-      let filteredProducts = product.filter(
-        (p) => p.categoryID.toString() !== e.target.value.toString()
-      );
-
-      setProducts(filteredProducts);
-    }
-  };
-
-  console.log(products);
-
   const buildRangeFilter = (newValue) => {
     const urlFilter = `?price[gte]=${newValue[0]}&price[lte]=${newValue[1]}`;
 
@@ -226,11 +197,10 @@ const MainCategory = () => {
   const clearAllFilters = (e) => {
     setFilter("");
     setSorting("");
+    setProducts(product);
     setPriceRange([0, sliderMax]);
     navigate("/");
   };
-
-  console.log(productCategory, productShop);
 
   return (
     <div className="container">
@@ -238,55 +208,7 @@ const MainCategory = () => {
         <Paper className={classes.paper}>
           <Grid container>
             <Grid item xs={12} sm={4}>
-              <Typography gutterBottom style={{ marginBottom: 38 }}>
-                Filters
-              </Typography>
-
-              <div className={classes.selects}>
-                <Select
-                  label="Shop"
-                  value={productShop}
-                  disabled={loading}
-                  variant="outlined"
-                  id="shop"
-                  size="small"
-                  onChange={(e) => setProductShop(e.target.value)}
-                  onBlur={(e) => onSelectHandler(e, "shop")}
-                >
-                  {shops.length
-                    ? shops.map((sh, i) => (
-                        <MenuItem key={i} value={sh._id}>
-                          {sh.name}
-                        </MenuItem>
-                      ))
-                    : null}
-                </Select>
-                <Select
-                  label="Category"
-                  value={productCategory}
-                  disabled={loading}
-                  variant="outlined"
-                  id="category"
-                  size="small"
-                  onChange={(e) => setProductCategory(e.target.value)}
-                  onBlur={(e) => onSelectHandler(e, "category")}
-                >
-                  <MenuItem value="">
-                    <em>None</em>
-                  </MenuItem>
-                  {categories.length
-                    ? categories.map((c, i) => (
-                        <MenuItem key={i} value={c._id}>
-                          {c.name}
-                        </MenuItem>
-                      ))
-                    : null}
-                </Select>
-              </div>
-            </Grid>
-
-            <Grid item xs={12} sm={4}>
-              <Typography gutterBottom>Filters</Typography>
+              <Typography gutterBottom>Фильтеры</Typography>
 
               <div className={classes.filters}>
                 <Slider
@@ -303,7 +225,7 @@ const MainCategory = () => {
                   <TextField
                     size="small"
                     id="lower"
-                    label="Min Price"
+                    label="Мин Цена"
                     variant="outlined"
                     type="number"
                     disabled={loading}
@@ -315,7 +237,7 @@ const MainCategory = () => {
                   <TextField
                     size="small"
                     id="upper"
-                    label="Max Price"
+                    label="Мах Цена"
                     variant="outlined"
                     type="number"
                     disabled={loading}
@@ -327,8 +249,8 @@ const MainCategory = () => {
               </div>
             </Grid>
 
-            <Grid item xs={12} sm={3}>
-              <Typography gutterBottom>Sort By</Typography>
+            <Grid item xs={12} sm={4}>
+              <Typography gutterBottom>Сортировка</Typography>
 
               <FormControl component="fieldset" className={classes.filters}>
                 <RadioGroup
@@ -341,21 +263,51 @@ const MainCategory = () => {
                     value="descending"
                     disabled={loading}
                     control={<Radio />}
-                    label="Price: Highest - Lowest"
+                    label="Цена: Высокий - Низкий"
                   />
 
                   <FormControlLabel
                     value="ascending"
                     disabled={loading}
                     control={<Radio />}
-                    label="Price: Lowest - Highest "
+                    label="Цена: Низкий - Высокий "
                   />
                 </RadioGroup>
               </FormControl>
             </Grid>
+
+            <Grid item xs={12} sm={4}>
+              <Typography gutterBottom>Искать</Typography>
+
+              <FormControl
+                component="fieldset"
+                fullWidth
+                className={classes.filters}
+              >
+                <TextField
+                  style={{ marginBottom: 15 }}
+                  name="search"
+                  variant="outlined"
+                  label={"Искать продуктов"}
+                  fullWidth
+                  value={search}
+                  onKeyPress={handleKeyPress}
+                  onChange={(e) => {
+                    setSearch(e.target.value);
+                  }}
+                />
+                <Button
+                  onClick={searchProduct}
+                  color="primary"
+                  variant="contained"
+                >
+                  Искать
+                </Button>
+              </FormControl>
+            </Grid>
           </Grid>
           <Button sixe="small" color="primary" onClick={clearAllFilters}>
-            Clear All
+            Очистить все
           </Button>
         </Paper>
         <div className="main_products">

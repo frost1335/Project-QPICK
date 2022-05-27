@@ -13,7 +13,7 @@ a {
   flex-direction: column;
   border-radius: 15px;
   box-shadow: 0 0 20px rgba($color: #000000, $alpha: 0.1);
-  padding: 10px;
+  padding: 22px;
   position: relative;
   transition: all 0.3s;
 
@@ -62,10 +62,11 @@ a {
     }
   }
 
-  span {
+  .price {
     color: #101010;
     font-weight: 500;
     font-size: 22px;
+    margin-bottom: 10px;
 
     .price_cur {
       font-weight: 600;

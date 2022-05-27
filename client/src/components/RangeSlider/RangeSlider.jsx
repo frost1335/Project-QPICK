@@ -1,23 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
+
+import Rating from "@material-ui/lab/Rating";
 
 import "./RangeSlider.scss";
 
 const RangeSlider = () => {
-  const slider = document.getElementById("myRange");
-  const output = document.getElementById("demo");
+  const [rate, setRate] = useState("");
+
+  console.log(rate);
+
   return (
     <div class="RangeSlider">
-      <input
-        type="range"
-        min="1"
-        max="100"
-        value="50"
-        class="slider"
-        id="myRange"
+      <Rating
+        name="simple-controlled"
+        value={rate}
+        size="large"
+        precision={0.5}
+        onChange={(event, newValue) => {
+          setRate(newValue);
+        }}
       />
-      <p>
-        Value: <span id="demo"></span>
-      </p>
     </div>
   );
 };

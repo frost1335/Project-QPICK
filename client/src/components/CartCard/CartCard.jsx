@@ -1,10 +1,15 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Tshirt } from "../../images";
 
 import { CgClose } from "react-icons/cg";
 
 import "./CartCard.scss";
+
+const formatter = new Intl.NumberFormat("uz-UZ", {
+  style: "currency",
+  currency: "UZS",
+  maximumFractionDigits: 2,
+});
 
 const CartCard = (props) => {
   const [count, setCount] = useState(
@@ -48,9 +53,7 @@ const CartCard = (props) => {
         <span>{count}</span>
         <button onClick={() => cartHandler(props.product._id, "+")}>+</button>
       </div>
-      <div className="card_price">
-        {props.product.price} <span>сум</span>
-      </div>
+      <div className="card_price">{formatter.format(props.product.price)}</div>
       <div className="remove_btn">
         <button onClick={deleteHandler}>
           <CgClose />

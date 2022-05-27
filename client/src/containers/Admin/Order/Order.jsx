@@ -5,8 +5,22 @@ import moment from "moment";
 
 import "./Order.scss";
 
+const formatter = new Intl.NumberFormat("uz-UZ", {
+  style: "currency",
+  currency: "UZS",
+  maximumFractionDigits: 2,
+});
+
 const Order = () => {
   const dispatch = useDispatch();
+
+  const products = useSelector((state) => state.product);
+
+  const getProduct = (id) => {
+    if (products.length) {
+      return products.find((p) => p._id === id);
+    }
+  };
 
   const buys = useSelector((state) => state.buys);
 
@@ -15,7 +29,7 @@ const Order = () => {
   }, [dispatch]);
 
   const countAllPrice = (arr) => {
-    let countArr = arr.map((a) => +a.price);
+    let countArr = arr.map((a) => +getProduct(a).price);
     return countArr.reduce((a, b) => (a += b));
   };
 
@@ -54,9 +68,16 @@ const Order = () => {
                     <div className="products_menu">
                       {buy.products.map((pdct, idx) => (
                         <div className="product_item" key={idx}>
-                          <span>{pdct.title}</span>
-                          <span className="price">{pdct.price}сум</span>
-                          <span>{pdct.count ? pdct.count : 1}x</span>
+                          <span>{getProduct(pdct).title}</span>
+                          <span className="price">
+                            {formatter.format(getProduct(pdct).price)}
+                          </span>
+                          <span>
+                            {getProduct(pdct).count
+                              ? getProduct(pdct).count
+                              : 1}
+                            x
+                          </span>
                         </div>
                       ))}
                     </div>
@@ -65,8 +86,7 @@ const Order = () => {
                     <h4>
                       Summary price:{" "}
                       <span>
-                        {countAllPrice(buy.products)}
-                        <span className="currency">сум</span>
+                        {formatter.format(countAllPrice(buy.products))}
                       </span>
                     </h4>
                   </div>

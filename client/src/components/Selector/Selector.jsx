@@ -23,7 +23,7 @@ const Selector = (props) => {
       <label htmlFor={htmlFor}>{props.label}</label>
 
       <select onChange={props.onChange} id={htmlFor}>
-        <option value="">Choose shop</option>
+        <option value="">Choose</option>
         {shops.length && categories.length
           ? props.array === "shop"
             ? shops.map((elem, idx) => (
