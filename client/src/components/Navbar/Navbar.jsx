@@ -62,11 +62,11 @@ const Navbar = () => {
                 </form>
               </div>
               <div className="links">
-                <li>
+                {/* <li>
                   <Link to="/votes">
                     <BiComment /> Отзывы
                   </Link>
-                </li>
+                </li> */}
                 <li>
                   <Link to="/favorites">
                     <BiHeart /> Избранное

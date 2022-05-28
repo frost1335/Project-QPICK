@@ -31,6 +31,8 @@ const CartCard = (props) => {
       setCount(+count + 1);
     }
 
+    props.editProductCount(...product);
+
     localStorage.setItem(`${id}-cart`, product.join(","));
   };
 

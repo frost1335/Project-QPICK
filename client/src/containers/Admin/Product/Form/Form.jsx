@@ -47,14 +47,6 @@ const Form = () => {
         },
         { required: true, minLength: 1 }
       ),
-      tags: createControl(
-        {
-          type: "text",
-          label: "Tags",
-          errorMessage: "Введите корректный tags",
-        },
-        { required: true, minLength: 3 }
-      ),
       description: createControl(
         {
           type: "area",
@@ -62,6 +54,14 @@ const Form = () => {
           errorMessage: "Введите корректный description",
         },
         { required: true, minLength: 10 }
+      ),
+      size: createControl(
+        {
+          type: "text",
+          label: "Sizes",
+          errorMessage: "Введите корректный size",
+        },
+        { required: true }
       ),
       categoryID: createControl(
         {
@@ -124,15 +124,6 @@ const Form = () => {
             { required: true, minLength: 1 },
             product.rating
           ),
-          tags: createControl(
-            {
-              type: "text",
-              label: "Tags",
-              errorMessage: "Введите корректный tags",
-            },
-            { required: true, minLength: 3 },
-            product.tags.join(",")
-          ),
           description: createControl(
             {
               type: "area",
@@ -141,6 +132,15 @@ const Form = () => {
             },
             { required: true, minLength: 10 },
             product.description
+          ),
+          size: createControl(
+            {
+              type: "text",
+              label: "Sizes",
+              errorMessage: "Введите корректный size",
+            },
+            { required: true },
+            product.size
           ),
           categoryID: createControl(
             {
@@ -212,7 +212,7 @@ const Form = () => {
     formData.append("categoryID", productData.formControls.categoryID.value);
     formData.append("shopID", productData.formControls.shopID.value);
     formData.append("description", productData.formControls.description.value);
-    formData.append("tags", productData.formControls.tags.value.split(","));
+    formData.append("size", productData.formControls.size.value);
     formData.append("rating", productData.formControls.rating.value);
 
     if (id) {

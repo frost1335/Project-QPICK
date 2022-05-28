@@ -87,7 +87,9 @@ const Card = (props) => {
               <span>{props.product.shopInfo.name}</span>
             </Link>
             <Link to={"/category/" + props.product.categoryID}>
-              <span className="categoryLink">{props.category.name}</span>
+              <span className="categoryLink">
+                {props.product.categoryInfo.name}
+              </span>
             </Link>
           </div>
           <div className="buy">

@@ -69,8 +69,6 @@ const Auth = () => {
         password: loginData.formControls.passowrd.value,
       });
 
-      console.log(data);
-
       if (data.success) {
         localStorage.setItem("authData", data.data._id);
         navigate("/admin/control");

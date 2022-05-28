@@ -24,7 +24,7 @@ const FavoriteView = () => {
                 <h3>{ctg.name}</h3>
                 <div className="category_body">
                   {ctg.products.map((pdct, index) => (
-                    <Card category={ctg} product={pdct} key={index} />
+                    <Card product={pdct} key={index} />
                   ))}
                 </div>
               </div>

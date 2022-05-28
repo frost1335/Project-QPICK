@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { getSimilarProducts } from "../../actions";
 import { BuyModal, Loader } from "../../components";
+import { BiQuestionMark } from "react-icons/bi";
 
 import "./ProductView.scss";
 
@@ -56,10 +57,10 @@ const ProductView = () => {
   return (
     <div className="container">
       {param.pdID ? <BuyModal products={product} id={param.pdID} /> : null}
-      {product && shop && category ? (
+      {product && shops.length && categorys.length ? (
         <div className="ProductView">
           <div className="view_nav">
-            <Link to="/api/" className="first_link">
+            <Link to="/" className="first_link">
               Назад
             </Link>
             <ul>
@@ -68,13 +69,11 @@ const ProductView = () => {
               </li>
               /
               <li>
-                <Link to={"/shop/view/" + shop._id}>{shop.name}</Link>
+                <Link to={"/shop/" + shop._id}>{shop.name}</Link>
               </li>
               /
               <li>
-                <Link to={"/category/view/" + category._id}>
-                  {category.name}
-                </Link>
+                <Link to={"/category/" + category._id}>{category.name}</Link>
               </li>
             </ul>
           </div>
@@ -100,12 +99,18 @@ const ProductView = () => {
                 <img src={product.img[0].large.path} alt="img-product" />
               </div>
             </div>
-            <div className="body_right">
+            <div className="body_center">
               <h2>
                 {product.price} <span>сум</span>
               </h2>
               <h4>Коротко о товаре:</h4>
               <p>{product.description}</p>
+              <h4>Размеры товара:</h4>
+              <div className="sizes">
+                {product.size.split(",").map((s, i) => (
+                  <span key={i}>{s}</span>
+                ))}
+              </div>
               <div className="buy_button">
                 <button className="korzina" onClick={cartHandler}>
                   В корзину
@@ -122,6 +127,41 @@ const ProductView = () => {
                   Купить
                 </Link>
               </div>
+            </div>
+            <div className="body_right">
+              <h4>Товар на складе</h4>
+              <span>
+                Доставка осуществляется со склада продавца и может занять 1-2
+                рабочих дня.
+              </span>
+              <h4>Примерка</h4>
+              <span>
+                Бесплатная примерка (одежда и обувь) при заказе в Ташкент.
+              </span>
+              <h4>
+                Доставка{" "}
+                <i>
+                  <BiQuestionMark />
+                </i>
+              </h4>
+              <span>Доставка по всему Узбекистану</span>
+              <h4>Оплата</h4>
+              <span>
+                Оплата наличными, по терминалу, Payme, Click, Apelsin, uPay,
+                Visa.
+              </span>
+              <h4>Есть вопросы ?</h4>
+              <span>
+                Звоните нам: +998 78 150 55 57, . Режим работы: 9:00–18:00 с
+                понедельника по субботу
+              </span>
+              <h4>
+                Гарантия{" "}
+                <i>
+                  <BiQuestionMark />
+                </i>
+              </h4>
+              <span>Гарантия возврата денег</span>
             </div>
             <div className="body_bottom">
               <div className="shop_info">
@@ -140,14 +180,6 @@ const ProductView = () => {
                   />
                   <p>{category.name}</p>
                 </Link>
-              </div>
-              <div className="tags">
-                <h4>Теги: </h4>
-                <p>
-                  {product.tags.map((tag, idx) => (
-                    <span key={idx}> {tag}, </span>
-                  ))}
-                </p>
               </div>
             </div>
           </div>

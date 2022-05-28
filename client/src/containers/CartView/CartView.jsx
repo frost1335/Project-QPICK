@@ -34,9 +34,19 @@ const CartView = () => {
 
   const dispatch = useDispatch();
 
+  const editProductCount = (id, count) => {
+    cart.map((ctg) => {
+      ctg.products.map((p) => {
+        if (p._id === id) p.count = count;
+        return p;
+      });
+      return ctg;
+    });
+  };
+
   useEffect(() => {
     dispatch(getCartProducts());
-  }, [dispatch]);
+  }, [dispatch, cart]);
 
   return (
     <div className="CartView">
@@ -51,7 +61,13 @@ const CartView = () => {
                   <h3>{ctg.name}</h3>
                   <div className="category_row">
                     {ctg.products.map((pdct, index) => {
-                      return <CartCard key={index} product={pdct} />;
+                      return (
+                        <CartCard
+                          editProductCount={editProductCount}
+                          key={index}
+                          product={pdct}
+                        />
+                      );
                     })}
                   </div>
                 </div>

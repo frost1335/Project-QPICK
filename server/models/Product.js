@@ -35,9 +35,9 @@ const productSchema = mongoose.Schema({
     type: String,
     required: [true, "Please enter product description"],
   },
-  tags: {
-    type: Array,
-    required: [true, "Please enter product tag names"],
+  size: {
+    type: String,
+    required: [true, "Please enter product sizes"],
   },
   rating: {
     type: Number,

@@ -41,7 +41,7 @@ const Order = () => {
     <div className="Order">
       <h2>Orders</h2>
       <div className="order_list">
-        {buys.length
+        {buys.length && products.length
           ? buys
               .reverse()
               .filter((b) => b.status === "bought")

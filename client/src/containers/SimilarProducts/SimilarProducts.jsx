@@ -19,21 +19,10 @@ const SimilarProducts = () => {
   const { id } = useParams();
   const categorys = useSelector((state) => state.categories);
   const similarProducts = useSelector((state) => state.similarProducts);
-  const product = useSelector((state) =>
-    state.product.find((p) => p._id === id)
-  );
 
   useEffect(() => {
     dispatch(getSimilarProducts(id));
   }, [dispatch, id]);
-
-  let category;
-
-  if (categorys.length && product) {
-    category = categorys.filter(
-      (ctg) => ctg._id.toString() === product.categoryID.toString()
-    )[0];
-  }
 
   return (
     <div className="container">
@@ -47,10 +36,10 @@ const SimilarProducts = () => {
             navigation={true}
             className="mySwiper"
           >
-            {similarProducts.length ? (
+            {similarProducts.length && categorys.length ? (
               similarProducts.map((pdct, idx) => (
                 <SwiperSlide key={idx}>
-                  <Card category={category} product={pdct} />
+                  <Card product={pdct} />
                 </SwiperSlide>
               ))
             ) : (

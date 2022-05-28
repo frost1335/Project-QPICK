@@ -14,10 +14,13 @@ const Control = () => {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products);
 
-
   const onModalHandler = (id) => {
     document.getElementById(`modal-${id}`).style.display = "block";
   };
+
+  useEffect(() => {
+    dispatch(getProducts());
+  }, [dispatch]);
 
   const onCloseHandler = (id) => {
     if (id) {

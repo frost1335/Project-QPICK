@@ -315,7 +315,7 @@ const MainCategory = () => {
             <Loader />
           ) : (
             products.map((pdct, index) => (
-              <Card product={pdct} category={pdct.categoryInfo} key={index} />
+              <Card product={pdct} key={index} />
             ))
           )}
         </div>
