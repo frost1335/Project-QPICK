@@ -3,6 +3,7 @@ a {
 }
 
 .Card_box {
+  width: 25%;
   display: flex;
   padding: 10px 15px;
 }
@@ -16,6 +17,13 @@ a {
   padding: 12px 24px;
   position: relative;
   transition: all 0.3s;
+
+  .Card_link {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
 
   &:hover {
     transform: scale(1.016);
@@ -40,7 +48,6 @@ a {
   .card_image {
     width: 100%;
     height: 270px;
-    margin: auto;
     margin-bottom: 10px;
 
     img {
@@ -116,8 +123,10 @@ a {
   .buy {
     display: flex;
     justify-content: center;
+    align-items: flex-end;
     flex-grow: 1;
     margin: 10px 0;
+    height: 42px;
 
     a {
       color: #101010;

@@ -1,6 +1,7 @@
 const { default: mongoose } = require("mongoose");
 const Brand = require("../models/Brand");
 const ErrorResponse = require("../utils/ErrorResponse");
+const deleteFile = require("../utils/fileDelete");
 
 exports.fetchAll = async (req, res, next) => {
   try {
@@ -30,6 +31,10 @@ exports.createBrand = (req, res, next) => {
 
 exports.editBrand = async (req, res, next) => {
   const { id } = req.params;
+  if (req.body.img) {
+    const oldBrand = await Brand.findById(id).select("img");
+    deleteFile(oldBrand.img);
+  }
   const brand = req.body;
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return new ErrorResponse("No brand with this ID", 404);
@@ -55,6 +60,9 @@ exports.deleteBrand = async (req, res, next) => {
     return new ErrorResponse("No brand with this ID", 404);
   }
   try {
+    const brand = await Brand.findById(id).select("img");
+    deleteFile(brand.img);
+
     await Brand.findByIdAndRemove(id);
 
     res

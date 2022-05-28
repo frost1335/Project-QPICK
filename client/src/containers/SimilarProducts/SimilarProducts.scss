@@ -2,6 +2,14 @@
   margin-top: 25px;
   margin-bottom: 80px;
 
+  .Card_box {
+    width: 100%;
+
+    .Card {
+      padding: 12px;
+    }
+  }
+
   .swiper-button-next,
   .swiper-button-prev {
     width: 30px;

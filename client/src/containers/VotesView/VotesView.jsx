@@ -1,9 +1,6 @@
-import Rating from "@material-ui/lab/Rating";
-import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { editBuy, editProduct, editProducts, getBuys } from "../../actions";
-import { RangeSlider } from "../../components";
+import { getBuys } from "../../actions";
 import VoteCard from "./VoteCard/VoteCard";
 
 import "./VotesView.scss";
@@ -32,7 +29,7 @@ const VotesView = () => {
 
       by.map((b) => {
         b.products.map((p) => {
-          arr.push({ id: `${p}-${b._id}`, value: 0 });
+          return arr.push({ id: `${p}-${b._id}`, value: 0 });
         });
         return b;
       });

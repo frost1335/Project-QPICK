@@ -1,11 +1,8 @@
 const ErrorResponse = require("../utils/ErrorResponse");
 const Category = require("../models/Category");
-const {
-  filteredProducts,
-  filterCategory,
-} = require("../utils/filteredProducts");
 const { default: mongoose } = require("mongoose");
 const Product = require("../models/Product");
+const deleteFile = require("../utils/fileDelete");
 
 exports.getCategories = async (req, res, next) => {
   try {
@@ -120,6 +117,10 @@ exports.createCategory = (req, res, next) => {
 
 exports.editCategory = async (req, res, next) => {
   const { id } = req.params;
+  if (req.body.img) {
+    const oldCategory = await Category.findById(id).select("img");
+    deleteFile(oldCategory.img);
+  }
   const category = req.body;
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
@@ -152,8 +153,10 @@ exports.deleteCategory = async (req, res, next) => {
   }
 
   try {
-    await Category.findByIdAndRemove(id);
+    const category = await Category.findById(id).select("img");
+    deleteFile(category.img);
 
+    await Category.findByIdAndRemove(id);
     res
       .status(200)
       .json({ success: true, message: "Category successfully deleted" });

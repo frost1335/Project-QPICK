@@ -1,15 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Navbar.scss";
 import { Link } from "react-router-dom";
 
-import { BiHeart, BiCart, BiComment } from "react-icons/bi";
+import { BiHeart, BiCart } from "react-icons/bi";
 import { VscThreeBars } from "react-icons/vsc";
-import { MdSearch } from "react-icons/md";
 
 import Catalog from "../Catalog/Catalog";
+import { useDispatch, useSelector } from "react-redux";
+import { getCartProducts, getFavoriteProducts } from "../../actions";
 
 const Navbar = () => {
+  const dispatch = useDispatch();
   const [menu, setMenu] = useState(false);
+
+  const favorites = useSelector((state) => state.favorites);
+  const cart = useSelector((state) => state.cart);
+
+  useEffect(() => {
+    dispatch(getCartProducts());
+    dispatch(getFavoriteProducts());
+  }, [cart, favorites, dispatch]);
 
   return (
     <div className="nav_back">
@@ -53,14 +63,6 @@ const Navbar = () => {
                 />
                 <Catalog menu={menu} />
               </div>
-              <div className="search">
-                <form action="">
-                  <input type="text" placeholder="Поиск товаров..." />
-                  <button>
-                    <MdSearch />
-                  </button>
-                </form>
-              </div>
               <div className="links">
                 {/* <li>
                   <Link to="/votes">
@@ -69,11 +71,15 @@ const Navbar = () => {
                 </li> */}
                 <li>
                   <Link to="/favorites">
+                    <span>{favorites.length ? favorites.length : 0}</span>
                     <BiHeart /> Избранное
                   </Link>
                 </li>
                 <li>
                   <Link to="/cart">
+                    <span className="cart">
+                      {cart.length ? cart.length : 0}
+                    </span>
                     <BiCart /> Корзина
                   </Link>
                 </li>

@@ -14,15 +14,15 @@ const Banner = () => {
 
   const banners = useSelector((state) => state.banners);
 
+  console.log(banners);
+
   return (
     <div className="container">
       <div className="Banner">
         {banners.map((bnr, idx) => (
-          <Link to={"#"} key={idx}>
-            <div className="banner_card">
-              <img src={bnr.img[0].original.path} alt={"img-" + bnr.image} />
-            </div>
-          </Link>
+          <div className="banner_card">
+            <img src={bnr.img[0].original.path} alt={"img-" + bnr.image} />
+          </div>
         ))}
       </div>
     </div>

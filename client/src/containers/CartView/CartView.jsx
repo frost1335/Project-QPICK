@@ -8,17 +8,16 @@ import "./CartView.scss";
 
 function countPrice(arr) {
   let price = [];
-  arr.map((ctg) =>
-    ctg.products.map((pdct) => {
-      if (localStorage.getItem(`${pdct._id}-cart`)) {
-        pdct.count = +localStorage.getItem(`${pdct._id}-cart`).split(",")[1];
-        return price.push({
-          price: pdct.price,
-          count: +localStorage.getItem(`${pdct._id}-cart`).split(",")[1],
-        });
-      }
-    })
-  );
+  arr.map((pdct) => {
+    if (localStorage.getItem(`${pdct._id}-cart`)) {
+      pdct.count = +localStorage.getItem(`${pdct._id}-cart`).split(",")[1];
+      return price.push({
+        price: pdct.price,
+        count: +localStorage.getItem(`${pdct._id}-cart`).split(",")[1],
+      });
+    }
+    return pdct;
+  });
   return price.reduce((a, b) => (a += +b.price * b.count), 0);
 }
 
@@ -35,12 +34,9 @@ const CartView = () => {
   const dispatch = useDispatch();
 
   const editProductCount = (id, count) => {
-    cart.map((ctg) => {
-      ctg.products.map((p) => {
-        if (p._id === id) p.count = count;
-        return p;
-      });
-      return ctg;
+    cart.map((p) => {
+      if (p._id === id) p.count = count;
+      return p;
     });
   };
 
@@ -56,20 +52,12 @@ const CartView = () => {
         <div className="cart_body">
           <div className="body_left">
             {cart.length ? (
-              cart.map((ctg, idx) => (
-                <div className="cart_category" key={idx}>
-                  <h3>{ctg.name}</h3>
-                  <div className="category_row">
-                    {ctg.products.map((pdct, index) => {
-                      return (
-                        <CartCard
-                          editProductCount={editProductCount}
-                          key={index}
-                          product={pdct}
-                        />
-                      );
-                    })}
-                  </div>
+              cart.map((pdct, idx) => (
+                <div className="category_row" key={idx}>
+                  <CartCard
+                    editProductCount={editProductCount}
+                    product={pdct}
+                  />
                 </div>
               ))
             ) : (

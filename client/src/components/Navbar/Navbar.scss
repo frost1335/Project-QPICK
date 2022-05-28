@@ -159,9 +159,29 @@
           align-items: center;
           color: #fff;
           text-decoration: none;
+          position: relative;
+
+          span {
+            width: 20px;
+            height: 20px;
+            font-size: 15px;
+            border-radius: 50%;
+            line-height: 0;
+            background: #ec9b3b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            top: -6px;
+            right: 24px;
+
+            &.cart {
+              right: 13px;
+            }
+          }
 
           svg {
-            font-size: 24px;
+            font-size: 26px;
             margin-bottom: 8px;
           }
         }

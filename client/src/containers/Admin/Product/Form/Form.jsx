@@ -20,6 +20,8 @@ const Form = () => {
     id ? state.product.find((p) => p._id === id) : null
   );
 
+  console.log(product);
+
   const [productData, setProductData] = useState({
     isFormValid: false,
     formControls: {
@@ -198,7 +200,6 @@ const Form = () => {
 
     formControls[controlName] = control;
 
-    console.log(formControls);
     setProductData({ formControls, isFormValid: validateForm(formControls) });
   };
 
@@ -217,6 +218,7 @@ const Form = () => {
 
     if (id) {
       dispatch(editProduct(id, formData));
+      formData.delete("img");
       dispatch(editProducts(id, formData));
     } else {
       dispatch(createProduct(formData));

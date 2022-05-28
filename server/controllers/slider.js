@@ -1,6 +1,7 @@
 const { default: mongoose } = require("mongoose");
 const Slider = require("../models/Slider");
 const ErrorResponse = require("../utils/ErrorResponse");
+const deleteFile = require("../utils/fileDelete");
 
 exports.getSliders = async (req, res, next) => {
   try {
@@ -26,6 +27,10 @@ exports.createSlider = (req, res, next) => {
 
 exports.editSlider = async (req, res, next) => {
   const { id } = req.params;
+  if (req.body.img) {
+    const oldSlider = await Slider.findById(id).select("img");
+    deleteFile(oldSlider.img);
+  }
   const slider = req.body;
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return new ErrorResponse("No Slider with this ID", 404);
@@ -52,6 +57,9 @@ exports.deleteSlider = async (req, res, next) => {
     return new ErrorResponse("No Slider with this ID", 404);
   }
   try {
+    const slider = await Slider.findById(id).select("img");
+    deleteFile(slider.img);
+
     await Slider.findByIdAndRemove(id);
 
     res

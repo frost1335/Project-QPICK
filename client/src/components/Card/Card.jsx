@@ -57,13 +57,13 @@ const Card = (props) => {
         >
           <BiHeart />
         </div>
-        <div className="card_image">
-          <img
-            src={props.product.img[0].medium.path}
-            alt={"image" + props.product.title}
-          />
-        </div>
-        <Link to={"/view/product/" + props.product._id}>
+        <Link to={"/view/product/" + props.product._id} className={'Card_link'}>
+          <div className="card_image">
+            <img
+              src={props.product.img[0].medium.path}
+              alt={"image" + props.product.title}
+            />
+          </div>
           <p>{props.product.title} </p>
           <span className="price">{formatter.format(props.product.price)}</span>
           <h5>

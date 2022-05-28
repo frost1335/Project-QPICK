@@ -5,10 +5,12 @@ export const getCartProducts = () => async (dispatch) => {
   try {
     const { data } = await api.fetchProducts();
 
-    const cart = data.data
+    const cart = [];
+
+    data.data
       .map((ctg) => {
-        ctg.products = ctg.products.filter(
-          (pdct) => !!localStorage.getItem(`${pdct._id}-cart`)
+        ctg.products = ctg.products.filter((pdct) =>
+          !!localStorage.getItem(`${pdct._id}-cart`) ? cart.push(pdct) : pdct
         );
 
         return ctg.products.length ? ctg : null;

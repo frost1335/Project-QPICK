@@ -2,7 +2,8 @@ const mongoose = require("mongoose");
 const Product = require("../models/Product");
 const Shop = require("../models/Shop");
 const ErrorResponse = require("../utils/ErrorResponse");
-const { filterShop, filteredProducts } = require("../utils/filteredProducts");
+const { filteredProducts } = require("../utils/filteredProducts");
+const deleteFile = require("../utils/fileDelete");
 
 exports.getAllShops = async (req, res, next) => {
   try {
@@ -118,6 +119,10 @@ exports.createShop = (req, res, next) => {
 
 exports.editShop = async (req, res, next) => {
   const { id } = req.params;
+  if (req.body.img) {
+    const oldShop = await Shop.findById(id).select("img");
+    deleteFile(oldShop.img);
+  }
   const shop = req.body;
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
@@ -146,6 +151,9 @@ exports.deleteShop = async (req, res, next) => {
     return new ErrorResponse("No model with this ID", 400);
   }
   try {
+    const shop = await Shop.findById(id).select("img");
+    deleteFile(shop.img);
+
     await Shop.findByIdAndRemove(id);
 
     res

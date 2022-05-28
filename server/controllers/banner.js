@@ -1,6 +1,7 @@
 const { default: mongoose } = require("mongoose");
 const Banner = require("../models/Banner");
 const ErrorResponse = require("../utils/ErrorResponse");
+const deleteFile = require("../utils/fileDelete");
 
 exports.getBanners = async (req, res, next) => {
   try {
@@ -26,6 +27,10 @@ exports.createBanner = (req, res, next) => {
 
 exports.editBanner = async (req, res, next) => {
   const { id } = req.params;
+  if (req.body.img) {
+    const oldBanner = await Banner.findById(id).select("img");
+    deleteFile(oldBanner.img);
+  }
   const banner = req.body;
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return new ErrorResponse("No Banner with this ID", 404);
@@ -52,6 +57,9 @@ exports.deleteBanner = async (req, res, next) => {
     return new ErrorResponse("No Banner with this ID", 404);
   }
   try {
+    const banner = await Banner.findById(id).select("img");
+    deleteFile(banner.img);
+
     await Banner.findByIdAndRemove(id);
 
     res

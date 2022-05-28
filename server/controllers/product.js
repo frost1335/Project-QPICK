@@ -3,6 +3,8 @@ const Product = require("../models/Product");
 const Shop = require("../models/Shop");
 const Category = require("../models/Category");
 const ErrorResponse = require("../utils/ErrorResponse");
+const fs = require("fs");
+const deleteFile = require("../utils/fileDelete");
 
 exports.getProductBySearch = async (req, res, next) => {
   const { searchQuery, shopID, categoryID } = req.query;
@@ -137,6 +139,11 @@ exports.createProduct = async (req, res, next) => {
 
 exports.editProduct = async (req, res, next) => {
   const { id } = req.params;
+  console.log(req.body.img);
+  if (req.body.img) {
+    const oldProduct = await Product.findById(id).select("img");
+    deleteFile(oldProduct.img);
+  }
   const product = req.body;
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return new ErrorResponse("No product with this ID", 404);
@@ -163,8 +170,10 @@ exports.deleteProduct = async (req, res, next) => {
   }
 
   try {
-    await Product.findByIdAndRemove(id);
+    const product = await Product.findById(id).select("img");
+    deleteFile(product.img);
 
+    await Product.findByIdAndRemove(id);
     res
       .status(200)
       .json({ success: true, message: "Product successfully deleted" });
