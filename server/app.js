@@ -2,6 +2,7 @@ const express = require("express");
 const dotenv = require("dotenv");
 const bodyParser = require("body-parser");
 const connectDB = require("./config/db");
+const cors = require("cors");
 
 const errorHandler = require("./middleware/error");
 
@@ -11,6 +12,8 @@ dotenv.config();
 
 // mongodb connect
 connectDB();
+
+app.use(cors("http://localhost:3000/"));
 
 app.use(express.static(`${__dirname}/public`));
 app.use(express.json());
