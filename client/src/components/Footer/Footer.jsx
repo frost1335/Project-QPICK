@@ -18,7 +18,7 @@ const Footer = () => {
           <div className="footer_top">
             <div className="footer_logo">
               <Link className="logo" to="/">
-                style.uz
+                Style Shop
               </Link>
             </div>
             <div className="footer_links">

@@ -31,6 +31,7 @@
     font-size: 34px;
     color: #fff;
     font-weight: 700;
+    font-family: "Tiro Telugu", serif;
   }
 
   .nav_top {
@@ -167,7 +168,7 @@
             font-size: 15px;
             border-radius: 50%;
             line-height: 0;
-            background: #ec9b3b;
+            background: #F9D923;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -192,5 +193,6 @@
 
 .nav_back {
   width: 100%;
-  background: linear-gradient(90deg, #ff8c32 0%, #06113c 100%);
+  background: linear-gradient(90deg, #FF8D29 0%, #FF4949 100%);
+  // background: #FF8D29;
 }

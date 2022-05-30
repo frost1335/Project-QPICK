@@ -75,9 +75,8 @@ const BuyModal = (props) => {
     let arr = [];
 
     if (!props.id) {
-      props.products.map((ctg) =>
-        ctg.products.map((pdct) => arr.push(pdct._id))
-      );
+      console.log(props.products);
+      props.products.map((pdct) => arr.push(pdct._id));
 
       console.log(arr);
 

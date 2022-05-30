@@ -29,7 +29,7 @@ const Navbar = () => {
             <div className="nav_top">
               <div className="top_left">
                 <Link className="logo" to="/">
-                  style.uz
+                  Style Shop
                 </Link>
               </div>
               <div className="top_right">
