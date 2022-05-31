@@ -20,7 +20,7 @@ const Banner = () => {
     <div className="container">
       <div className="Banner">
         {banners.map((bnr, idx) => (
-          <div className="banner_card">
+          <div className="banner_card" key={idx}>
             <img src={bnr.img[0].original.path} alt={"img-" + bnr.image} />
           </div>
         ))}

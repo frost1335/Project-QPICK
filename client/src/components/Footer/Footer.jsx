@@ -27,10 +27,10 @@ const Footer = () => {
                   <Link to="/">Избранное</Link>
                 </li>
                 <li>
-                  <Link to="/">Избранное</Link>
+                  <Link to="/">Корзина</Link>
                 </li>
                 <li>
-                  <Link to="/">Избранное</Link>
+                  <a href="tel:998712022021">+998 (71) 202 2021</a>
                 </li>
               </ul>
             </div>
@@ -45,18 +45,15 @@ const Footer = () => {
             </div>
             <div className="footer_social">
               <div className="icons">
-                <Link to="/">
+                <a href="/">
                   <RiFacebookCircleLine />
-                </Link>
-                <Link to="/">
+                </a>
+                <a href="/">
                   <RiInstagramLine />
-                </Link>
-                <Link to="/">
+                </a>
+                <a href="/">
                   <RiTelegramLine />
-                </Link>
-                <Link to="/">
-                  <RiWhatsappLine />
-                </Link>
+                </a>
               </div>
             </div>
           </div>
