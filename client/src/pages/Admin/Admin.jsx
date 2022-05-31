@@ -18,6 +18,8 @@ const Admin = (props) => {
       return navigate("/admin/auth");
     }
 
+    // dispatch(getAllProducts());
+
     const fetchPrivateData = async () => {
       const config = {
         headers: {

@@ -49,10 +49,10 @@ const App = () => {
     dispatch(getCategories());
     dispatch(getAllBrands());
     dispatch(getAllShops());
-    dispatch(getAllProducts());
-    dispatch(getProducts());
+    // dispatch(getAllProducts());
+    // dispatch(getProducts());
     dispatch(getFavoriteProducts());
-    dispatch(getCartProducts());
+    // dispatch(getCartProducts());
   }, [dispatch]);
 
   return (

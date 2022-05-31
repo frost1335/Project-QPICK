@@ -3,7 +3,7 @@ import axios from "axios";
 const URL = "http://localhost:5000";
 
 // product
-export const fetchProducts = () => axios.get(`${URL}/api/shop/all`);
+export const fetchProducts = () => '';
 export const fetchAllProducts = () => axios.get(`${URL}/api/product`);
 export const updateProduct = (id, updatedProduct) =>
   axios.put(`${URL}/api/product/${id}`, updatedProduct);
