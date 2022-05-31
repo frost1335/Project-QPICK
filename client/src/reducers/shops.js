@@ -5,7 +5,7 @@ import {
   FETCH_ALL_SHOPS,
 } from "../constants/actionTypes";
 
-export default (shops = [], action) => {
+export const shops = (shops = [], action) => {
   switch (action.type) {
     case FETCH_ALL_SHOPS:
       return action.payload;

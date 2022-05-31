@@ -13,6 +13,7 @@ import "./CategorySlider.scss";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Loader from "../Loader/Loader";
+import { PROXY_URL } from "../../constants/actionTypes";
 
 const CategorySlider = () => {
   const categories = useSelector((state) => state.categories);
@@ -34,7 +35,7 @@ const CategorySlider = () => {
               <SwiperSlide key={idx}>
                 <Link to={"/category/" + ctg._id} className="slide">
                   <div className="slide_img">
-                    <img src={ctg.img[0].medium.path} alt="image_category" />
+                    <img src={PROXY_URL +ctg.img[0].medium.path} alt="image_category" />
                   </div>
                   <p className="slide_name">{ctg.name}</p>
                 </Link>

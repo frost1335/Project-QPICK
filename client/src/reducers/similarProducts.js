@@ -1,6 +1,6 @@
 import { FETCH_SIMILAR_PRODUCTS } from "../constants/actionTypes";
 
-export default (similarProducts = [], action) => {
+export const similarProducts = (similarProducts = [], action) => {
   switch (action.type) {
     case FETCH_SIMILAR_PRODUCTS:
       return action.payload;

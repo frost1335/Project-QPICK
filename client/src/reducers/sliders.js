@@ -5,7 +5,7 @@ import {
   GET_SLIDERS,
 } from "../constants/actionTypes";
 
-export default (sliders = [], action) => {
+export const sliders = (sliders = [], action) => {
   switch (action.type) {
     case GET_SLIDERS:
       return action.payload;

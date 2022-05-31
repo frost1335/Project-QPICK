@@ -5,7 +5,7 @@ import {
   UPDATE_PRODUCT,
 } from "../constants/actionTypes";
 
-export default (products = [], action) => {
+export const products = (products = [], action) => {
   switch (action.type) {
     case FETCH_ALL_PRODUCTS:
       return action.payload;

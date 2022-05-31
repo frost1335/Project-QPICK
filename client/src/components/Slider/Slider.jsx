@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import { slide } from "../../images";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
@@ -11,8 +10,7 @@ import "./Slider.scss";
 import { Pagination, Navigation, Autoplay } from "swiper";
 import { useDispatch, useSelector } from "react-redux";
 import { getSliders } from "../../actions";
-
-const arr = [slide, slide, slide, slide, slide, slide, slide];
+import { PROXY_URL } from "../../constants/actionTypes";
 
 const Slider = () => {
   const dispatch = useDispatch();
@@ -43,7 +41,10 @@ const Slider = () => {
         >
           {sliders.map((slider, idx) => (
             <SwiperSlide className="slide" key={idx}>
-              <img src={slider.img[0].original.path} alt="slide_img" />
+              <img
+                src={PROXY_URL + slider.img[0].original.path}
+                alt="slide_img"
+              />
             </SwiperSlide>
           ))}
         </Swiper>

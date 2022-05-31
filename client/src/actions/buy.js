@@ -41,7 +41,7 @@ export const editBuy = (id, updatedBuy) => async (dispatch) => {
 
 export const deleteBuy = (id) => async (dispatch) => {
   try {
-    const { data } = await api.deleteBuy(id);
+    await api.deleteBuy(id);
 
     dispatch({ type: DELETE_BUY, payload: id });
   } catch (error) {

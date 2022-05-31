@@ -5,7 +5,7 @@ import {
   GET_BUYS,
 } from "../constants/actionTypes";
 
-export default (buys = [], action) => {
+export const buys = (buys = [], action) => {
   switch (action.type) {
     case GET_BUYS:
       return action.payload;

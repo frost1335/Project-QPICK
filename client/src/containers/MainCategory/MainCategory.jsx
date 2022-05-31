@@ -51,7 +51,9 @@ const useStyles = makeStyles({
   },
 });
 
+
 const MainCategory = () => {
+  const URL = "http://localhost:5000";
   const classes = useStyles();
   const navigate = useNavigate();
   const location = useLocation();
@@ -112,7 +114,7 @@ const MainCategory = () => {
 
         const { data } = await axios({
           method: "GET",
-          url: `/api/product${query}`,
+          url: `${URL}/api/product${query}`,
           cancelToken: new axios.CancelToken((c) => (cancel = c)),
         });
 
@@ -314,9 +316,7 @@ const MainCategory = () => {
           {loading ? (
             <Loader />
           ) : (
-            products.map((pdct, index) => (
-              <Card product={pdct} key={index} />
-            ))
+            products.map((pdct, index) => <Card product={pdct} key={index} />)
           )}
         </div>
       </div>

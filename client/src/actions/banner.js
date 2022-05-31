@@ -35,7 +35,7 @@ export const editBanner = (id, updatedBanner) => async (dispatch) => {
 };
 export const deleteBannner = (id) => async (dispatch) => {
   try {
-    const { data } = await api.deleteBannner(id);
+    await api.deleteBannner(id);
 
     dispatch({ type: DELETE_BANNER, payload: id });
   } catch (error) {

@@ -92,6 +92,7 @@ const FormInputs = (props) => {
             />
           );
         }
+        return "object";
       })}
     </>
   );

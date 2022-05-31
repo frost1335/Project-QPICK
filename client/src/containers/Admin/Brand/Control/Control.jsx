@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { deleteBrand } from "../../../../actions";
 import { Loader } from "../../../../components";
+import { PROXY_URL } from "../../../../constants/actionTypes";
 
 const Control = () => {
   window.scroll({ top: 0 });
@@ -46,7 +47,7 @@ const Control = () => {
                 <li key={index}>
                   <div className="li-item">
                     <div className="item_img">
-                      <img src={b.img[0].thumbnail.path} alt="category-img" />
+                      <img src={PROXY_URL +b.img[0].thumbnail.path} alt="category-img" />
                     </div>
                     <p>{b.name}</p>
                     <div className="item_buttons">

@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { deleteSlider, getSliders } from "../../../../actions";
 import { Loader } from "../../../../components";
+import { PROXY_URL } from "../../../../constants/actionTypes";
 
 import "./Control.scss";
 
@@ -51,7 +52,7 @@ const Control = () => {
                   <span>Slider-{index + 1}</span>
                   <div className="li-item">
                     <div className="item_img">
-                      <img src={slider.img[0].original.path} alt="slider-img" />
+                      <img src={PROXY_URL+slider.img[0].original.path} alt="slider-img" />
                     </div>
                     <div className="item_buttons">
                       <Link to={`/admin/slider/edit/${slider._id}`}>

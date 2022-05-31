@@ -1,4 +1,3 @@
-import * as api from "../api";
 import { AUTH_LOGIN } from "../constants/actionTypes";
 
 export const authLogin = (authData) => async (dispatch) => {

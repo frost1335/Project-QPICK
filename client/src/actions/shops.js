@@ -38,7 +38,7 @@ export const editShop = (id, updatedShop) => async (dispatch) => {
 
 export const deleteShop = (id) => async (dispatch) => {
   try {
-    const { data } = await api.deleteShop(id);
+    await api.deleteShop(id);
 
     dispatch({ type: DELETE_SHOP, payload: id });
   } catch (error) {

@@ -20,6 +20,7 @@ import axios from "axios";
 
 import "./ShopView.scss";
 import { useSelector } from "react-redux";
+import { PROXY_URL } from "../../constants/actionTypes";
 
 const useStyles = makeStyles({
   root: {
@@ -141,7 +142,7 @@ const ShopView = () => {
     if (search.trim()) {
       setLoading(true);
       const { data } = await axios.get(
-        `/api/product/search?searchQuery=${search}&shopID=${id}`
+        `${PROXY_URL}/api/product/search?searchQuery=${search}&shopID=${id}`
       );
       setProducts(data.data);
       setLoading(false);

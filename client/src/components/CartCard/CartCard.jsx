@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { CgClose } from "react-icons/cg";
 
 import "./CartCard.scss";
+import { PROXY_URL } from "../../constants/actionTypes";
 
 const formatter = new Intl.NumberFormat("uz-UZ", {
   style: "currency",
@@ -44,7 +45,10 @@ const CartCard = (props) => {
   return (
     <div className="CartCard" id={`CartCard-${props.product._id}`}>
       <div className="card_img">
-        <img src={props.product.img[0].thumbnail.path} alt="cart-product-img" />
+        <img
+          src={PROXY_URL + props.product.img[0].thumbnail.path}
+          alt="cart-product-img"
+        />
       </div>
       <div className="card_info">
         <p className="card_title">{props.product.title}</p>

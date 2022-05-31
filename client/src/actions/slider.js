@@ -38,7 +38,7 @@ export const editSlider = (id, updatedSlider) => async (dispatch) => {
 
 export const deleteSlider = (id) => async (dispatch) => {
   try {
-    const { data } = await api.deleteSlider(id);
+    await api.deleteSlider(id);
 
     dispatch({ type: DELETE_SLIDER, payload: id });
   } catch (error) {

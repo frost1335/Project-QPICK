@@ -7,6 +7,7 @@ import { BuyModal, Loader } from "../../components";
 import { BiQuestionMark } from "react-icons/bi";
 
 import "./ProductView.scss";
+import { PROXY_URL } from "../../constants/actionTypes";
 
 const ProductView = () => {
   window.scroll({ top: 0 });
@@ -96,7 +97,7 @@ const ProductView = () => {
           <div className="view_body">
             <div className="body_left">
               <div className="left_img">
-                <img src={product.img[0].large.path} alt="img-product" />
+                <img src={PROXY_URL+product.img[0].large.path} alt="img-product" />
               </div>
             </div>
             <div className="body_center">
@@ -167,7 +168,7 @@ const ProductView = () => {
               <div className="shop_info">
                 <span>Магазин: </span>
                 <Link to={"/shop/" + shop._id}>
-                  <img src={shop.img[0].thumbnail.path} alt={"shop-img"} />
+                  <img src={PROXY_URL+shop.img[0].thumbnail.path} alt={"shop-img"} />
                   <p>{shop.name}</p>
                 </Link>
               </div>
@@ -175,7 +176,7 @@ const ProductView = () => {
                 <span>Категория: </span>
                 <Link to={"/category/" + category._id}>
                   <img
-                    src={category.img[0].thumbnail.path}
+                    src={PROXY_URL+category.img[0].thumbnail.path}
                     alt={"category-img"}
                   />
                   <p>{category.name}</p>

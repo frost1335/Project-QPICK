@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { deleteShop } from "../../../../actions";
 
 import { Loader } from "../../../../components";
+import { PROXY_URL } from "../../../../constants/actionTypes";
 
 const Control = () => {
   const dispatch = useDispatch();
@@ -47,7 +48,7 @@ const Control = () => {
                   <div className="li-item">
                     {console.log(shop.img)}
                     <div className="item_img">
-                      <img src={shop.img[0].thumbnail.path} alt="shop-img" />
+                      <img src={PROXY_URL+shop.img[0].thumbnail.path} alt="shop-img" />
                     </div>
                     <p>{shop.name}</p>
                     <div className="item_buttons">

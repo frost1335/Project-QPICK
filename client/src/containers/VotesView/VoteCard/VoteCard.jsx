@@ -2,6 +2,7 @@ import Rating from "@material-ui/lab/Rating";
 import moment from "moment";
 import React from "react";
 import { useSelector } from "react-redux";
+import { PROXY_URL } from "../../../constants/actionTypes";
 
 const formatter = new Intl.NumberFormat("uz-UZ", {
   style: "currency",
@@ -24,7 +25,7 @@ const VoteCard = (props) => {
               <div className="product">
                 <div className="pdct_img">
                   <img
-                    src={getProduct(p).img[0].thumbnail.path}
+                    src={PROXY_URL+getProduct(p).img[0].thumbnail.path}
                     alt="product-img"
                   />
                 </div>

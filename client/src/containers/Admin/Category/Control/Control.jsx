@@ -8,6 +8,7 @@ import { AiOutlinePlus } from "react-icons/ai";
 import "./Control.scss";
 import { Link } from "react-router-dom";
 import { deleteCategory } from "../../../../actions/";
+import { PROXY_URL } from "../../../../constants/actionTypes";
 
 const Control = () => {
   window.scroll({ top: 0 });
@@ -47,7 +48,7 @@ const Control = () => {
                 <li key={index}>
                   <div className="li-item">
                     <div className="item_img">
-                      <img src={ctg.img[0].thumbnail.path} alt="category-img" />
+                      <img src={PROXY_URL+ctg.img[0].thumbnail.path} alt="category-img" />
                     </div>
                     <p>{ctg.name}</p>
                     <div className="item_buttons">

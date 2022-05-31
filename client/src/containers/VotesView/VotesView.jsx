@@ -36,14 +36,14 @@ const VotesView = () => {
 
       setVotes(arr);
     }
-  }, []);
+  }, [buys]);
 
   const voteProduct = (id, buyId, value) => {
-    let votes = [...votes];
-    let vote = votes.find((v) => v.id === `${id}-${buyId}`);
+    let Fvotes = [...votes];
+    let vote = Fvotes.find((v) => v.id === `${id}-${buyId}`);
     vote.value = value;
-    votes.map((v) => (v.id === vote.id ? vote : v));
-    setVotes(votes);
+    Fvotes.map((v) => (v.id === vote.id ? vote : v));
+    setVotes(Fvotes);
   };
 
   return (

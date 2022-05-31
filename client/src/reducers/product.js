@@ -1,6 +1,6 @@
 import { EDIT_PRODUCT, FETCH_PRODUCTS } from "../constants/actionTypes";
 
-export default (product = [], action) => {
+export const product = (product = [], action) => {
   switch (action.type) {
     case FETCH_PRODUCTS:
       return action.payload;

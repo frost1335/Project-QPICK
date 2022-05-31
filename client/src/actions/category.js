@@ -38,7 +38,7 @@ export const editCategory = (id, updatedCtg) => async (dispatch) => {
 
 export const deleteCategory = (id) => async (dispatch) => {
   try {
-    const { data } = await api.deleteCategory(id);
+    await api.deleteCategory(id);
 
     dispatch({ type: DELETE_CATEGORY, payload: id });
   } catch (error) {

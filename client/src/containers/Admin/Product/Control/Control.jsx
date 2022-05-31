@@ -8,6 +8,7 @@ import { AiOutlinePlus } from "react-icons/ai";
 import "./Control.scss";
 import { deleteProduct, getProducts } from "../../../../actions";
 import { Link } from "react-router-dom";
+import { PROXY_URL } from "../../../../constants/actionTypes";
 
 const Control = () => {
   window.scroll({ top: 0 });
@@ -55,7 +56,7 @@ const Control = () => {
                         <div className="li-item">
                           <div className="item_img">
                             <img
-                              src={pdct.img[0].thumbnail.path}
+                              src={PROXY_URL+pdct.img[0].thumbnail.path}
                               alt="product-img"
                             />
                           </div>

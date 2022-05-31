@@ -4,8 +4,6 @@ import { useParams } from "react-router-dom";
 import { BuyModal, Footer, Navbar } from "../../components";
 import { FavoriteView } from "../../containers";
 
-import "./Favorite.scss";
-
 const Favorite = () => {
   const { id } = useParams();
 

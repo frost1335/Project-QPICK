@@ -38,7 +38,7 @@ export const editBrand = (id, updatedBrand) => async (dispatch) => {
 
 export const deleteBrand = (id) => async (dispatch) => {
   try {
-    const { data } = await api.deleteBrand(id);
+    await api.deleteBrand(id);
 
     dispatch({ type: DELETE_BRAND, payload: id });
   } catch (error) {

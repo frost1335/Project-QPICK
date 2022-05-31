@@ -40,7 +40,7 @@ export const editAdmin = (id, updatedAdmin) => async (dispatch) => {
 
 export const deleteAdmin = (id) => async (dispatch) => {
   try {
-    const { data } = await api.deleteAdmin(id);
+    await api.deleteAdmin(id);
 
     dispatch({ type: DELETE_ADMIN, payload: id });
   } catch (error) {

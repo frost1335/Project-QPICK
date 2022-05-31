@@ -2,6 +2,7 @@ import React from "react";
 
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { PROXY_URL } from "../../constants/actionTypes";
 import Loader from "../Loader/Loader";
 
 import "./Catalog.scss";
@@ -21,7 +22,10 @@ const Catalog = (props) => {
               shops.map((shop, idx) => (
                 <Link to={"/shop/" + shop._id} className="menu_item" key={idx}>
                   <div className="item_img">
-                    <img src={shop.img[0].thumbnail.path} alt={"item-img"} />
+                    <img
+                      src={PROXY_URL + shop.img[0].thumbnail.path}
+                      alt={"item-img"}
+                    />
                   </div>
                   <p>{shop.name}</p>
                 </Link>
@@ -40,7 +44,10 @@ const Catalog = (props) => {
                   key={idx}
                 >
                   <div className="item_img">
-                    <img src={ctg.img[0].thumbnail.path} alt={"item-img"} />
+                    <img
+                      src={PROXY_URL + ctg.img[0].thumbnail.path}
+                      alt={"item-img"}
+                    />
                   </div>
                   <p>{ctg.name}</p>
                 </Link>

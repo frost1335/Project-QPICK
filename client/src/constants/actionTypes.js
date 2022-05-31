@@ -1,3 +1,6 @@
+// Backend proxs URL
+export const PROXY_URL = "http://localhost:5000";
+
 export const FETCH_ALL_PRODUCTS = "FETCH_ALL_PRODUCTS";
 export const FETCH_ALL_CATEGORIES = "FETCH_ALL_CATEGORIES";
 export const FETCH_ALL_SHOPS = "FETCH_ALL_SHOPS";
@@ -33,7 +36,7 @@ export const GET_BANNERS = "GET_BANNERS";
 export const CREATE_BANNER = "CREATE_BANNER";
 export const EDIT_BANNER = "EDIT_BANNER";
 export const DELETE_BANNER = "DELETE_BANNER";
-export const GET_BUYS ="GET_BUYS"
-export const CREATE_BUY = "CREATE_BUY"
-export const EDIT_BUY = "EDIT_BUY"
-export const DELETE_BUY = "DELETE_BUY"
+export const GET_BUYS = "GET_BUYS";
+export const CREATE_BUY = "CREATE_BUY";
+export const EDIT_BUY = "EDIT_BUY";
+export const DELETE_BUY = "DELETE_BUY";

@@ -19,6 +19,7 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import "./CategoryView.scss";
 import { useSelector } from "react-redux";
+import { PROXY_URL } from "../../constants/actionTypes";
 
 const useStyles = makeStyles({
   root: {
@@ -118,7 +119,7 @@ const CategoryView = () => {
 
         const { data } = await axios({
           method: "GET",
-          url: `/api/category/${id}${query}`,
+          url: `${PROXY_URL}/api/category/${id}${query}`,
           cancelToken: new axios.CancelToken((c) => (cancel = c)),
         });
 
@@ -140,7 +141,7 @@ const CategoryView = () => {
     if (search.trim()) {
       setLoading(true);
       const { data } = await axios.get(
-        `/api/product/search?searchQuery=${search}&categoryID=${id}`
+        `${PROXY_URL}/api/product/search?searchQuery=${search}&categoryID=${id}`
       );
       setProducts(data.data);
       setLoading(false);

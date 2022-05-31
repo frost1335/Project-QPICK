@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 
 import { deleteBannner, getBanners } from "../../../../actions";
 import { Loader } from "../../../../components";
+import { PROXY_URL } from "../../../../constants/actionTypes";
 
 const Control = () => {
   const dispatch = useDispatch();
@@ -51,7 +52,7 @@ const Control = () => {
                   <span>Slider-{index + 1}</span>
                   <div className="li-item">
                     <div className="item_img">
-                      <img src={banner.img[0].original.path} alt="banner-img" />
+                      <img src={PROXY_URL +banner.img[0].original.path} alt="banner-img" />
                     </div>
                     <div className="item_buttons">
                       <Link to={`/admin/banner/edit/${banner._id}`}>

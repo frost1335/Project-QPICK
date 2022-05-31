@@ -5,7 +5,7 @@ import {
   GET_BANNERS,
 } from "../constants/actionTypes";
 
-export default (banners = [], action) => {
+export const banners = (banners = [], action) => {
   switch (action.type) {
     case GET_BANNERS:
       return action.payload;

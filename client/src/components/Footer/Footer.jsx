@@ -1,7 +1,6 @@
 import React from "react";
 import { MdLanguage } from "react-icons/md";
 import {
-  RiWhatsappLine,
   RiInstagramLine,
   RiTelegramLine,
   RiFacebookCircleLine,

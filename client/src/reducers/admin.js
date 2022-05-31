@@ -5,7 +5,7 @@ import {
   FETCH_ADMINS,
 } from "../constants/actionTypes";
 
-export default (admins = [], action) => {
+export const admins = (admins = [], action) => {
   switch (action.type) {
     case FETCH_ADMINS:
       return action.payload;
