@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getBanners } from "../../actions";
+import { PROXY_URL } from "../../constants/actionTypes";
 
 import "./Banner.scss";
 
@@ -13,15 +14,13 @@ const Banner = () => {
 
   const banners = useSelector((state) => state.banners);
 
-  console.log(banners);
-
   return (
     <div className="container">
       <div className="Banner">
         {banners.map((bnr, idx) => (
           <div className="banner_card" key={idx}>
             <img
-              src={"http://localhost:5000" + bnr.img[0].original.path}
+              src={PROXY_URL + bnr.img[0].original.path}
               alt={"img-" + bnr.image}
             />
           </div>

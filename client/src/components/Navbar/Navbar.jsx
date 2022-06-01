@@ -45,7 +45,7 @@ const Navbar = () => {
                     </p>
                   </li>
                   <li>
-                    <button>Запросить звонок</button>
+                    <Link to="/admin/auth">Войти</Link>
                   </li>
                 </ul>
               </div>
