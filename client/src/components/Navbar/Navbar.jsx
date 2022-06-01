@@ -16,10 +16,12 @@ const Navbar = () => {
   const favorites = useSelector((state) => state.favorites);
   const cart = useSelector((state) => state.cart);
 
+  console.log(favorites, cart);
+
   useEffect(() => {
     dispatch(getCartProducts());
     dispatch(getFavoriteProducts());
-  }, [cart, favorites, dispatch]);
+  }, [dispatch]);
 
   return (
     <div className="nav_back">

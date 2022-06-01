@@ -120,7 +120,7 @@ const ShopView = () => {
 
         const { data } = await axios({
           method: "GET",
-          url: `/api/shop/${id}${query}`,
+          url: `${PROXY_URL}/api/shop/${id}${query}`,
           cancelToken: new axios.CancelToken((c) => (cancel = c)),
         });
 

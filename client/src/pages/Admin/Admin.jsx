@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { PROXY_URL } from "../../constants/actionTypes";
 
 import "./Admin.scss";
 
@@ -18,8 +19,6 @@ const Admin = (props) => {
       return navigate("/admin/auth");
     }
 
-    // dispatch(getAllProducts());
-
     const fetchPrivateData = async () => {
       const config = {
         headers: {
@@ -29,7 +28,10 @@ const Admin = (props) => {
       };
 
       try {
-        const { data } = await axios.get("/api/admin/control", config);
+        const { data } = await axios.get(
+          `${PROXY_URL}/api/admin/control`,
+          config
+        );
 
         setAdminData(data.data);
       } catch (error) {

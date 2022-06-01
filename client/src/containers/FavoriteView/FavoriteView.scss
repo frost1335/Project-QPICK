@@ -17,6 +17,8 @@
     margin-bottom: 60px;
 
     .favorite_category {
+      display: flex;
+      flex-wrap: wrap;
       width: 100%;
       margin-top: 45px;
       box-sizing: border-box;

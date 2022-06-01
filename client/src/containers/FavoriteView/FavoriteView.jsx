@@ -18,20 +18,13 @@ const FavoriteView = () => {
       <div className="FavoriteView">
         <h2>Избранное</h2>
         <div className="favorite_body">
-          {favorites.length ? (
-            favorites.map((ctg, idx) => (
-              <div className="favorite_category" key={idx}>
-                <h3>{ctg.name}</h3>
-                <div className="category_body">
-                  {ctg.products.map((pdct, index) => (
-                    <Card product={pdct} key={index} />
-                  ))}
-                </div>
-              </div>
-            ))
-          ) : (
-            <Loader />
-          )}
+          <div className="favorite_category">
+            {favorites.length ? (
+              favorites.map((pdct, idx) => <Card product={pdct} key={idx} />)
+            ) : (
+              <Loader />
+            )}
+          </div>
         </div>
       </div>
     </div>

@@ -20,8 +20,6 @@ const Form = () => {
     id ? state.product.find((p) => p._id === id) : null
   );
 
-  console.log(product);
-
   const [productData, setProductData] = useState({
     isFormValid: false,
     formControls: {

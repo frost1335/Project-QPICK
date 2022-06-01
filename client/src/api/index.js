@@ -1,9 +1,11 @@
 import axios from "axios";
 
+import { PROXY_URL } from "../constants/actionTypes";
+
 const URL = "http://localhost:5000";
 
 // product
-export const fetchProducts = () => '';
+export const fetchProducts = () => axios.get(`${PROXY_URL}/api/shop/all`);
 export const fetchAllProducts = () => axios.get(`${URL}/api/product`);
 export const updateProduct = (id, updatedProduct) =>
   axios.put(`${URL}/api/product/${id}`, updatedProduct);

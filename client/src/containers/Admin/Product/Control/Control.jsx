@@ -56,7 +56,7 @@ const Control = () => {
                         <div className="li-item">
                           <div className="item_img">
                             <img
-                              src={PROXY_URL+pdct.img[0].thumbnail.path}
+                              src={PROXY_URL + pdct.img[0].thumbnail.path}
                               alt="product-img"
                             />
                           </div>

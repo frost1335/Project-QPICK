@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { editBuy, getBuys } from "../../../actions";
+import { deleteBuy,  getBuys } from "../../../actions";
 import moment from "moment";
 
 import "./Order.scss";
@@ -28,13 +28,16 @@ const Order = () => {
     dispatch(getBuys());
   }, [dispatch]);
 
+  console.log(buys);
+
   const countAllPrice = (arr) => {
+    console.log(arr);
     let countArr = arr.map((a) => +getProduct(a).price);
     return countArr.reduce((a, b) => (a += b));
   };
 
   const onPhonedHandler = (id) => {
-    dispatch(editBuy(id, { status: "phoned" }));
+    dispatch(deleteBuy(id));
   };
 
   return (

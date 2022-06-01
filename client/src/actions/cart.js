@@ -3,19 +3,11 @@ import * as api from "../api";
 
 export const getCartProducts = () => async (dispatch) => {
   try {
-    const { data } = await api.fetchProducts();
+    const { data } = await api.fetchAllProducts();
 
-    const cart = [];
-
-    data.data
-      .map((ctg) => {
-        ctg.products = ctg.products.filter((pdct) =>
-          !!localStorage.getItem(`${pdct._id}-cart`) ? cart.push(pdct) : pdct
-        );
-
-        return ctg.products.length ? ctg : null;
-      })
-      .filter((ctg) => ctg !== null);
+    const cart = data.data
+      .map((pdct) => (!!localStorage.getItem(`${pdct._id}-cart`) ? pdct : null))
+      .filter((pdct) => pdct !== null);
 
     dispatch({ type: GET_CART_PRODUCTS, payload: cart });
   } catch (error) {

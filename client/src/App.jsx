@@ -3,13 +3,10 @@ import { useDispatch } from "react-redux";
 import { Routes, Route } from "react-router-dom";
 
 import {
-  getProducts,
   getCategories,
   getAllBrands,
   getAllShops,
   getAllProducts,
-  getFavoriteProducts,
-  getCartProducts,
 } from "./actions";
 
 import {
@@ -20,7 +17,6 @@ import {
   Cart,
   Auth,
   Admin,
-  Votes,
   Category,
   Shop,
 } from "./pages";
@@ -49,10 +45,7 @@ const App = () => {
     dispatch(getCategories());
     dispatch(getAllBrands());
     dispatch(getAllShops());
-    // dispatch(getAllProducts());
-    // dispatch(getProducts());
-    dispatch(getFavoriteProducts());
-    // dispatch(getCartProducts());
+    dispatch(getAllProducts());
   }, [dispatch]);
 
   return (
@@ -72,7 +65,6 @@ const App = () => {
         <Route path="/buy/:id" element={<Main />} />
         <Route path="/admin/auth" element={<Auth />} />
         <Route path="/admin/control" element={<Admin />} />
-        <Route path="/votes" element={<Votes />} />
         <Route
           path="/admin/order/control"
           element={
