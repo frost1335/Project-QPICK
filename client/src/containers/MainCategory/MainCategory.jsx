@@ -51,9 +51,8 @@ const useStyles = makeStyles({
   },
 });
 
-
 const MainCategory = () => {
-  const URL = "http://localhost:5000";
+  const URL = process.env.REACT_APP_BASE_URL;
   const classes = useStyles();
   const navigate = useNavigate();
   const location = useLocation();

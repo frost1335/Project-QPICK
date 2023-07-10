@@ -1,5 +1,5 @@
 // Backend proxs URL
-export const PROXY_URL = "http://localhost:5000";
+export const PROXY_URL = process.env.REACT_APP_BASE_URL
 
 export const FETCH_ALL_PRODUCTS = "FETCH_ALL_PRODUCTS";
 export const FETCH_ALL_CATEGORIES = "FETCH_ALL_CATEGORIES";
@@ -18,7 +18,7 @@ export const EDIT_PRODUCT = "EDIT_PRODUCT";
 export const CREATE_CATEGORY = "CREATE_CATEGORY";
 export const EDIT_CATEGORY = "EDIT_CATEGORY";
 export const CREATE_SHOP = "CREATE_SHOP";
-export const EDIT_SHOP = "EDIT_SHOP";
+export const EDIT_SHOP = "EDIT_SHOP";   
 export const DELETE_SHOP = "DELETE_SHOP";
 export const CREATE_BRAND = "CREATE_BRAND";
 export const EDIT_BRAND = "EDIT_BRAND";
